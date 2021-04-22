@@ -1,0 +1,128 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+
+.App {
+    background-image:url("./assets/Background/desktopBackground.png");
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Montserrat';
+}
+
+.header {
+    flex-direction: row;
+    flex:2;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+}
+
+.logoContainer{
+    flex:1;
+    width:200px;
+    height:110px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.imgLogo{
+    align-items: center;
+    justify-content: center;
+    max-width: 70%;
+    max-height: 70%;
+    margin: auto;
+}
+
+.navBar {
+    flex:1;
+    align-items: center;
+    justify-content: start;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.butoane {
+    align-content: space-evenly;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    padding-left:70px;
+    font-family: Montserrat;
+
+}
+
+.buton {
+    flex: 1;
+    margin-left:40px;
+    margin-right: 150px;
+    background-color:transparent;
+    border-color: transparent;
+    color:rgb(238, 238, 238);
+    font-weight : bold;
+    transition: none;
+ }
+
+.buton:focus {
+    background-color:transparent;
+    border-color: transparent;
+}
+
+.butoane:hover .buton {
+    opacity: .55;
+}
+
+.butoane .buton:hover {
+    opacity: 5;
+    background-color: transparent;
+} 
+
+.contactIconContainer {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contactIcon{
+    align-items: center;
+    justify-content: center;
+    width:70px;
+    height:70px;
+}
+.contactText{
+    text-align: center;
+}
+
+.body {
+    flex:7;
+    width:100%;
+    height:100%;
+}
+
+.footer {
+    flex:1;
+    width:100%;
+    height:100%;
+}
+
+@media (max-width: 480px) {
+.App {
+    background-image :url("./assets/Mobile/desktopMobile.png");
+    background-position: center;
+    overflow: hidden;
+}
+}
+
+/* @media (orientation: landscape) {
+.butoane {
+    display:inline-block;
+}
+} */
