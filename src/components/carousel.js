@@ -4,10 +4,6 @@ import Carousel from 'react-bootstrap/Carousel';
 import "../carousel.css";
 
 export default class ReusableCarousel extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render(){
     return(
       <div>
