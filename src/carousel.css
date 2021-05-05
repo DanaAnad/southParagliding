@@ -1,28 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
-.carousel {
+.FotoCarousel {
     display: flex;
-    /* width:auto;
-    height:auto; */
+    width:100%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat';
+}
+
+.LocationsCarousel {
+    display: flex;
     margin: auto;
     position: inherit;
     align-items: center;
     justify-content: center;
     font-family: 'Montserrat';
-  }
+}
+
+.locationsItem{
+  margin-bottom: 7%;
+}
+
+.carousel-inner {
+  display: flex;
+}
+
+.carousel-caption {
+  display:flex;
+  margin:auto;
+  bottom:auto;
+  padding-top:20px;
+  color:black;
+  text-align: center;
+  justify-content: center;
+}
+
+h5 {
+  font-size:1rem;
+  display: inline-flex;
+}
 
 .pozaModal {
-    display: block;
-    max-width:100%;
-    max-height:100%;
-    border-radius:5px;
-    object-fit: cover;
-  }
-  .videoItem {
-    width:100%;
-    height: 100%;
-    border-radius: 5px;
-    object-fit: cover;
+  display: block;
+  max-width:100%;
+  max-height:100%;
+  border-radius:5px;
+  object-fit: cover;
+}
+
+.carousel-indicators {
+  display:none
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon, span {
+  width:25px;
+  height:25px;
+}
+
+.videoItem {
+  width:100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
 }
 
 .carousel-control-next ,.carousel-control-prev {

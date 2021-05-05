@@ -42,15 +42,16 @@
     margin: auto;
 }
 
-.navBar {
+/* .navBar {
     flex:1;
     align-items: center;
     justify-content: start;
     text-align: center;
     vertical-align: middle;
-}
+} */
 
 .butoane {
+    flex: 1;
     align-content: space-evenly;
     align-items: center;
     justify-content: space-evenly;
@@ -72,8 +73,7 @@
  }
 
 .buton:focus {
-    background-color:transparent;
-    border-color: transparent;
+    outline: none;
 }
 
 .butoane:hover .buton {
@@ -84,18 +84,29 @@
     opacity: 5;
     background-color: transparent;
 } 
-
+.contactComponent {
+    padding-top:40px;
+    padding-bottom:40px;
+    padding-left:90px;
+    padding-right: 90px;
+}
 .contactIconContainer {
     display:flex;
     align-items: center;
     justify-content: center;
 }
-
+.contactDetails {
+    text-align: center;
+    align-content: center;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
 .contactIcon{
     align-items: center;
     justify-content: center;
-    width:70px;
-    height:70px;
+    width:60px;
+    height:60px;
 }
 .contactText{
     text-align: center;
