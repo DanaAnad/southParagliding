@@ -1,6 +1,7 @@
 @media (min-width:769px) {
   .modal-dialog {
     display: flex;
+    flex-direction: column;
     width: 800px;
     max-width: fit-content;
     height:auto;
@@ -20,7 +21,7 @@
 
   .modal-body {
     display: flex;
-    flex-direction:inline;
+    flex-direction:row;
     align-items: center;
     justify-content: center;
     background-color:rgb(221, 221, 221);
@@ -31,7 +32,7 @@
     position:relative;
   } */
 
-  /* .callout {
+  /* .close {
     position:absolute;
     top:0;
     right:0;
@@ -39,16 +40,18 @@
     border: none;
     margin-left:47rem;
   } */
+
   /* .close-button {
     position:absolute;
     top: 0;
     right: 0;
+    text-align: center;
     border: none;
     background-color:rgb(221, 221, 221);
     color:red;
     margin:auto;
     height:40px;
-    font-size:50px;
+    font-size:40px;
   } */
 
 }

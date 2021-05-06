@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import "../carousel.css";
 
-export default class ReusableCarousel extends Component {
+export default class PhotoCarousel extends Component {
   render(){
     return(
       <div className="ReusableCarousel">

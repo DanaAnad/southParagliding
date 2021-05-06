@@ -15,23 +15,23 @@
     font-family: 'Montserrat';
 }
 
-.header {
-    flex-direction: row;
+.headerDesktop {
     flex:2;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     margin:auto;
 }
 
 .logoContainer{
-    flex:1;
+    display:flex;
+    flex:auto;
     width:200px;
     height:110px;
     justify-content: center;
     align-items: center;
     text-align: center;
     margin: auto;
-    padding-top: 30px;
 }
 
 .imgLogo{
@@ -42,27 +42,21 @@
     margin: auto;
 }
 
-/* .navBar {
-    flex:1;
-    align-items: center;
-    justify-content: start;
-    text-align: center;
-    vertical-align: middle;
-} */
-
-.butoane {
-    flex: 1;
-    align-content: space-evenly;
+.navbar {
+    display:flex;
+    flex-direction: row;
+    flex: auto;
+    flex-wrap: wrap;
+    align-content: space-between;
     align-items: center;
     justify-content: space-evenly;
     text-align: center;
-    padding-left:70px;
+    padding-left:100px;
     font-family: Montserrat;
-
 }
 
 .buton {
-    flex: 1;
+    flex: auto;
     margin-left:40px;
     margin-right: 150px;
     background-color:transparent;
@@ -76,15 +70,17 @@
     outline: none;
 }
 
-.butoane:hover .buton {
+.navbar:hover .buton {
     opacity: .55;
 }
 
-.butoane .buton:hover {
+.navbar .buton:hover {
     opacity: 5;
     background-color: transparent;
 } 
 .contactComponent {
+    display: flex;
+    flex-direction: column;
     padding-top:40px;
     padding-bottom:40px;
     padding-left:90px;

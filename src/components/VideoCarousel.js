@@ -15,9 +15,6 @@ export default class VideoCarousel extends Component {
                   <video className="videoItem" controls="controls">
                         <source src={item.src} type="video/mp4"/>
                     </video>
-                  {/* <Carousel.Caption>
-                    <h2>{item.title}</h2>
-                  </Carousel.Caption> */}
                   </Carousel.Item>
               );
           })}

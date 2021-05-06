@@ -18,19 +18,13 @@ export default class Contact extends React.Component {
                                     <div className="contact" >
                                         <span key="title">PROGRAMARE</span> <br /><br /> 
                                         <span key="text">Echipa noastra este gata <br />sa iti preia apelul.</span><br /> <br />
-                                        <span key ={index}><b>{item.phone}</b></span><br />
-                                        <span key = {index}> {item.email}</span><br />
-                                    </div>
-                                    <div className="media">
-                                    {/* <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a> */}
+                                        <span key ="phone"><b>{item.phone}</b></span><br />
+                                        <span key = "email"> {item.email}</span><br />
                                     </div>
                                 </div>
                             )
                         })}
                     </div>
-                {/* </div> */}
             </div>
         )
     }

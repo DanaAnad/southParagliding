@@ -7,12 +7,11 @@ export default class Header extends React.Component {
     render(){  
         
         return(
-            <div className="header">
+            <div className="headerDesktop">
             <div className="logoContainer">
                 <img className="imgLogo" src = {logo} alt = "logo"/>
             </div>
-                <div className = "navBar">
-                    <div className="butoane">
+                    <div className="navbar">
                     <button className = "buton">
                         HOME
                     </button>
@@ -29,7 +28,6 @@ export default class Header extends React.Component {
                         CONTACT
                     </button>
                     </div>
-                </div>
             </div>
         )
     }

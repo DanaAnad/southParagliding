@@ -6,7 +6,7 @@ export default class LocationsCarousel extends Component {
   render(){
     return(
       <div>
-      <Carousel interval={null} className="LocationsCarousel">
+      <Carousel interval={null} className="locationsCarousel">
           {this.props.items.map((item, index) => {
               return (
                   <Carousel.Item className="locationsItem" key={index}>

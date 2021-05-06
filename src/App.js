@@ -1,9 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyModal from "./components/myModal.js";
+import MyModal from "./components/MyModal.js";
 import Header from "./components/Header.js";
 import Contact from "./components/Contact.js";
-import ReusableCarousel from "./components/Carousel.js";
+import PhotoCarousel from "./components/PhotoCarousel.js";
 import VideoCarousel from "./components/VideoCarousel";
 import LocationsCarousel from "./components/LocationsCarousel.js";
 import './SP.css';
@@ -15,7 +15,7 @@ import pic5 from "./assets/Images/pic5.jpg";
 import MyVideo from "./assets/video/MyVideo.MP4";
 import ParaSea from "./assets/video/ParaSea.mp4";
 import Paragliding from "./assets/video/Paragliding.mp4";
-import VideoPlayer from "./VideoPlayer.js";
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -76,7 +76,7 @@ export default class App extends React.Component {
     //value vine de pe button className = "buton" variant="light" onClick={this.showCarouselLocationsModal} value="locations" (daca il pui)
     switch(event.target.value) { 
       case 'foto': {
-        data = <ReusableCarousel items ={this.state.foto}/>;
+        data = <PhotoCarousel items ={this.state.foto}/>;
         break;
       }
       case 'locations': {
@@ -105,12 +105,12 @@ export default class App extends React.Component {
     }
   }
 
-  setContent(someContent) {
+  setContent = (someContent) => {
     console.log('someContent:: ', someContent);
     let data = false;
     switch(someContent) { 
       case 'foto': {
-        data = <ReusableCarousel items ={this.state.foto}/>;
+        data = <PhotoCarousel items ={this.state.foto}/>;
         break;
       }
       case 'locations': {
@@ -145,7 +145,6 @@ export default class App extends React.Component {
         <div className="header">
             <Header showContent={this.setContent}/>
         </div>
-
         <div className="body">
           <MyModal 
           transparent = "true"

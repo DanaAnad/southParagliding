@@ -13,9 +13,9 @@ export default class MyModal extends Component {
                     <Modal.Body className ="modal-body">
                     
                     <div className = "data-container">
-                    {/* <div class="callout" data-closable>
-                        <button className="close-button" onClick={() => this.props.onHide()}  aria-label="Dismiss alert" type="button" data-close>
-                            <span aria-hidden="true">&times;</span>
+                    {/* <div class="close">
+                        <button className="close-button" onClick={() => this.props.onHide()}>
+                            <span>&times;</span>
                         </button>
                     </div> */}
                         {this.props.data} 
