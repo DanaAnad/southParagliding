@@ -5,20 +5,19 @@ import "../modal.css";
 
 export default class MyModal extends Component {
     render() {
-        console.log("modalPropss:ii:", this.props);
         return (
             <div>
                 <Modal show={this.props.show} onHide={() => this.props.onHide()}
                 >
                     <Modal.Body className ="modal-body">
                     
-                    <div className = "data-container">
-                    {/* <div class="close">
-                        <button className="close-button" onClick={() => this.props.onHide()}>
-                            <span>&times;</span>
-                        </button>
-                    </div> */}
-                        {this.props.data} 
+                    <div className = "Modal-data-container">
+                        {/* <a className="Modal-close-button" onClick={() => this.props.onHide()}>
+                            <span className="closeModalIcon">x</span>
+                        </a> */}
+                        <div className = "Modal-data">
+                            {this.props.data} 
+                        </div>
                     </div>
                     </Modal.Body>
                 </Modal>

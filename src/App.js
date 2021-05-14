@@ -22,6 +22,8 @@ export default class App extends React.Component {
       super(props);
 
       this.state ={
+        isMenuOpen: false,
+
         modal:{
             show: false,
             data:[],
@@ -40,7 +42,7 @@ export default class App extends React.Component {
           {id:2, src :pic2, title:"CLOPOTIVA"},
           {id:3, src :pic3, title:"BRASOV"},
           {id:4, src :pic4, title:"BAIA MARE"},
-          {id:5, src :pic5, title:"CRAIOVA"},
+          {id:5, src :pic5, title:"RANCA"},
         ],
         contact:[
           {phone: "+40 0740 00 01 09", 
@@ -56,10 +58,8 @@ export default class App extends React.Component {
         videoTryout:[
           {src:ParaSea, id:"1"}
         ] 
-        // contentToShow: false
       };
       this.setContent = this.setContent.bind(this);
-      this.displayModal = this.displayModal.bind(this);
       this.closeModal = this.closeModal.bind(this);
   }
   closeModal = () => {
@@ -70,43 +70,7 @@ export default class App extends React.Component {
     });
   };
 
-  displayModal = (event) => { 
-    console.log('contentType:: ', event);
-    let data = false;
-    //value vine de pe button className = "buton" variant="light" onClick={this.showCarouselLocationsModal} value="locations" (daca il pui)
-    switch(event.target.value) { 
-      case 'foto': {
-        data = <PhotoCarousel items ={this.state.foto}/>;
-        break;
-      }
-      case 'locations': {
-        data = <LocationsCarousel items ={this.state.locationImgs}/>;
-        break;
-      }
-      case 'video': {
-        data = <VideoCarousel items ={this.state.videos}/>;
-        break;
-      }
-      case 'contact': {
-        data = <Contact items = {this.state.contact}/>;
-        break;
-      }
-      default: 
-        data =false;
-        break;
-    }
-    if (data) {
-      this.setState({
-        modal:{
-          show:true,
-          data
-        }
-      })
-    }
-  }
-
   setContent = (someContent) => {
-    console.log('someContent:: ', someContent);
     let data = false;
     switch(someContent) { 
       case 'foto': {
@@ -136,14 +100,14 @@ export default class App extends React.Component {
           data
         }
       })
-    }    
+    }; 
   }
 
   render(){
     return (
       <div className="App">
         <div className="header">
-            <Header showContent={this.setContent}/>
+          <Header showContent={this.setContent}/>
         </div>
         <div className="body">
           <MyModal 
@@ -158,7 +122,7 @@ export default class App extends React.Component {
 
 
         <div className="footer">
-            THIS IS THE FOOTER!
+            {/* THIS IS THE FOOTER! */}
         </div>
       </div>
     );

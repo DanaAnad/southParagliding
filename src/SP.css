@@ -1,135 +1,62 @@
+@media screen and (min-width:850px) {
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+    .App {
+        background-image:url("./assets/Background/desktopBackground.png");
+        display:flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        background-size: cover;
+        height: 100vh;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: 'Montserrat';
+    }
+    
+    .body {
+        flex:8;
+        width:100%;
+        height:100%;
+    }
 
-.App {
-    background-image:url("./assets/Background/desktopBackground.png");
-    display:flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-size: cover;
-    height: 100vh;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: 'Montserrat';
+    .footer {
+        flex:1;
+        width:100%;
+        height:100%;
+    }
 }
+@media screen and (max-width: 480px)  {
+    .App {
+        background-image :url("./assets/Mobile/desktopMobile.png");
+        display:flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        height:100vh;
+        text-align: center;
+        font-family: 'Montserrat';
+    }
 
-.headerDesktop {
-    flex:2;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin:auto;
-}
-
-.logoContainer{
-    display:flex;
-    flex:auto;
-    width:200px;
-    height:110px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: auto;
-}
-
-.imgLogo{
-    align-items: center;
-    justify-content: center;
-    max-width: 70%;
-    max-height: 70%;
-    margin: auto;
-}
-
-.navbar {
-    display:flex;
-    flex-direction: row;
-    flex: auto;
-    flex-wrap: wrap;
-    align-content: space-between;
-    align-items: center;
-    justify-content: space-evenly;
-    text-align: center;
-    padding-left:100px;
-    font-family: Montserrat;
 }
 
-.buton {
-    flex: auto;
-    margin-left:40px;
-    margin-right: 150px;
-    background-color:transparent;
-    border-color: transparent;
-    color:rgb(238, 238, 238);
-    font-weight : bold;
-    transition: none;
- }
+@media screen and (min-width:481px ) and (max-width: 849px ) {
+    .App {
+        background-image:url("./assets/Background/desktopBackground.png");
+        display:flex;
+        flex-direction:column;
+        flex-wrap: wrap;
+        background-size: cover;
+        height: 100vh;
+        width:100vw;
+        overflow: hidden;
+        justify-content: space-between;
+        text-align: center;
+        font-family: 'Montserrat';
+    }
 
-.buton:focus {
-    outline: none;
+    
 }
-
-.navbar:hover .buton {
-    opacity: .55;
-}
-
-.navbar .buton:hover {
-    opacity: 5;
-    background-color: transparent;
-} 
-.contactComponent {
-    display: flex;
-    flex-direction: column;
-    padding-top:40px;
-    padding-bottom:40px;
-    padding-left:90px;
-    padding-right: 90px;
-}
-.contactIconContainer {
-    display:flex;
-    align-items: center;
-    justify-content: center;
-}
-.contactDetails {
-    text-align: center;
-    align-content: center;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-}
-.contactIcon{
-    align-items: center;
-    justify-content: center;
-    width:60px;
-    height:60px;
-}
-.contactText{
-    text-align: center;
-}
-
-.body {
-    flex:7;
-    width:100%;
-    height:100%;
-}
-
-.footer {
-    flex:1;
-    width:100%;
-    height:100%;
-}
-
-@media (max-width: 480px) {
-.App {
-    background-image :url("./assets/Mobile/desktopMobile.png");
-    background-position: center;
-    overflow: hidden;
-}
-}
-
-/* @media (orientation: landscape) {
-.butoane {
-    display:inline-block;
-}
-} */

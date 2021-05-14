@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+
+@media screen and (min-width:850px) {
+    .mobileHeader {
+        display: none;
+    }
+    .headerDesktop {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin:auto;
+    }
+
+    .logoContainer{
+        display:flex;
+        flex:auto;
+        width:200px;
+        height:110px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+    }
+
+    .imgLogo{
+        align-items: center;
+        justify-content: center;
+        max-width: 70%;
+        max-height: 70%;
+        margin: auto;
+    }
+
+    .navigationBar {
+        width:100vw;
+        display:flex;
+        flex-direction: row;
+        flex: auto;
+        flex-wrap: wrap;
+        align-content: space-around;
+        align-items: center;
+        justify-content: space-evenly;
+        text-align: center;
+        font-family: Montserrat;
+    }
+
+    .buton {
+        flex: auto;
+        background-color:transparent;
+        border: none;
+        color:rgb(238, 238, 238);
+        transition: none;
+    }
+
+    .buton:focus {
+        outline: none;
+    }
+
+    .navigationBar:hover .buton {
+        opacity: .55;
+    }
+
+    .navigationBar .buton:hover {
+        opacity: 5;
+        background-color: transparent;
+    } 
+
+}
+
+@media screen and (max-width: 480px)  {
+    .headerDesktop {
+        display: none;
+    }
+
+    .mobileHeader {
+        display: flex;
+        flex:auto;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin:auto;
+        height:100vh;
+        width:100vh;
+    }
+
+    .mobileLogoContainer {
+        background-color: transparent;
+        display:flex;
+        margin-left: 99px;
+        width:170px;
+        height:100px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .mobileMenuLogoContainer {
+        display: flex;
+        width: 170px;
+        align-items: center;
+        text-align: center;
+        margin-left: 40px;
+        margin-bottom: 40px;
+    }
+    .imgMobileLogo {
+        display:flex;
+        flex-direction:column;
+        max-width:90%;
+        max-height: 90%;
+        margin:auto;
+    }
+    .imgMobileMenuLogo {
+        display:flex;
+        flex-direction:column;
+        max-width:90%;
+        max-height: 90%;
+        margin:auto;
+        margin-left: 30px;
+    }
+ 
+    .mobileNavbar {
+        display:flex;
+        align-items: flex-start;
+        flex-direction:column;
+        justify-content:center;
+        line-height: 60px;
+    }
+
+   
+   .bm-menu-wrap {
+       width:100% !important;
+   }
+
+    
+    .buton {
+        border: none;
+        background-color: black;
+        color: white;
+    }
+
+    .buton:focus {
+        outline: none;
+    }
+
+    .mobileNavbar:hover .buton {
+        opacity: .55;
+    }
+
+    .mobileNavbar .buton:hover {
+        opacity: 5;
+        background-color: transparent;
+    } 
+}
+
+@media screen and (min-width:481px ) and (max-width: 849px ) {
+    .headerDesktop{
+        display:none;
+    }
+
+    .mobileHeader{
+        display:flex;
+        flex-direction:column;
+        flex:1;
+        margin: auto;
+    }
+    
+    .mobileLogoContainer {
+        display:flex;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        width:170px; 
+        height:85px;
+    }
+    
+    .imgMobileLogo {
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .mobileMenuLogoContainer {
+        display: flex;
+        width: 170px;
+        align-items: center;
+        text-align: center;
+        margin-left: 220px;
+        margin-bottom: 20px;
+    }
+
+    .imgMobileMenuLogo {
+        display:flex;
+        flex-direction:column;
+        max-width:90%;
+        max-height: 90%;
+        margin:auto;
+        margin-right: 35px;
+    }
+
+    .mobileNavbar{
+        flex-direction:column;
+        align-items: flex-start;
+        justify-content:center;
+        line-height: 40px;
+    }
+    .buton {
+        border: none;
+        background-color:transparent;
+        color:rgb(255, 255, 255);
+    }
+
+    .buton:focus{
+        outline:none;
+    }
+
+    .burgerMenuLogoContainer{
+        display:flex;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        width:150px; 
+        height:75px;
+    }
+    .burgerMenuImgLogo{
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .bm-menu-wrap {
+        width:40% !important;
+    }
+
+    .buton {
+        border: none;
+        background-color: black;
+        color: white;
+    }
+
+    .buton:focus {
+        outline: none;
+    }
+
+    .mobileNavbar:hover .buton {
+        opacity: .55;
+    }
+
+    .mobileNavbar .buton:hover {
+        opacity: 5;
+        background-color: transparent;
+    } 
+
+}
