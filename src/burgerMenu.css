@@ -37,6 +37,7 @@
     width:100% !important;
     position: fixed;
     height: 80%;
+    transition: none !important;
     /* background-color:; */
   }
   .bm-menu-wrap {
