@@ -72,13 +72,15 @@
   
   .FotoCarousel{
     display:flex;
-    flex-direction:row;
-    width:500px;
-    height:300px;
-    border:1px solid white;
-    max-width: fit-content;
+    flex-direction: row;
+    margin:auto;
+    max-width:490px;
+    height:100%;
     overflow: hidden;
     border-radius:5px;
+    max-width: fit-content;
+    align-items: center;
+    justify-content: center;
   }
 
   .pozaModal {
@@ -106,6 +108,12 @@
     border:1.5px solid white;
     background-color:black;
   }
+
+  .carousel-control-next, .carousel-control-prev {
+    height: 50%;
+    margin: auto;
+  }
+
   .locationsCarousel {
     display:flex;
     flex-direction: row;
@@ -169,7 +177,7 @@
     margin: -13px;
   }
 }
-@media (max-width: 480px ) {
+@media screen and (max-width: 480px ) {
 
   .FotoCarousel{
     display:flex;

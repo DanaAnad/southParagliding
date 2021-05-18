@@ -21,6 +21,7 @@
         align-items: center;
         text-align: center;
         margin: auto;
+        outline: none;
     }
 
     .imgLogo{
@@ -42,6 +43,7 @@
         justify-content: space-evenly;
         text-align: center;
         font-family: Montserrat;
+        outline: none;
     }
 
     .buton {
@@ -90,6 +92,7 @@
         height:100px;
         align-items: center;
         text-align: center;
+        outline: none;
     }
 
     .mobileMenuLogoContainer {
@@ -99,6 +102,7 @@
         text-align: center;
         margin-left: 40px;
         margin-bottom: 40px;
+        outline: none;
     }
     .imgMobileLogo {
         display:flex;
@@ -106,6 +110,7 @@
         max-width:90%;
         max-height: 90%;
         margin:auto;
+        outline: none;
     }
     .imgMobileMenuLogo {
         display:flex;
@@ -122,11 +127,13 @@
         flex-direction:column;
         justify-content:center;
         line-height: 60px;
+        outline: none;
     }
 
    
    .bm-menu-wrap {
        width:100% !important;
+       outline: none;
    }
 
     
@@ -169,6 +176,7 @@
         margin: auto;
         width:170px; 
         height:85px;
+        outline: none;
     }
     
     .imgMobileLogo {
@@ -183,6 +191,7 @@
         text-align: center;
         margin-left: 220px;
         margin-bottom: 20px;
+        outline: none;
     }
 
     .imgMobileMenuLogo {
@@ -192,6 +201,7 @@
         max-height: 90%;
         margin:auto;
         margin-right: 35px;
+        outline: none;
     }
 
     .mobileNavbar{
@@ -199,6 +209,7 @@
         align-items: flex-start;
         justify-content:center;
         line-height: 40px;
+        outline: none;
     }
 
     .buton {

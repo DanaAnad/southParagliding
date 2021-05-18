@@ -12,9 +12,9 @@ export default class MyModal extends Component {
                     <Modal.Body className ="modal-body">
                     
                     <div className = "Modal-data-container">
-                        {/* <a className="Modal-close-button" onClick={() => this.props.onHide()}>
-                            <span className="closeModalIcon">x</span>
-                        </a> */}
+                        <a href='true' className="Modal-close-button" onClick={() => this.props.onHide()}>
+                            <span className="closeModalIcon">&times;</span>
+                        </a>
                         <div className = "Modal-data">
                             {this.props.data} 
                         </div>
