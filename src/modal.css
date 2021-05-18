@@ -41,7 +41,7 @@
  
 }
 
-@media screen and (min-width:481px) and (max-width: 849px ) and (orientation: landscape){
+@media screen and (min-width:481px) and (max-width: 849px ) {
   .modal-dialog {
     display:flex;
     flex:1;
@@ -83,7 +83,7 @@
   }
 }
 
-@media screen and (max-width: 480px ) and (orientation:portrait) {
+@media screen and (max-width: 480px ) and (orientation:portrait)  {
  
   .modal-dialog {
     display:flex;
