@@ -40,7 +40,6 @@
     position: fixed;
     height: 80%;
     transition: none !important;
-    /* background-color:; */
   }
   .bm-menu-wrap {
     width: 100%;
@@ -49,8 +48,8 @@
   /* General sidebar styles */
   .bm-menu {
     background: black;
-    opacity: .86;
-    padding: 2.5em 1.5em 0;
+    opacity: .90;
+    padding: 0.5em 1em 0 1em;
     font-size: 1em;
   }
   

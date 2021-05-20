@@ -109,6 +109,7 @@ export default class App extends React.Component {
         <div className="header">
           <Header showContent={this.setContent}/>
         </div>
+
         <div className="body">
           <MyModal 
           transparent = "true"
