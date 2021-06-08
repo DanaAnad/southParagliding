@@ -1,4 +1,5 @@
-@media (min-width:769px) {
+
+@media screen and (min-width:1025px) {
   .modal-dialog {
     display: flex;
     width: 800px;
@@ -6,13 +7,12 @@
     height:auto;
     flex-direction:row;
     justify-content: center; 
-    padding-top:170px;
+    /* padding-top:170px; */
     margin: auto;
   } 
 
   .modal-content {
     overflow: visible;
-    border:none;
     justify-content: center;
     margin:auto;
     border:3px solid white;
@@ -20,81 +20,119 @@
 
   .modal-body {
     display: flex;
-    flex-direction:inline;
+    flex-direction:row;
     align-items: center;
     justify-content: center;
     background-color:rgb(221, 221, 221);
     padding: 0px;
   }
 
-  /* src/components/carousel.jsgit */
-
-  /* .callout {
-    position:absolute;
-    top:0;
-    right:0;
-    display:flex;
+  .closeModalIcon {
+    position: absolute;
+    color:white;
+    top:-15px;
+    right:8px;
+    text-align: center;
     border: none;
-    margin-left:47rem;
-  } */
-  /* .close-button {
-    position:absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    background-color:rgb(221, 221, 221);
-    color:red;
-    margin:auto;
-    height:40px;
-    font-size:50px;
-  } */
-
+    height:45px;
+    font-size:45px;
+    z-index: 1;
+    cursor:pointer;
+  }
 }
 
-@media (max-width: 850px ) and (orientation: landscape) {
+@media screen and (min-width: 481px) and (max-width: 1024px ) {
+  .modal {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    vertical-align: middle;
+    align-content: center;
+  }
   .modal-dialog {
     display:flex;
     flex:1;
-    margin:auto;
-    max-width:500px;
-    padding-top:35px;
+    /* margin:auto; */
+    /* margin-top:"Math.max(0, ($(window).height() - modalDialog.height()) / 2"; */
+    width:500px;
+    max-width: fit-content;
+    height:auto;
+    /* padding-top:25px; */
+    /* flex-direction: row; */
+    align-self:center;
+    /* justify-content: center; */
   }
-  .modal-header {
-    height:10px;
-    border:none;
-    padding:0px;
-    background-color:rgb(221, 221, 221);
-  }
-  .modal-header .close {
-    padding: 0.5rem ;
-    margin: -1.2rem -0.5rem -1rem auto;
-  }
+
   .modal-body{
+    display:flex;
+    padding:0px;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
     background-color:rgb(221, 221, 221);
   }
-  .modal-footer {
-    background-color:rgb(221, 221, 221);
+  
+  .modal-content {
+    border:3px solid white;
+    overflow: visible;
+    justify-content: center;
+    margin:auto;
+  }
+
+  .closeModalIcon {
+    position: absolute;
+    color:white;
+    top:-10px;
+    right:8px;
+    text-align: center;
     border: none;
-    height:5px;
-    padding:0px;
+    height:45px;
+    font-size:45px;
+    z-index: 1;
   }
 }
 
-@media (max-width: 480px ) and (orientation: portrait) {
+@media screen and (min-width: 320px) and (max-width: 480px) {
   .modal-dialog {
     display:flex;
-    flex:1;
-    max-width: 330px;
-    padding-top:220px;
-    height: auto;
-    color:black;
-    font-weight:bold;
+    width:inherit;
+    /* width: 360px; */
+    max-width:fit-content;
+    /* padding-top:150px; */
+    height: 500px;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    align-self: center;
     margin:auto;
     overflow: hidden;
   }
-  .modal-header {
-    height:17px;
-    border:none;
+  .modal-content {
+    border:2px solid white;
+    overflow: hidden;
+    justify-content: center;
+    margin:auto;
+  }
+
+  .modal-body {
+    display:flex;
+    padding:0px;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
     background-color:rgb(221, 221, 221);
   }
+
+  .closeModalIcon {
+    position: absolute;
+    color:white;
+    top:-10px;
+    right:8px;
+    text-align: center;
+    border: none;
+    height:35px;
+    font-size:35px;
+    z-index: 1;
+  }
+ 
 }

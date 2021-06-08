@@ -1,13 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyModalComponent from "./components/MyModal.js";
-// import { button } from 'react-bootstrap';
-import Header from "./components/headerDesktop.js";
-import contactLogo from "./assets/icons/contactIcon.png";
-import ReusableCarousel from "./components/carousel.js";
+import MyModal from "./components/MyModal.js";
+import Header from "./components/Header.js";
+import Contact from "./components/Contact.js";
+import PhotoCarousel from "./components/PhotoCarousel.js";
 import VideoCarousel from "./components/VideoCarousel";
+import LocationsCarousel from "./components/LocationsCarousel.js";
 import './SP.css';
-// import "./mainApp.css";
+// import desktopBackground from "./assets/Background/desktopBackground.png";
 import pic1 from "./assets/Images/pic1.jpg";
 import pic2 from "./assets/Images/pic2.jpg";
 import pic3 from "./assets/Images/pic3.jpg";
@@ -23,12 +23,14 @@ export default class App extends React.Component {
       super(props);
 
       this.state ={
+        isMenuOpen: false,
+
         modal:{
             show: false,
             data:[],
         },
 
-        images:[
+        foto:[
           {id:1, src :pic1},
           {id:2, src :pic2},
           {id:3, src :pic3},
@@ -37,66 +39,26 @@ export default class App extends React.Component {
         ],
 
         locationImgs:[
-            {id:1, src :pic1, title:"Parang"},
-            {id:2, src :pic2, title:"Clopotiva"},
-            {id:3, src :pic3, title:"Brasov"},
-            {id:4, src :pic4, title:"Baia Mare"},
-            {id:5, src :pic5, title:"Craiova"},
+          {id:1, src :pic1, title:"PARANG"},
+          {id:2, src :pic2, title:"CLOPOTIVA"},
+          {id:3, src :pic3, title:"BRASOV"},
+          {id:4, src :pic4, title:"BAIA MARE"},
+          {id:5, src :pic5, title:"RANCA"},
         ],
-
-        contact:[
-          <div className= "contactIconContainer">
-            <img alt="logo" className = "contactIcon" src = {contactLogo}/>
-          </div>,
-          <div className = "contactText">
-            <span >PROGRAMARE <br /><br /> Echipa noastra este gata <br />sa iti preia apelul. <br /> <br />+40 0740 00 01 09 </span>
-          </div>
+        rezervari:[
+          {phone: "+40 757 985 068", 
+          email:"parapantatandem@gmail.com"}
         ],
 
         videos:[
           {id:"1", src: MyVideo, title:"Paragliding"},
           {id:"2", src: ParaSea, title:"Paragliding"},
           {id:"3", src: Paragliding, title:"Paragliding"}
-         ],
-      }
+         ]
+      };
+      this.setContent = this.setContent.bind(this);
+      this.closeModal = this.closeModal.bind(this);
   }
-
-  showCarouselVideoModal = () => {
-    this.setState({
-      modal:{
-        show:true,
-        data:<VideoCarousel items = {this.state.videos}/>
-      }
-    })
-  };
-
-  showContactModal = () => {
-    this.setState({ 
-      modal:{
-        show:true,
-        data:this.state.contact
-      }
-    })
-  };
-
-  showPozeCarouselModal = () =>{
-      this.setState({
-        modal:{
-          show:true,
-          data:<ReusableCarousel items ={this.state.images}/>
-        }
-      })   
-    }
-
-  showCarouselLocationsModal = () =>{
-    this.setState({
-      modal:{
-        show:true,
-        data:<ReusableCarousel items ={this.state.locationImgs}/>
-      }
-    })
-  }
-
   closeModal = () => {
     this.setState({
       modal:{
@@ -105,47 +67,60 @@ export default class App extends React.Component {
     });
   };
 
+  setContent = (someContent) => {
+    let data = false;
+    switch(someContent) { 
+      case 'foto': {
+        data = <PhotoCarousel items ={this.state.foto}/>;
+        break;
+      }
+      case 'locations': {
+        data = <LocationsCarousel items ={this.state.locationImgs}/>;
+        break;
+      }
+      case 'video': {
+        data = <VideoCarousel items ={this.state.videos}/>;
+        break;
+      }
+      case 'rezervari': {
+        data = <Contact items = {this.state.rezervari}/>;
+        break;
+      }
+      default: 
+        data =false;
+        break;
+    }
+    if (data) {
+      this.setState({
+        modal:{
+          show:true,
+          data
+        }
+      })
+    }; 
+  }
+
   render(){
     return (
       <div className="App">
         <div className="header">
-            <Header/>
-          <div className = "navBar">
-            <div className="butoane">
-              <button className = "buton light" variant="light" onClick={this.showModal} >
-              HOME
-              </button>
-              <button className = "buton" variant="light" onClick={this.showPozeCarouselModal} >
-              FOTO
-              </button>
-              <button className = "buton" variant="light" onClick={this.showCarouselVideoModal}>
-              VIDEO
-              </button>
-              <button className = "buton" variant="light" onClick={this.showCarouselLocationsModal}>
-              LOCURI DE ZBOR
-              </button>
-              <button className = "buton" variant="light" onClick={this.showContactModal} >
-              CONTACT
-              </button> 
-            </div>,
-          </div>
+          <Header showContent={this.setContent}/>
         </div>
 
-      
         <div className="body">
-          <MyModalComponent 
+          <MyModal 
           transparent = "true"
           fullWidth={true} 
           className="bodyModal"
           show={this.state.modal.show}
           data={this.state.modal.data}
-          onClick={this.closeModal}
           onHide={this.closeModal}
           />
         </div>
 
+
         <div className="footer">
-            THIS IS THE FOOTER!
+            {/* THIS IS THE FOOTER! */}
         </div>
       </div>
     );
