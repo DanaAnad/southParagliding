@@ -282,7 +282,7 @@
     margin: 3px;
   }
   .carousel-control-next, .carousel-control-prev {
-    width:9%;
+    /* width:9%; */
     height:9%;
     margin-top: 100px;
   }

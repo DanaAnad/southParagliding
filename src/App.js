@@ -7,6 +7,7 @@ import PhotoCarousel from "./components/PhotoCarousel.js";
 import VideoCarousel from "./components/VideoCarousel";
 import LocationsCarousel from "./components/LocationsCarousel.js";
 import './SP.css';
+// import desktopBackground from "./assets/Background/desktopBackground.png";
 import pic1 from "./assets/Images/pic1.jpg";
 import pic2 from "./assets/Images/pic2.jpg";
 import pic3 from "./assets/Images/pic3.jpg";
@@ -44,20 +45,16 @@ export default class App extends React.Component {
           {id:4, src :pic4, title:"BAIA MARE"},
           {id:5, src :pic5, title:"RANCA"},
         ],
-        contact:[
-          {phone: "+40 0740 00 01 09", 
-          email:"south-paragliding@gmail.com"}
+        rezervari:[
+          {phone: "+40 757 985 068", 
+          email:"parapantatandem@gmail.com"}
         ],
 
         videos:[
           {id:"1", src: MyVideo, title:"Paragliding"},
           {id:"2", src: ParaSea, title:"Paragliding"},
           {id:"3", src: Paragliding, title:"Paragliding"}
-         ],
-        
-        videoTryout:[
-          {src:ParaSea, id:"1"}
-        ] 
+         ]
       };
       this.setContent = this.setContent.bind(this);
       this.closeModal = this.closeModal.bind(this);
@@ -85,8 +82,8 @@ export default class App extends React.Component {
         data = <VideoCarousel items ={this.state.videos}/>;
         break;
       }
-      case 'contact': {
-        data = <Contact items = {this.state.contact}/>;
+      case 'rezervari': {
+        data = <Contact items = {this.state.rezervari}/>;
         break;
       }
       default: 

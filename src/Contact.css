@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
-@media screen and (min-width:850px) {
+@media screen and (min-width:1025px) {
     .contactComponent {
         display: flex;
         flex-direction: column;
@@ -82,7 +82,8 @@
         font-family: Montserrat;        
     }
 }
-@media screen and (min-width:481px) and (max-width: 849px )  {
+@media screen and (min-width: 480px) and (max-width: 1024px ) {
+    
     .contactComponent {
         display: flex;
         flex-direction: column;

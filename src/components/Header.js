@@ -29,7 +29,7 @@ export default class Header extends React.Component {
                     </div>
                     <div className="navigationBar">
                         <button className = "buton">
-                            HOME
+                            NEWS
                         </button>
                         <button className = "buton" value="foto"  onClick={() => {this.props.showContent('foto')}}>
                             FOTO
@@ -40,8 +40,8 @@ export default class Header extends React.Component {
                         <button className = "buton" value="locations" onClick={() => {this.props.showContent('locations')}}>
                             LOCURI DE ZBOR
                         </button>
-                        <button className = "buton" value="contact" onClick={() => {this.props.showContent('contact')}}>
-                            CONTACT
+                        <button className = "buton" value="rezervari" onClick={() => {this.props.showContent('rezervari')}}>
+                            REZERVARI
                         </button>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ export default class Header extends React.Component {
                     </div> 
                     <div className="mobileNavbar">
                         <button className = "buton" onClick={() => this.closeMenu()} >
-                            HOME
+                            NEWS
                         </button>
                         <button className = "buton" value="foto" onClick={() => {this.props.showContent('foto');this.closeMenu()}} >
                             POZE
@@ -69,8 +69,8 @@ export default class Header extends React.Component {
                         <button className = "buton" value="locations" onClick={() => {this.props.showContent('locations');this.closeMenu()}} >
                             LOCURI DE ZBOR
                         </button>
-                        <button className = "buton" value="contact" onClick={() => {this.props.showContent('contact');this.closeMenu()}} >
-                            CONTACT 
+                        <button className = "buton" value="rezervari" onClick={() => {this.props.showContent('rezervari');this.closeMenu()}} >
+                            REZERVARI
                         </button>
                     </div>
                     </Menu>
