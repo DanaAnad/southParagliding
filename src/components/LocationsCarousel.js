@@ -1,25 +1,20 @@
 import React, { Component } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-bootstrap/Carousel';
 import "../carousel.css";
 
-export default class ReusableCarousel extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+export default class LocationsCarousel extends Component {
   render(){
     return(
       <div>
-      <Carousel interval={null} className="carousel">
+      <Carousel interval={null} className="locationsCarousel">
           {this.props.items.map((item, index) => {
               return (
-                  <Carousel.Item key={index}>
+                  <Carousel.Item className="locationsItem" key={index}>
                   <div>
                     <img className ="pozaModal" src = {item.src} alt = {item.id} />
                   </div>
                   <Carousel.Caption>
-                    <h3>{item.title}</h3>
+                    <h5>{item.title}</h5>
                   </Carousel.Caption>
                   </Carousel.Item>
               );
@@ -30,3 +25,4 @@ export default class ReusableCarousel extends Component {
     )
   }
 }
+
