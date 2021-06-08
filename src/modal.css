@@ -39,7 +39,10 @@
     z-index: 1;
     cursor:pointer;
   }
+<<<<<<< HEAD
  
+=======
+>>>>>>> 7ab3fc0228de00de6f27e0df415dd60ef138d550
 }
 
 @media screen and (min-width: 481px) and (max-width: 1024px ) {
