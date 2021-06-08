@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyModalComponent from "./components/myModal.js";
+import MyModalComponent from "./components/MyModal.js";
 // import { button } from 'react-bootstrap';
 import Header from "./components/headerDesktop.js";
 import contactLogo from "./assets/icons/contactIcon.png";
