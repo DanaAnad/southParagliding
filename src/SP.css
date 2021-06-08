@@ -1,4 +1,4 @@
-@media screen and (min-width:850px) {
+@media screen and (min-width:1025px) {
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
     .App {
@@ -27,7 +27,7 @@
         height:100%;
     }
 }
-@media screen and (max-width: 480px)  {
+@media screen and (min-width: 320px) and (max-width: 480px)  {
     .App {
         background-image :url("./assets/Mobile/desktopMobile.png");
         display:flex;
@@ -43,7 +43,7 @@
 
 }
 
-@media screen and (min-width:481px ) and (max-width: 849px ) {
+@media screen and (min-width: 481px) and (max-width: 1024px ) {
     .App {
         background-image:url("./assets/Background/desktopBackground.png");
         display:flex;

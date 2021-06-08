@@ -39,7 +39,7 @@
         font-family: Montserrat;
     }
 }
-@media screen and (max-width: 480px)  {
+@media screen and (min-width: 320px) and (max-width: 480px)  {
     .contactComponent {
         display: flex;
         flex-direction: column;
@@ -82,7 +82,7 @@
         font-family: Montserrat;        
     }
 }
-@media screen and (min-width: 480px) and (max-width: 1024px ) {
+@media screen and (min-width: 481px) and (max-width: 1024px ) {
     
     .contactComponent {
         display: flex;
