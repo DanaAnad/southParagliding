@@ -1,3 +1,4 @@
+
 @media screen and (min-width:1025px) {
   .modal-dialog {
     display: flex;
@@ -38,7 +39,6 @@
     z-index: 1;
     cursor:pointer;
   }
- 
 }
 
 @media screen and (min-width: 481px) and (max-width: 1024px ) {
