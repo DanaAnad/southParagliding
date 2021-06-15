@@ -43,8 +43,8 @@
 
 @media screen and (min-width: 481px) and (max-width: 1024px ) {
   .modal {
-    display: flex;
-    flex-direction:row;
+    display: flex !important;
+    flex-direction:column;
     align-items: center;
     vertical-align: middle;
     align-content: center;
@@ -52,8 +52,7 @@
   .modal-dialog {
     display:flex;
     flex:1;
-    /* margin:auto; */
-    /* margin-top:"Math.max(0, ($(window).height() - modalDialog.height()) / 2"; */
+    margin:auto;
     width:500px;
     max-width: fit-content;
     height:auto;
@@ -109,7 +108,7 @@
   }
   .modal-content {
     border:2px solid white;
-    overflow: hidden;
+    overflow: auto;
     justify-content: center;
     margin:auto;
   }

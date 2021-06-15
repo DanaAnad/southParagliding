@@ -3,19 +3,19 @@
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
   .FotoCarousel {
-      display: flex;
-      flex-direction: row;
-      width:100%;
-      align-items: center;
-      justify-content: center;
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    align-items: center;
+    justify-content: center;
   }
  
   .locationsCarousel {
-      display: flex;
-      flex-direction: row;
-      margin: auto;
-      align-items: center;
-      justify-content: center;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
   }
 
   .locationsItem{
@@ -46,6 +46,35 @@
     object-fit: cover;
   }
 
+.newsItem {
+  margin-bottom: 13%;
+}
+.newsText  {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    /* bottom: auto; */
+    /* z-index: 10; */
+    padding-top:inherit;
+    /* padding-bottom: 20px; */
+    color:black;
+    text-align: center;
+}
+.newsText h4  a {
+    font-size:1.3rem;
+    color :darkcyan;
+    display: inline-flex;
+    font-family: 'Montserrat';
+}
+.newsText p a{
+  font-size:1rem;
+  color :darkcyan;
+  display: inline-flex;
+  font-family: 'Montserrat';
+}
   .carousel-indicators {
     display:none
   }
@@ -114,6 +143,14 @@
     margin: auto;
   }
 
+  .newsText h4 a {
+   color :darkcyan;
+ }
+
+ .newsText p a {
+  color:white;
+}
+
   .locationsCarousel {
     display:flex;
     flex-direction: row;
@@ -176,6 +213,7 @@
   .videoCarousel .carousel-indicators {
     margin: -13px;
   }
+
 }
 @media screen and (min-width: 320px) and (max-width: 480px) {
 
@@ -215,6 +253,29 @@
     background-color:black;
   }
 
+  .newsItem {
+    margin-bottom:150px;
+  }
+
+  .newsText {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    bottom: auto;
+    z-index: 10;
+    padding-bottom: 20px;
+    color:black;
+    text-align: center;
+  }
+  .newsText h4 a {
+   color :darkcyan;
+ }
+ .newsText p a {
+  color:black;
+}
   .locationsCarousel{
     display:flex;
     flex-direction:row;

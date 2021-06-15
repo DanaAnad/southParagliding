@@ -28,7 +28,7 @@ export default class Header extends React.Component {
                         <img className="imgLogo" src = {logo} alt = "logo"/>
                     </div>
                     <div className="navigationBar">
-                        <button className = "buton">
+                        <button className = "buton" value="news" onClick ={()=> {this.props.showContent('news')}}>
                             NEWS
                         </button>
                         <button className = "buton" value="foto"  onClick={() => {this.props.showContent('foto')}}>
@@ -57,7 +57,7 @@ export default class Header extends React.Component {
                         <img className="imgMobileMenuLogo" src = {logo} alt = "logo"/>
                     </div> 
                     <div className="mobileNavbar">
-                        <button className = "buton" onClick={() => this.closeMenu()} >
+                        <button className = "buton"  value = "news" onClick={() => {this.props.showContent('news');this.closeMenu()}} >
                             NEWS
                         </button>
                         <button className = "buton" value="foto" onClick={() => {this.props.showContent('foto');this.closeMenu()}} >
