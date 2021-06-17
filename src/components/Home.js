@@ -3,10 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MyModal from "../components/MyModal.js";
 import Header from "../components/Header.js";
 import Contact from "../components/Contact.js";
+import NewsCarousel from "../components/News.js";
 import PhotoCarousel from "../components/PhotoCarousel.js";
 import VideoCarousel from "../components/VideoCarousel";
 import LocationsCarousel from "../components/LocationsCarousel.js";
-import NewsCarousel from "../components/News.js";
 import '../SP.css';
 import FbLogo from '../assets/SocialMedia/FbLogo.png';
 import pic1 from "../assets/Images/pic1.jpg";
@@ -31,7 +31,8 @@ export default class Home extends React.Component {
         news:[
           {src:pic1, title:"Vara 2021", text:"Vremea este numai buna de zbor, asa ca in weekendul acesta va asteptam la distractie!"},
           {src:pic2, title:"Zboruri 2021", text:"Vremea buna a venit, asa ca in weekendul asta se zboara. Va asteptam!"},
-          {src: pic3, title:"Scoala de Parapanta", text:"Vrei sa inveti sa te dai cu parapanta? Intra in contact cu noi pt a face o programare."}],
+          {src: pic3, title:"Scoala de Parapanta", text:"Vrei sa inveti sa te dai cu parapanta? Intra in contact cu noi pt a face o programare."}
+        ],
 
         foto:[
           {id:1, src :pic1},

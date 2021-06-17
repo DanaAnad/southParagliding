@@ -13,7 +13,7 @@ export default class LocationsCarousel extends Component {
                   <div>
                     <img className ="pozaModal" src = {item.src} alt = {item.id} />
                   </div>
-                  <Carousel.Caption>
+                  <Carousel.Caption className="locationsCaption">
                     <h5>{item.title}</h5>
                   </Carousel.Caption>
                   </Carousel.Item>

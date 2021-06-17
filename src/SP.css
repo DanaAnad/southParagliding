@@ -48,7 +48,6 @@
         display:flex;
         flex-direction: column;
         flex-wrap: wrap;
-        position: relative;
         background-size: cover;
         background-position: center;
         overflow: hidden;
