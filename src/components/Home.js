@@ -9,6 +9,8 @@ import VideoCarousel from "../components/VideoCarousel";
 import LocationsCarousel from "../components/LocationsCarousel.js";
 import '../SP.css';
 import FbLogo from '../assets/SocialMedia/FbLogo.png';
+import desktopBackground from "../assets/Background/desktopBackground.png";
+import desktopMobile from "../assets/Mobile/desktopMobile.png";
 import pic1 from "../assets/Images/pic1.jpg";
 import pic2 from "../assets/Images/pic2.jpg";
 import pic3 from "../assets/Images/pic3.jpg";
@@ -20,18 +22,27 @@ import Paragliding from "../assets/video/Paragliding.mp4";
 
 
 export default class Home extends React.Component {
+
   constructor(props) {
       super(props);
 
       this.state ={
+        windowWidth: window.innerWidth,
+
         modal:{
             show: false,
             data:[],
         },
+        backgroundImgDsk:{src:desktopBackground},
+
+        backgroundImgMob:{src:desktopMobile},
+
+        newsTitle: "Program si anunturi de zbor",
+
         news:[
           {src:pic1, title:"Vara 2021", text:"Vremea este numai buna de zbor, asa ca in weekendul acesta va asteptam la distractie!"},
-          {src:pic2, title:"Zboruri 2021", text:"Vremea buna a venit, asa ca in weekendul asta se zboara. Va asteptam!"},
-          {src: pic3, title:"Scoala de Parapanta", text:"Vrei sa inveti sa te dai cu parapanta? Intra in contact cu noi pt a face o programare."}
+          {src:pic2, title:"Sezon 2021", text:"Vremea buna a venit, asa ca in weekendul asta se zboara. Va asteptam!"},
+          {src:pic3, title:"Scoala de parapantism", text:"Vrei sa inveti sa zbori cu parapanta? Intra in contact cu noi pt a face o programare."}
         ],
 
         foto:[
@@ -51,8 +62,12 @@ export default class Home extends React.Component {
         ],
 
         rezervari:[
-          {phone: "+40 757 985 068", 
-          email:"parapantatandem@gmail.com"}
+          {
+            title:"PROGRAMARI",
+            text:<span>Echipa noastra este gata <br /> sa intre in contact cu tine.</span>,
+            phone: "+40 757 985 068", 
+            email:"parapantatandem@gmail.com"
+          }
         ],
 
         videos:[
@@ -72,11 +87,26 @@ export default class Home extends React.Component {
     });
   };
 
+
+
+   handleResize = (e) => {
+    this.setState({ windowWidth: window.innerWidth });
+   };
+  
+   componentDidMount= () => {
+    window.addEventListener("resize", this.handleResize);
+   }
+  
+   componentWillUnMount= () => {
+    window.addEventListener("resize", this.handleResize);
+   } 
+
+
   setContent = (someContent) => {
     let data = false;
     switch(someContent) { 
       case 'news' : {
-        data = <NewsCarousel items = {this.state.news} />;
+        data = <NewsCarousel title = {this.state.newsTitle} items = {this.state.news} />;
         break;
       }
       case 'foto': {
@@ -109,9 +139,21 @@ export default class Home extends React.Component {
     }; 
   }
 
+  
+
   render(){
+    const desktopImgStyle = {
+      backgroundImage:`url(${this.state.backgroundImgDsk.src})`,
+    }
+
+    const mobileImgStyle = {
+      backgroundImage: `url(${this.state.backgroundImgMob.src})`,
+    }
+
+  const { windowWidth } = this.state; 
+
     return (
-      <div className="Home">
+      <div className="Home" style= {windowWidth >= 480 ? desktopImgStyle : mobileImgStyle}>
         <div className="header">
           <Header showContent={this.setContent}/>
         </div>

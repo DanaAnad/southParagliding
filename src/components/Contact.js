@@ -17,8 +17,8 @@ export default class Contact extends React.Component {
                             return (
                                 <div className="">
                                     <div className="contactText" >
-                                        <span key="title">PROGRAMARE</span> <br /><br />
-                                        <span key="text">Echipa noastra este gata <br />sa intre in contact cu tine.</span><br /> <br />
+                                        <span key="title">{item.title}</span> <br /><br />
+                                        <span key="text">{item.text}</span><br /> <br />
                                     </div>
                                     <div className="contact">
                                         <a href ={`tel:${item.phone}`}>{item.phone}</a><br />

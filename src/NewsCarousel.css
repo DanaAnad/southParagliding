@@ -9,6 +9,7 @@
         justify-content: flex;
         padding-top:5px;
         padding-bottom:5px;
+        /* font-family: Montserrat;   */
     }
     .newsTitle {
         display: flex;
@@ -143,12 +144,12 @@
 
     .newsText span {
         color :black;
-        font-family: Montserrat;
+        font-family: 'Montserrat';
     }
 
     .newsText p {
         color:black;
-        font-family: Montserrat;
+        font-family: 'Montserrat';
     }
 
 }
@@ -219,11 +220,11 @@
     }
     .newsText span {
         color :black;
-        font-family: Montserrat;
+        font-family: 'Montserrat';
     }
     .newsText p {
         color:black;
-        font-family: Montserrat;
+        font-family: 'Montserrat';
     }
     .carousel-control-next, .carousel-control-prev {
         height:9%;

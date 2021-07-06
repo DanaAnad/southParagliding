@@ -10,6 +10,7 @@
         text-align: center;
         justify-content: center;
         align-items: center;
+        font-family: Montserrat;  
     }
     .contactIconContainer {
         display:flex;
@@ -66,6 +67,7 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 2em;
+        font-family: Montserrat;  
     }
 
     .contactIconContainer {
@@ -128,13 +130,13 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 13px;
+        font-family: Montserrat;  
     }
 
     .contactIconContainer {
         align-items: center;
         width:70px;
         height:70px;
-        /* padding-bottom: 20px; */
     }
 
     .contactIcon{

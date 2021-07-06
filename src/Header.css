@@ -131,14 +131,7 @@
         line-height: 60px;
         outline: none;
     }
-
-   
-   /* .bm-menu-wrap {
-       width:100% !important;
-       outline: none;
-   } */
-
-    
+ 
     .buton {
         border: none;
         background-color: black;
@@ -236,10 +229,6 @@
         max-width: 90%;
         max-height: 90%;
     }
-
-    /* .bm-menu-wrap {
-        width:100% !important;
-    } */
 
     .buton {
         border: none;
