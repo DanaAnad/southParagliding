@@ -1,0 +1,341 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "south paragliding backend api",
+    "description": "south paragliding backend api",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "http://ms.homens.tricu.ro",
+      "description": "south paragliding php api"
+    }
+  ],
+  "paths": {
+    "/data": {
+      "get": {
+        "summary": "Returns all datas",
+        "description": "Returns all datas no matter what status.",
+        "responses": {
+          "200": {
+            "description": "A JSON array of data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "data": {
+                        "type": "string",
+                        "example": "{\"test\":1}"
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "1"
+                      },
+                      "status": {
+                        "type": "integer",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Post new data row",
+        "description": "Post new data row",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "example": "{\"test\":1}"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "status": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                },
+                "required": [
+                  "data",
+                  "type"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A JSON array of data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string",
+                        "example": "Invalid input"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/{id}": {
+      "get": {
+        "summary": "Returns data by row id",
+        "description": "Returns data by row id no matter what status.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the data to return.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "data is A JSON Object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "data": {
+                      "type": "string",
+                      "example": "{\"test\":1}"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "1"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete data by row id",
+        "description": "delete data by row id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the data to delete.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data deleted"
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "update data status row id",
+        "description": "updated data by row id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the data to update.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data status updated"
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        }
+      }
+    },
+    "/datas": {
+      "get": {
+        "summary": "Returns all datas",
+        "description": "Returns all datas no matter what status.",
+        "responses": {
+          "200": {
+            "description": "A JSON array of data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "data": {
+                        "type": "string",
+                        "example": "{\"test\":1}"
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "1"
+                      },
+                      "status": {
+                        "type": "integer",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datas/{type}": {
+      "get": {
+        "summary": "Returns datas by data type",
+        "description": "Returns datas by data type no matter what status.",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type of the data to return.",
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON array of data with the same type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "data": {
+                        "type": "string",
+                        "example": "{\"test\":1}"
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "1"
+                      },
+                      "status": {
+                        "type": "integer",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        }
+      }
+    }
+  }
+}
