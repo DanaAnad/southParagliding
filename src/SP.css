@@ -48,6 +48,7 @@
         flex-wrap: wrap;
         background-size: cover;
         background-position: center;
+        background-attachment: local;
         overflow: hidden;
         height:100vh;
         text-align: center;

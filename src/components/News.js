@@ -12,7 +12,7 @@ export default class NewsCarousel extends Component {
                         <span>{this.props.title}</span>
                     </div>
                     <Carousel className="newsCarousel" interval={null}>
-                        {this.props.items.map((item,index) => {
+                        {this.props.items.map(item => {
                             return (
                                 <Carousel.Item className="newsItem">
                                 <a href ="https://www.facebook.com/zborcuparapantaranca">

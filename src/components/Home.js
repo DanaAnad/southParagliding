@@ -10,7 +10,10 @@ import LocationsCarousel from "../components/LocationsCarousel.js";
 import '../SP.css';
 import FbLogo from '../assets/SocialMedia/FbLogo.png';
 import desktopBackground from "../assets/Background/desktopBackground.png";
-import desktopMobile from "../assets/Mobile/desktopMobile.png";
+// import desktopMobile from "../assets/Mobile/desktopMobile.png";
+// import poza3 from "../assets/dePeNet/poza3.jpeg"
+// import mobile from "../assets/Mobile/mobile.jpg";
+// import pic4 from "../assets/Images/pic4.jpg";
 import pic1 from "../assets/Images/pic1.jpg";
 import pic2 from "../assets/Images/pic2.jpg";
 import pic3 from "../assets/Images/pic3.jpg";
@@ -33,11 +36,11 @@ export default class Home extends React.Component {
             show: false,
             data:[],
         },
-        backgroundImgDsk:{src:desktopBackground},
+        backgroundImg:{src:desktopBackground},
 
-        backgroundImgMob:{src:desktopMobile},
+        // backgroundImgMob:{src:poza3},
 
-        newsTitle: "Program si anunturi de zbor",
+        newsTitle: "Program si anunturi ",
 
         news:[
           {src:pic1, title:"Vara 2021", text:"Vremea este numai buna de zbor, asa ca in weekendul acesta va asteptam la distractie!"},
@@ -142,18 +145,19 @@ export default class Home extends React.Component {
   
 
   render(){
-    const desktopImgStyle = {
-      backgroundImage:`url(${this.state.backgroundImgDsk.src})`,
+    const background = {
+      backgroundImage:`url(${this.state.backgroundImg.src})`,
     }
 
-    const mobileImgStyle = {
-      backgroundImage: `url(${this.state.backgroundImgMob.src})`,
-    }
+    // const mobileImgStyle = {
+    //   backgroundImage: `url(${this.state.backgroundImgMob.src})`,
+    // }
 
   const { windowWidth } = this.state; 
 
     return (
-      <div className="Home" style= {windowWidth >= 480 ? desktopImgStyle : mobileImgStyle}>
+      // <div className="Home" style= {windowWidth >= 480 ? desktopImgStyle : mobileImgStyle}>
+      <div className="Home" style= {background}>
         <div className="header">
           <Header showContent={this.setContent}/>
         </div>

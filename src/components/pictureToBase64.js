@@ -5,7 +5,9 @@ export default class Picture extends Component {
     constructor(props) {
         super(props);
         this.state={
-            file:false
+            file:"",
+            imgFile:'',
+            videoFile:""
         }
         this.getFiles = this.getFiles.bind(this);
     }
@@ -21,7 +23,8 @@ export default class Picture extends Component {
             console.log("readerRes::", reader.result);
             // this.props.cb(reader.result);
             this.setState({
-              file:reader.result,
+              imgFile:reader.result,
+              videoFile:reader.result
             },
             () =>{this.props.cb && this.props.cb(reader.result)})
         };
@@ -29,10 +32,19 @@ export default class Picture extends Component {
     }
    
     render() {
+        const previewStyle = {
+            width: "100px",
+            height:"100px",
+            borderRadius:"100%",
+            objectFit:"cover",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+
+        }
         return(
             <div>
-            <input type="file" name="picture" multiple onChange={this.getFiles}/><br/>
-           {/* {this.state.file ? <img src={this.state.file} height="100"/> : <img src = {this.props.initialPic} height="100"/>}  */}
+                <input type="file" name="picture"  onChange={this.getFiles}/><br/>
+                {this.state.imgFile && <img src={this.state.imgFile} style = {previewStyle}/>} 
             </div>
         )
     }

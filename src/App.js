@@ -6,9 +6,9 @@ import {
   Link,
 } from "react-router-dom";
 import mysql from "mysql";
-
 import Home from "./components/Home.js";
 import Admin from "./components/Admin.js";
+
 
 
 export default class App extends React.Component {
