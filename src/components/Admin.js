@@ -21,7 +21,6 @@ export default class Admin extends React.Component {
             showVideos:false,
             showEmail:false,
             showPhone:false,
-            data : {},
             titlu:"",
             description:"",
             fotos :"",
@@ -29,27 +28,29 @@ export default class Admin extends React.Component {
             email:"",
             phone:"",
             type : "",
+            data2Upload : [],
             status : false,
-        }      
+        }    
     }
     
 
     handleChange = (e) =>{
                 this.setState({
-                  [e.target.name]: e.target.value})      
+                  [e.target.name]: e.target.value
+                })      
     } 
             
-    handleDataType = (e) =>{
-            this.handleChange(e);
-            this.setContent(e.target.value);
-            // console.log('type::', e.target.value);
-            e.target.value === 'backgrounds' && this.setState({showFotos: true});
-            e.target.value === "news" && this.setState({showTitle:true, showDescription:true, showFotos:true});
-            e.target.value === "foto" && this.setState({showFotos:true});
-            e.target.value === 'video' && this.setState({showVideos:true});
-            e.target.value === 'locatiidezbor' && this.setState({showTitle: true, showFotos:true});
-            e.target.value === 'rezervaricontact' && this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true});
-    } 
+    // handleDataType = (e) =>{
+    //         this.handleChange(e);
+    //         // this.setContent();
+    //         // console.log('type::', e.target.value);
+    //         e.target.value === 'backgrounds' && this.setState({showFotos: true});
+    //         e.target.value === "news" && this.setState({showTitle:true, showDescription:true, showFotos:true});
+    //         e.target.value === "foto" && this.setState({showFotos:true});
+    //         e.target.value === 'video' && this.setState({showVideos:true});
+    //         e.target.value === 'locatiidezbor' && this.setState({showTitle: true, showFotos:true});
+    //         e.target.value === 'rezervaricontact' && this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true});
+    // } 
 
     getFotos = (pic)=> {
         console.log("poza de bagat in db::", pic)
@@ -65,30 +66,41 @@ export default class Admin extends React.Component {
         })
     } 
    
-    setContent = (type) => {
+    setContent = async (e,type) => {
+        this.handleChange(e);
+        type = e.target.value;
+        console.log("type::", type)
         let data = false;
         switch(type) {
             case "backgrounds" : {
-                data = this.state.fotos;
+                this.setState({showFotos: true})
+                console.log("foto::", this.state.fotos);
+                data =  this.state.fotos;
+                console.log("data::", data);
                 break;
             }
             case "news" : {
-                data = {...this.state.titlu,...this.state.description, ...this.state.fotos};
+                this.setState({showTitle:true, showDescription:true, showFotos:true})
+                data = {...this.state.titlu, ...this.state.description, ...this.state.fotos};
                 break;
             }
             case "foto" :{
+                this.setState({showFotos:true})
                 data =  {...this.state.fotos};
                 break;
             }
             case "video" :{
+                this.setState({showVideos:true})
                 data =  {...this.state.videos};
                 break;
             } 
             case "locatiidezbor" :{
+                this.setState({showTitle: true, showFotos:true})
                 data =  {...this.state.fotos, ...this.state.titlu};
                 break;
             } 
             case "rezervaricontact" :{
+                this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true})
                 data =  {...this.state.titlu,...this.state.description, ...this.state.email, ...this.state.phone};
                 break;
             }
@@ -97,20 +109,19 @@ export default class Admin extends React.Component {
                 break;    
         }
         if (data) {
-            // console.log("dataContent::", data)
             this.setState({
-              data: {...data}
+              data2Upload: data
             })
           }; 
     }
 
     onSubmit = async (e) => {
         e.preventDefault();
-        this.setContent();
-        
-        // this.data={...this.titlu, ...this.description, ...this.fotos, ...this.phone, ...this.email}; 
+        this.setContent(e);
+    
         console.log("submitState::", this.state);
-        console.log("dataSumbState::", this.state.data);
+        console.log("dataSubmit::", this.state.data2Upload);
+
         // await axios({
         //     method: "post",
         //     url :'http://ms.homens.tricu.ro/data',
@@ -140,7 +151,7 @@ export default class Admin extends React.Component {
                 <Form>
                     <Form.Group controlId="exampleForm.SelectCustom" >
                         <br />
-                        <Form.Control as="select" size="sm" name="type" onChange={this.handleDataType}> 
+                        <Form.Control as="select" size="sm" name="type" onChange={(e)=>this.setContent(e)}> 
                             <option value="ChoseSection">Alege sectiunea...</option>
                             <option value='backgrounds'>Backgrounds</option>
                             <option value="news">News</option>
@@ -170,11 +181,3 @@ export default class Admin extends React.Component {
 }
 
 
-
-
-
-// titlu description fotos videos type status
-// Program si anunturi de zbor  desription basePic baseVideo news false =1 
-// Program si anunturi de zbor  desription basePic baseVideo news
-// Program si anunturi de zbor  desription basePic           fotos
-// Program si anunturi de zbor  desription            videos

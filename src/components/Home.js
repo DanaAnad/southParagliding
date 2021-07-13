@@ -10,10 +10,6 @@ import LocationsCarousel from "../components/LocationsCarousel.js";
 import '../SP.css';
 import FbLogo from '../assets/SocialMedia/FbLogo.png';
 import desktopBackground from "../assets/Background/desktopBackground.png";
-// import desktopMobile from "../assets/Mobile/desktopMobile.png";
-// import poza3 from "../assets/dePeNet/poza3.jpeg"
-// import mobile from "../assets/Mobile/mobile.jpg";
-// import pic4 from "../assets/Images/pic4.jpg";
 import pic1 from "../assets/Images/pic1.jpg";
 import pic2 from "../assets/Images/pic2.jpg";
 import pic3 from "../assets/Images/pic3.jpg";
