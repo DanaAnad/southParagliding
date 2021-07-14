@@ -3,26 +3,26 @@
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
   .FotoCarousel {
-      display: flex;
-      flex-direction: row;
-      width:100%;
-      align-items: center;
-      justify-content: center;
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    align-items: center;
+    justify-content: center;
   }
  
   .locationsCarousel {
-      display: flex;
-      flex-direction: row;
-      margin: auto;
-      align-items: center;
-      justify-content: center;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
   }
 
   .locationsItem{
     margin-bottom: 7%;
   }
 
-  .carousel-caption {
+  .locationsCarousel .carousel-caption {
     display:flex;
     margin:auto;
     bottom:auto;
@@ -62,7 +62,7 @@
     object-fit: cover;
   }
 
-  .carousel-control-next ,.carousel-control-prev {
+   .carousel-control-next ,.carousel-control-prev {
     height:50%;
     margin:auto;
   }
@@ -112,7 +112,9 @@
   .carousel-control-next, .carousel-control-prev {
     height: 50%;
     margin: auto;
+    padding-bottom:inherit;
   }
+
 
   .locationsCarousel {
     display:flex;
@@ -176,6 +178,7 @@
   .videoCarousel .carousel-indicators {
     margin: -13px;
   }
+
 }
 @media screen and (min-width: 320px) and (max-width: 480px) {
 
@@ -282,8 +285,7 @@
     margin: 3px;
   }
   .carousel-control-next, .carousel-control-prev {
-    /* width:9%; */
     height:9%;
-    margin-top: 100px;
+    margin: auto;
   }
 }

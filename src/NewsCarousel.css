@@ -1,0 +1,233 @@
+@media screen and (min-width:1025px) {
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+
+    .News {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex;
+        padding-top:5px;
+        padding-bottom:5px;
+        /* font-family: Montserrat;   */
+    }
+    .newsTitle {
+        display: flex;
+        width:100%;
+        align-items: center;
+        padding-bottom:5px;
+        padding-right:10px;
+    }
+    .newsTitle span {
+        color:black;
+        padding-bottom:5px;
+        margin-right: 1px;
+        margin:auto;
+        padding-top:5px;
+        font-family: 'Montserrat';
+    }
+
+    .newsCarousel {
+        display: flex;
+    }  
+    .newsItem {
+        margin-bottom: 13%;
+    }
+
+    .pozaModalNews {
+        max-width:70%;
+        max-height:100%;
+        margin-left:15%;
+        border-radius:7px;
+    }
+
+    .newsText  {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        padding-top:10px;
+        color:black;
+        margin:auto;
+        bottom:auto;
+        text-align: center;
+    }
+    .newsText span {
+        font-size:1.3rem;
+        color :rgb(0, 0, 0);
+        display: inline-flex;
+        font-family: 'Montserrat';
+    }
+    .newsText p {
+        font-size:1rem;
+        color :rgb(0, 0, 0);
+        display: inline-flex;
+        font-family: 'Montserrat';
+    }
+
+    .carousel-control-next-icon, .carousel-control-prev-icon {
+        width:25px;
+        height:25px;
+    }
+
+    .carousel-control-next ,.carousel-control-prev {
+        height:50%;
+        margin:auto;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1024px )  {
+    .News {
+        display:flex;
+        flex-direction:column;
+        height:200px;
+        padding-top:15px;
+    }
+    .newsTitle {
+        display: flex;
+        flex-direction:row;
+        justify-content:center;
+        padding-bottom: 12px;
+    }
+    .newsTitle span {
+        font-family: Montserrat;
+    }
+    .newsCarousel {
+        display:flex;
+        flex-direction:column;
+    }
+
+    .pozaModalNews {
+        max-width:40%;
+        max-height:100%;
+        margin-left:11%;
+        border-radius:7px;
+        display:flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .newsCarousel .carousel-indicators {
+        margin-bottom: -7px;
+    }
+    .carousel-inner{
+        margin-bottom: 15px;
+    }
+
+    .carousel-indicators li{
+        width: 7px;
+        height: 7px;
+        border-radius: 100%;
+        border:1.5px solid white;
+        background-color:black;
+    }
+
+    .newsCarousel .carousel-control-next  {
+        height: 50%; 
+        padding-bottom: 15px;
+    }
+
+    .newsCarousel .carousel-control-prev {
+        height: 50%; 
+        padding-bottom: 15px;
+    }
+
+    .newsText {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: -60px;
+        width: 40%;
+        margin-left: 180px;  
+    }
+
+    .newsText span {
+        color :black;
+        font-family: 'Montserrat';
+    }
+
+    .newsText p {
+        color:black;
+        font-family: 'Montserrat';
+    }
+
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+
+    .NEWS {
+        display:flex;
+        flex-direction:column;
+    }
+
+    .newsTitle {
+        padding-bottom:20px;
+        padding-top:15px;
+        display: flex;
+        flex-direction:row;
+        justify-content:center;
+    }
+
+    .newsTitle span {
+        font-family: Montserrat;
+    }
+
+    .newsCarousel {
+        display:flex;
+        flex-direction:column;
+    }
+
+    .pozaModalNews {
+        max-width:70%;
+        max-height:100%;
+        margin-left:15%;
+        border-radius:7px;
+        display:flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .carousel-inner{
+        margin-bottom: 20px;
+    }
+    .carousel-indicators {
+        margin:5px;
+    }
+    .carousel-indicators li{
+        width: 7px;
+        height: 7px;
+        border-radius: 100%;
+        border:1.5px solid white;
+        background-color:black;
+    }
+
+    .newsItem {
+        margin-bottom:150px;
+    }
+
+    .newsText {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content:initial;
+        align-items: center;
+        bottom: auto;
+        z-index: 10;
+        padding-bottom: 20px;
+        color:black;
+        text-align: center;
+    }
+    .newsText span {
+        color :black;
+        font-family: 'Montserrat';
+    }
+    .newsText p {
+        color:black;
+        font-family: 'Montserrat';
+    }
+    .carousel-control-next, .carousel-control-prev {
+        height:9%;
+        margin-top: 100px;
+    }
+}

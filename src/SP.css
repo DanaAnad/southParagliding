@@ -1,8 +1,7 @@
 @media screen and (min-width:1025px) {
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
-    .App {
-        background-image:url("./assets/Background/desktopBackground.png");
+    .Home {
         display:flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -26,26 +25,69 @@
         width:100%;
         height:100%;
     }
+    .socialMedia {
+        width: 27px;
+        height: 27px;
+        margin:auto;
+        display:flex;
+        flex-direction: row;
+    }
+    .footer .socialMedia img{
+        margin-top: 1.5em;
+        height:2em;
+        width: 2em;
+    }
+    .routes {
+        display:none;
+    }
 }
 @media screen and (min-width: 320px) and (max-width: 480px)  {
-    .App {
-        background-image :url("./assets/Mobile/desktopMobile.png");
+    .Home {
         display:flex;
         flex-direction: column;
         flex-wrap: wrap;
         background-size: cover;
         background-position: center;
+        background-attachment: local;
         overflow: hidden;
         height:100vh;
         text-align: center;
         font-family: 'Montserrat';
     }
-
+    .header {
+        height:20%;
+        flex:2;
+    }
+    .body {
+        height:70%;
+        flex:7;
+    }
+    .footer {
+        height: 10%;
+        width:100vw;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .socialMedia{
+        display:flex;
+        flex-direction:column;
+        margin:auto;
+        justify-content: center;
+    }
+     .socialMedia img{
+        height:2em;
+        width:2em;
+    }
+    .routes {
+        display:none;
+    }
 }
 
 @media screen and (min-width: 481px) and (max-width: 1024px ) {
-    .App {
-        background-image:url("./assets/Background/desktopBackground.png");
+    .Home {
         display:flex;
         flex-direction:column;
         flex-wrap: wrap;
@@ -57,6 +99,32 @@
         text-align: center;
         font-family: 'Montserrat';
     }
-
-    
+    .header {
+        height:20%;
+    }
+    .body {
+        height:70%;
+    }
+    .footer {
+        height: 10%;
+        width:100vw;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .socialMedia{
+        display:flex;
+        flex-direction:column;
+        margin:auto;
+        justify-content: center;
+    }
+     .socialMedia img{
+        height:2em;
+        width:2em;
+    }
+    .routes {
+        display:none;
+    }
 }

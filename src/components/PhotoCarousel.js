@@ -5,7 +5,7 @@ import "../carousel.css";
 export default class PhotoCarousel extends Component {
   render(){
     return(
-      <div className="ReusableCarousel">
+      <div >
       <Carousel interval={null} className="FotoCarousel">
           {this.props.items.map((item, index) => {
               return (
@@ -13,9 +13,6 @@ export default class PhotoCarousel extends Component {
                   <div>
                     <img className ="pozaModal" src = {item.src} alt = {item.id} />
                   </div>
-                  <Carousel.Caption>
-                    <h3>{item.title}</h3>
-                  </Carousel.Caption>
                   </Carousel.Item>
               );
           })}
