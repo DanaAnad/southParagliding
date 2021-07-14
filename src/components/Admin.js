@@ -33,13 +33,26 @@ export default class Admin extends React.Component {
         }    
     }
     
+    getFotos = async (pic)=> {
+        console.log("poza de bagat in db::", pic)
+        await this.setState({
+            fotos:pic
+        }, function () {console.log("thisFotos::", this.state.fotos)})
+    } 
+    
+    getVideos = (video)=> {
+        console.log("video de bagat in db::", video)
+        this.setState({
+            videos:video
+        })
+    } 
 
     handleChange = (e) =>{
-                this.setState({
-                  [e.target.name]: e.target.value
-                })      
+            this.setState({
+                [e.target.name]: e.target.value
+            })      
     } 
-            
+     
     // handleDataType = (e) =>{
     //         this.handleChange(e);
     //         // this.setContent();
@@ -52,19 +65,7 @@ export default class Admin extends React.Component {
     //         e.target.value === 'rezervaricontact' && this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true});
     // } 
 
-    getFotos = (pic)=> {
-        console.log("poza de bagat in db::", pic)
-        this.setState({
-            fotos:pic
-        })
-    } 
-    
-    getVideos = (video)=> {
-        console.log("video de bagat in db::", video)
-        this.setState({
-            videos:video
-        })
-    } 
+ 
    
     setContent = async (e,type) => {
         this.handleChange(e);
@@ -81,7 +82,7 @@ export default class Admin extends React.Component {
             }
             case "news" : {
                 this.setState({showTitle:true, showDescription:true, showFotos:true})
-                data = {...this.state.titlu, ...this.state.description, ...this.state.fotos};
+                data = await {...this.state.titlu, ...this.state.description, ...this.state.fotos};
                 break;
             }
             case "foto" :{
@@ -91,7 +92,7 @@ export default class Admin extends React.Component {
             }
             case "video" :{
                 this.setState({showVideos:true})
-                data =  {...this.state.videos};
+                data =  this.state.videos;
                 break;
             } 
             case "locatiidezbor" :{
@@ -109,10 +110,10 @@ export default class Admin extends React.Component {
                 break;    
         }
         if (data) {
-            this.setState({
+           await this.setState({
               data2Upload: data
-            })
-          }; 
+            }) 
+          }
     }
 
     onSubmit = async (e) => {
