@@ -44,7 +44,7 @@ export default class Picture extends Component {
         return(
             <div>
                 <input type="file" name="picture"  onChange={this.getFiles}/><br/>
-                {this.state.imgFile && <img src={this.state.imgFile} style = {previewStyle}/>} 
+                {this.state.imgFile && <img src={this.state.imgFile} style = {previewStyle} alt="poza"/>} 
             </div>
         )
     }
