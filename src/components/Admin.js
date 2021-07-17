@@ -15,6 +15,16 @@ export default class Admin extends React.Component {
         super(props);
 
         this.state = {
+            htmlTags: {
+                showTitle:false,
+                showDescription:false,
+                showFotos:false,
+                showVideos:false,
+                showEmail:false,
+                showPhone:false,                
+            },
+            data2Upload : [],
+            status : false,
             showTitle:false,
             showDescription:false,
             showFotos:false,
@@ -28,18 +38,16 @@ export default class Admin extends React.Component {
             email:"",
             phone:"",
             type : "",
-            data2Upload : [],
-            status : false,
         }    
     }
     
-    getFotos = async (pic)=> {
+    getFotos = (pic)=> {
         console.log("poza de bagat in db::", pic)
-        await this.setState({
+         this.setState({
             fotos:pic
-        }, function () {console.log("thisFotos::", this.state.fotos)})
+        })
     } 
-    
+     
     getVideos = (video)=> {
         console.log("video de bagat in db::", video)
         this.setState({
@@ -64,65 +72,83 @@ export default class Admin extends React.Component {
     //         e.target.value === 'locatiidezbor' && this.setState({showTitle: true, showFotos:true});
     //         e.target.value === 'rezervaricontact' && this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true});
     // } 
-
+ 
+    //seState based on type selected
+    // functii de populat db si de laut din db
+    //auth admin
+    //master branch remote vs local
  
    
-    setContent = async (e,type) => {
+    setContent = (e,type) => {
         this.handleChange(e);
         type = e.target.value;
         console.log("type::", type)
-        let data = false;
+
         switch(type) {
             case "backgrounds" : {
                 this.setState({showFotos: true})
-                console.log("foto::", this.state.fotos);
-                data =  this.state.fotos;
-                console.log("data::", data);
                 break;
             }
             case "news" : {
                 this.setState({showTitle:true, showDescription:true, showFotos:true})
-                data = await {...this.state.titlu, ...this.state.description, ...this.state.fotos};
                 break;
             }
-            case "foto" :{
+            case "foto" : {
                 this.setState({showFotos:true})
-                data =  {...this.state.fotos};
+                console.log("data:foto:", data);
                 break;
             }
-            case "video" :{
+            case "video" : {
                 this.setState({showVideos:true})
-                data =  this.state.videos;
+                console.log("data:video:", data);
                 break;
             } 
-            case "locatiidezbor" :{
+            case "locatiidezbor" : {
                 this.setState({showTitle: true, showFotos:true})
-                data =  {...this.state.fotos, ...this.state.titlu};
+                console.log("data:locatii:", data);
                 break;
             } 
-            case "rezervaricontact" :{
-                this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true})
-                data =  {...this.state.titlu,...this.state.description, ...this.state.email, ...this.state.phone};
+            case "rezervaricontact" : {
+                this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true});
+                console.log("data:rezervari:", data);
                 break;
             }
             default: 
                 data =false;
                 break;    
         }
-        if (data) {
-           await this.setState({
+        if (data.length !==0) {
+            this.setState({
               data2Upload: data
-            }) 
+            }, function () {console.log("data2Upload::", this.data2Upload)}) 
           }
     }
 
     onSubmit = async (e) => {
         e.preventDefault();
         this.setContent(e);
-    
+        
         console.log("submitState::", this.state);
         console.log("dataSubmit::", this.state.data2Upload);
+        let data = {};
+        switch(this.state.type){
+            case 'news': {
+                const {type, description, titlu, fotos } = this.state.type;
+                const newsData = {
+                    type: this.state.type,
+                    data: {
+                        type, 
+                        data: {
+                            description, titlu, fotos
+                        }
+                    }
+                }
+                data = {...newsData};
+                break;
+            }
+        }
 
+        // await axios.post(url, data, {headers: {}});
         // await axios({
         //     method: "post",
         //     url :'http://ms.homens.tricu.ro/data',
@@ -140,6 +166,7 @@ export default class Admin extends React.Component {
 
     render () {
         console.log("renderState::", this.state)
+        console.log("thisfotos::", this.state.fotos)
 
         let formStyle = {
             width: '50%' ,
