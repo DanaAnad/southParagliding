@@ -8,22 +8,20 @@ import axios from 'axios';
 
 
 
-
-
 export default class Admin extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            htmlTags: {
-                showTitle:false,
-                showDescription:false,
-                showFotos:false,
-                showVideos:false,
-                showEmail:false,
-                showPhone:false,                
-            },
-            data2Upload : [],
+            // htmlTags: {
+            //     showTitle:false,
+            //     showDescription:false,
+            //     showFotos:false,
+            //     showVideos:false,
+            //     showEmail:false,
+            //     showPhone:false,                
+            // },
+            data : [],
             status : false,
             showTitle:false,
             showDescription:false,
@@ -60,18 +58,7 @@ export default class Admin extends React.Component {
                 [e.target.name]: e.target.value
             })      
     } 
-     
-    // handleDataType = (e) =>{
-    //         this.handleChange(e);
-    //         // this.setContent();
-    //         // console.log('type::', e.target.value);
-    //         e.target.value === 'backgrounds' && this.setState({showFotos: true});
-    //         e.target.value === "news" && this.setState({showTitle:true, showDescription:true, showFotos:true});
-    //         e.target.value === "foto" && this.setState({showFotos:true});
-    //         e.target.value === 'video' && this.setState({showVideos:true});
-    //         e.target.value === 'locatiidezbor' && this.setState({showTitle: true, showFotos:true});
-    //         e.target.value === 'rezervaricontact' && this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true});
-    // } 
+  
  
     //seState based on type selected
     // functii de populat db si de laut din db
@@ -83,90 +70,156 @@ export default class Admin extends React.Component {
         this.handleChange(e);
         type = e.target.value;
         console.log("type::", type)
-
         switch(type) {
             case "backgrounds" : {
-                this.setState({showFotos: true})
+                this.setState({showFotos: true, showDescription:false, showPhone:false, showEmail:false, showTitle:false, showVideos:false});
                 break;
             }
             case "news" : {
-                this.setState({showTitle:true, showDescription:true, showFotos:true})
+                this.setState({showTitle:true, showDescription:true, showFotos:true, showVideo:false, showPhone:false, showEmail:false})
                 break;
             }
             case "foto" : {
-                this.setState({showFotos:true})
-                console.log("data:foto:", data);
+                this.setState({showFotos:true, showVideos:false, showDescription:false, showPhone:false, showEmail:false, showTitle:false})
                 break;
             }
             case "video" : {
-                this.setState({showVideos:true})
-                console.log("data:video:", data);
+                this.setState({showVideos:true, showFotos:false, showTitle:false, showEmail:false, showPhone:false, showDescription:false})
                 break;
             } 
             case "locatiidezbor" : {
-                this.setState({showTitle: true, showFotos:true})
-                console.log("data:locatii:", data);
+                this.setState({showTitle: true, showFotos:true, showDescription:false, showPhone:false, showEmail:false, showVideos:false})
                 break;
             } 
             case "rezervaricontact" : {
-                this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true});
-                console.log("data:rezervari:", data);
+                this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true, showFotos:false, showVideos:false});
                 break;
-            }
-            default: 
-                data =false;
-                break;    
+            }  
         }
-        if (data.length !==0) {
-            this.setState({
-              data2Upload: data
-            }, function () {console.log("data2Upload::", this.data2Upload)}) 
-          }
     }
 
     onSubmit = async (e) => {
         e.preventDefault();
-        this.setContent(e);
-        
+        this.setContent(e);       
         console.log("submitState::", this.state);
-        console.log("dataSubmit::", this.state.data2Upload);
-        let data = {};
+        console.log("typeSelected::", this.state.type)
+        let data = this.state.data;
         switch(this.state.type){
             case 'news': {
-                const {type, description, titlu, fotos } = this.state.type;
+                const {type, description, titlu, fotos} = this.state;
                 const newsData = {
-                    type: this.state.type,
-                    data: {
-                        type, 
-                        data: {
-                            description, titlu, fotos
-                        }
-                    }
+                    type: type,
+                    data:{
+                        description, titlu, fotos
+                    },
+                    status:true
                 }
                 data = {...newsData};
                 break;
             }
+            case "backgrounds" :{
+                const {type, fotos} = this.state;
+                const backgroundData = {
+                    type:type,
+                    data:{
+                        type, 
+                        data :{
+                            fotos
+                        }
+                    },
+                    status:true
+                }
+                data = {...backgroundData};
+                break;
+            }
+            case "foto" : {
+                const {type, fotos} = this.state;
+                const fotoData = {
+                    type: type,
+                    data:{
+                        type,
+                        data: {
+                            fotos
+                        }
+                    },
+                    status:true
+                }
+                data = {...fotoData};
+                break;
+            }
+            case 'video' :{
+                const {type, videos} = this.state;
+                const videoData = {
+                    type: type,
+                    data: {
+                        type,
+                        data :{ 
+                            videos
+                        }
+                    },
+                    status:true
+                }
+                data = {...videoData};
+                break;
+            }
+            case "locatiidezbor" : {
+                const {type, titlu, fotos} = this.state;
+                const locationsData = {
+                    type: type,
+                    data:{
+                        data :{
+                            titlu, fotos
+                        }
+                    },
+                    status:true
+                }
+                data = {...locationsData};
+                break;
+            }
+            case "rezervaricontact" : {
+                const {type, titlu, description, phone, email} = this.state;
+                const contactData = {
+                    type: type,
+                    data :{
+                        titlu, description, phone, email
+                    },
+                    status:1
+                }
+                data = {...contactData};
+            }
         }
+        await axios({
+            method: "POST",
+            headers: {
+                'Accept': '*/*',
+                "Content-Type": "application/json"
+            },
+            body:data,
+            url : 'http://ms.homens.tricu.ro/data'
+          })
+            .then(
+                console.log("dataToUpload:axios:", data),
+                (response) => {
+                console.log("Response::",response);
+            })
+            .catch((error) => {
+              console.log("catchErrResp::",error);
+            });
 
-        // await axios.post(url, data, {headers: {}});
-        // await axios({
-        //     method: "post",
-        //     url :'http://ms.homens.tricu.ro/data',
-        //     body:this.state.data,
-        //     headers: { "Content-Type": "application/x-www-form-urlencoded",
-        //                 'Accept': '*/*' },
+        // await axios.post(url,{data}, {headers:headers})
+        // .then(
+        //     console.log("dataToUpload:axios:", data),
+        //     (response) => {
+        //    console.log("ResponseYes::", response)
         //   })
-        //     .then(function (response) {
-        //       console.log("RespResolved::",response.config.params);
-        //     })
-        //     .catch(function (response) {
-        //       console.log("catchErrResp::",response);
-        //     });
+        //   .catch((error) => {
+        //     console.log("error::", error)
+        //   })
     }
 
     render () {
         console.log("renderState::", this.state)
-        console.log("thisfotos::", this.state.fotos)
+        // console.log("thisfotos::", this.state.fotos)
 
         let formStyle = {
             width: '50%' ,
@@ -207,5 +260,4 @@ export default class Admin extends React.Component {
         )
     }
 }
-
 
