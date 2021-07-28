@@ -13,6 +13,7 @@ export default class Admin extends React.Component {
         super(props);
 
         this.state = {
+<<<<<<< HEAD
             // htmlTags: {
             //     showTitle:false,
             //     showDescription:false,
@@ -22,6 +23,17 @@ export default class Admin extends React.Component {
             //     showPhone:false,                
             // },
             data : [],
+=======
+            htmlTags: {
+                showTitle:false,
+                showDescription:false,
+                showFotos:false,
+                showVideos:false,
+                showEmail:false,
+                showPhone:false,                
+            },
+            data2Upload : [],
+>>>>>>> 6ba7d5a2e6f44603906f590ae76b0ef272edbbf4
             status : false,
             showTitle:false,
             showDescription:false,
@@ -58,7 +70,22 @@ export default class Admin extends React.Component {
                 [e.target.name]: e.target.value
             })      
     } 
+<<<<<<< HEAD
   
+=======
+     
+    // handleDataType = (e) =>{
+    //         this.handleChange(e);
+    //         // this.setContent();
+    //         // console.log('type::', e.target.value);
+    //         e.target.value === 'backgrounds' && this.setState({showFotos: true});
+    //         e.target.value === "news" && this.setState({showTitle:true, showDescription:true, showFotos:true});
+    //         e.target.value === "foto" && this.setState({showFotos:true});
+    //         e.target.value === 'video' && this.setState({showVideos:true});
+    //         e.target.value === 'locatiidezbor' && this.setState({showTitle: true, showFotos:true});
+    //         e.target.value === 'rezervaricontact' && this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true});
+    // } 
+>>>>>>> 6ba7d5a2e6f44603906f590ae76b0ef272edbbf4
  
     //seState based on type selected
     // functii de populat db si de laut din db
@@ -70,6 +97,7 @@ export default class Admin extends React.Component {
         this.handleChange(e);
         type = e.target.value;
         console.log("type::", type)
+<<<<<<< HEAD
         switch(type) {
             case "backgrounds" : {
                 this.setState({showFotos: true, showDescription:false, showPhone:false, showEmail:false, showTitle:false, showVideos:false});
@@ -93,13 +121,52 @@ export default class Admin extends React.Component {
             } 
             case "rezervaricontact" : {
                 this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true, showFotos:false, showVideos:false});
+=======
+
+        switch(type) {
+            case "backgrounds" : {
+                this.setState({showFotos: true})
+                break;
+            }
+            case "news" : {
+                this.setState({showTitle:true, showDescription:true, showFotos:true})
+                break;
+            }
+            case "foto" : {
+                this.setState({showFotos:true})
+                console.log("data:foto:", data);
+                break;
+            }
+            case "video" : {
+                this.setState({showVideos:true})
+                console.log("data:video:", data);
+                break;
+            } 
+            case "locatiidezbor" : {
+                this.setState({showTitle: true, showFotos:true})
+                console.log("data:locatii:", data);
+                break;
+            } 
+            case "rezervaricontact" : {
+                this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true});
+                console.log("data:rezervari:", data);
+>>>>>>> 6ba7d5a2e6f44603906f590ae76b0ef272edbbf4
                 break;
             }  
         }
+<<<<<<< HEAD
+=======
+        if (data.length !==0) {
+            this.setState({
+              data2Upload: data
+            }, function () {console.log("data2Upload::", this.data2Upload)}) 
+          }
+>>>>>>> 6ba7d5a2e6f44603906f590ae76b0ef272edbbf4
     }
 
     onSubmit = async (e) => {
         e.preventDefault();
+<<<<<<< HEAD
         this.setContent(e);       
         console.log("submitState::", this.state);
         console.log("typeSelected::", this.state.type)
@@ -214,12 +281,47 @@ export default class Admin extends React.Component {
         //   })
         //   .catch((error) => {
         //     console.log("error::", error)
+=======
+        this.setContent(e);
+        
+        console.log("submitState::", this.state);
+        console.log("dataSubmit::", this.state.data2Upload);
+        let data = {};
+        switch(this.state.type){
+            case 'news': {
+                const {type, description, titlu, fotos } = this.state.type;
+                const newsData = {
+                    type: this.state.type,
+                    data: {
+                        type, 
+                        data: {
+                            description, titlu, fotos
+                        }
+                    }
+                }
+                data = {...newsData};
+                break;
+            }
+        }
+
+        // await axios.post(url, data, {headers: {}});
+        // await axios({
+        //     method: "post",
+        //     url :'http://ms.homens.tricu.ro/data',
+        //     body:this.state.data,
+        //     headers: { "Content-Type": "application/x-www-form-urlencoded",
+        //                 'Accept': '*/*' },
+>>>>>>> 6ba7d5a2e6f44603906f590ae76b0ef272edbbf4
         //   })
     }
 
     render () {
         console.log("renderState::", this.state)
+<<<<<<< HEAD
         // console.log("thisfotos::", this.state.fotos)
+=======
+        console.log("thisfotos::", this.state.fotos)
+>>>>>>> 6ba7d5a2e6f44603906f590ae76b0ef272edbbf4
 
         let formStyle = {
             width: '50%' ,
