@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 
 
+
 export default class Picture extends Component {
     constructor(props) {
         super(props);
         this.state={
             file:"",
+            poza:"",
             imgFile:'',
             videoFile:""
         }
         this.getFiles = this.getFiles.bind(this);
+        // this.convert = this.convert.bind(this);
     }
 
     getFiles = (e) => {
@@ -32,6 +35,7 @@ export default class Picture extends Component {
     }
    
     render() {
+
         const previewStyle = {
             width: "100px",
             height:"100px",
@@ -44,7 +48,7 @@ export default class Picture extends Component {
         return(
             <div>
                 <input type="file" name="picture"  onChange={this.getFiles}/><br/>
-                {this.state.imgFile && <img src={this.state.imgFile} style = {previewStyle}/>} 
+                {this.state.imgFile && <img src={this.state.imgFile} style = {previewStyle} alt="poza"/>} 
             </div>
         )
     }
