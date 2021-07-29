@@ -3,7 +3,6 @@ import Picture from "./pictureToBase64.js";
 import Video from "./videoToBase64.js";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import mysql from 'mysql';
 import axios from 'axios';
 
 
@@ -170,6 +169,7 @@ export default class Admin extends React.Component {
                     status:1
                 }
                 data = {...contactData};
+                break;
             }
         }
         await axios({
