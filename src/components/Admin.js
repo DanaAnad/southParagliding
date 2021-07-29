@@ -170,6 +170,7 @@ export default class Admin extends React.Component {
                     status:1
                 }
                 data = {...contactData};
+                break;
             }
         }
         await axios({
