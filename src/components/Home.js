@@ -149,7 +149,7 @@ export default class Home extends React.Component {
     //   backgroundImage: `url(${this.state.backgroundImgMob.src})`,
     // }
 
-  const { windowWidth } = this.state; 
+  // const { windowWidth } = this.state; 
 
     return (
       // <div className="Home" style= {windowWidth >= 480 ? desktopImgStyle : mobileImgStyle}>

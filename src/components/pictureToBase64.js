@@ -35,31 +35,15 @@ export default class Picture extends Component {
             let file = e.target.files[0];
             const image = await resizeFile(file);
             console.log("imageResized::",image);
-            console.log("resizedImgSize::",image.size);
+            const size = image.size;
+            console.log("image`size",size);
             this.setState({
                 imgFile:image
             },
-            console.log("imgSize::", this.imgFile.size),
-            () => {this.props.cb && this.props.cb(image)})
+            () => {this.props.cbf && this.props.cbf(image)})
         } catch (err) {
             console.log(err);
           }
-
-        
-        // console.log("filess::", file)
-        // let reader = new FileReader();
-        // const url= reader.readAsDataURL(file);
-        // reader.onload = (e) => {
-        //     console.log("event::", e)
-        //     console.log("result::",e.target.result)
-        //     console.log("readerRes::", reader.result);
-        //     // this.props.cb(reader.result);
-        //     this.setState({
-        //       imgFile:reader.result,
-        //       videoFile:reader.result
-        //     },
-        //     () =>{this.props.cb && this.props.cb(reader.result)})
-        // };
 
     }
    

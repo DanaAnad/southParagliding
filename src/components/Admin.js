@@ -3,7 +3,6 @@ import Picture from "./pictureToBase64.js";
 import Video from "./videoToBase64.js";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import mysql from 'mysql';
 import axios from 'axios';
 
 
@@ -179,26 +178,18 @@ export default class Admin extends React.Component {
                 'Accept': '*/*',
                 "Content-Type": "application/json"
             },
-            body:data,
+           data,
             url : 'http://ms.homens.tricu.ro/data'
           })
             .then(
-                console.log("dataToUpload:axios:", data),
+                // console.log("dataToUpload:axios:", data),
                 (response) => {
-                console.log("Response::",response);
+                console.log("Response::",response.config.data);
             })
             .catch((error) => {
               console.log("catchErrResp::",error);
             });
 
-        // await axios.post(url,{data}, {headers:headers})
-        // .then(
-        //     console.log("dataToUpload:axios:", data),
-        //     (response) => {
-        //    console.log("ResponseYes::", response)
-        //   })
-        //   .catch((error) => {
-        //     console.log("error::", error)
 
     }
 
@@ -229,9 +220,9 @@ export default class Admin extends React.Component {
                         <br />
                         {this.state.showDescription && <Form.Control as="textarea" rows ={2} name="description" placeholder="Informatii..." onChange={this.handleChange}/>}
                         <br />
-                        {this.state.showFotos && <Picture cb = {this.getFotos}/>}
+                        {this.state.showFotos && <Picture cbf = {this.getFotos}/>}
                         <br />
-                        {this.state.showVideos && <Video cb = {this.getVideos}/>}
+                        {this.state.showVideos && <Video cbf = {this.getVideos}/>}
                         <br />
                         {this.state.showEmail && <Form.Control type="email" name="email" placeholder="Enter email" onChange={this.handleChange}/> }
                         <br />
