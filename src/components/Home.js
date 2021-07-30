@@ -18,6 +18,7 @@ import pic5 from "../assets/Images/pic5.jpg";
 import MyVideo from "../assets/video/MyVideo.MP4";
 import ParaSea from "../assets/video/ParaSea.mp4";
 import Paragliding from "../assets/video/Paragliding.mp4";
+import axios from 'axios';
 
 
 export default class Home extends React.Component {
@@ -94,6 +95,7 @@ export default class Home extends React.Component {
   
    componentDidMount= () => {
     window.addEventListener("resize", this.handleResize);
+    this.getData();
    }
   
    componentWillUnMount= () => {
@@ -138,7 +140,14 @@ export default class Home extends React.Component {
     }; 
   }
 
-  
+ getData = () => {
+   const type = this.props
+   console.log("type::",type)
+   const url = "http://ms.homens.tricu.ro/datas";
+   axios.get(url).then(response => {
+     console.log("responsee::", response);
+   })
+ }
 
   render(){
     const background = {

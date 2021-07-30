@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Resizer from "react-image-file-resizer";
+// const Compress = require("compress.js");
 
 
 
@@ -35,8 +36,6 @@ export default class Picture extends Component {
             let file = e.target.files[0];
             const image = await resizeFile(file);
             console.log("imageResized::",image);
-            const size = image.size;
-            console.log("image`size",size);
             this.setState({
                 imgFile:image
             },
@@ -46,6 +45,16 @@ export default class Picture extends Component {
           }
 
     }
+
+    // const compress = new Compress();
+    // compress
+    // .attach("#upload", {
+    //     size: 4,
+    //     quality: 0.75
+    // })
+    // .then((data) => {
+    //     console.log(data);
+    // });
    
     render() {
 
@@ -60,7 +69,7 @@ export default class Picture extends Component {
         }
         return(
             <div>
-                <input type="file" name="picture"  onChange={this.getFiles}/><br/>
+                <input type="file" name="picture" id="upload" onChange={this.getFiles}/><br/>
                 {this.state.imgFile && <img src={this.state.imgFile} style = {previewStyle} alt="poza"/>} 
             </div>
         )

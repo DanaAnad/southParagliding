@@ -11,22 +11,28 @@ export default class Video extends Component {
         this.getFiles = this.getFiles.bind(this);
     }
 
-    getFiles = (e) => {
-        let file = e.target.files[0];
-        console.log("filess::", file)
-        let reader = new FileReader();
-        const url= reader.readAsDataURL(file);
-        reader.onload = (e) => {
-            console.log("event::", e)
-            console.log("result::",e.target.result)
-            console.log("readerRes::", reader.result);
-            // this.props.cb(reader.result);
-            this.setState({
-              videoFile:reader.result,
-            },
-            () =>{this.props.cb && this.props.cb(reader.result)})
-        };
-
+    getFiles = async (e) => {
+        try {
+            let file_size = e.target.files[0].size;
+            console.log("fileSize::",file_size);
+            let file = e.target.files[0];
+            console.log("filess::", file)
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+                console.log("event::", e)
+                console.log("result::",e.target.result)
+                console.log("readerRes::", reader.result);
+                // this.props.cb(reader.result);
+                this.setState({
+                videoFile:reader.result,
+                },
+                () =>{this.props.cbf && this.props.cbf(reader.result)})
+            
+            } 
+        }   catch (err) {
+                console.log(err);
+            }
     }
    
     render() {

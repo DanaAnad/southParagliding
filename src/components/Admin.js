@@ -79,9 +79,12 @@ export default class Admin extends React.Component {
                 this.setState({ showTitle: true, showDescription:true, showPhone:true, showEmail:true, showFotos:false, showVideos:false});
                 break;
             }  
+            default:
+                type= false;
+                break;
         }
     }
-    onSubmit = async (e) => {
+    onSubmit = (e) => {
         e.preventDefault();
         this.setContent(e);       
         console.log("submitState::", this.state);
@@ -166,13 +169,16 @@ export default class Admin extends React.Component {
                     data :{
                         titlu, description, phone, email
                     },
-                    status:1
+                    status:false
                 }
                 data = {...contactData};
                 break;
             }
+            default:
+                data = {};
+                break;
         }
-        await axios({
+         axios({
             method: "POST",
             headers: {
                 'Accept': '*/*',
@@ -182,9 +188,10 @@ export default class Admin extends React.Component {
             url : 'http://ms.homens.tricu.ro/data'
           })
             .then(
-                // console.log("dataToUpload:axios:", data),
                 (response) => {
-                console.log("Response::",response.config.data);
+                console.log("Response::",response.data);
+                console.log("Response:2:", response.config.data)
+                response.status===201 && alert("success");
             })
             .catch((error) => {
               console.log("catchErrResp::",error);
@@ -194,7 +201,6 @@ export default class Admin extends React.Component {
     }
 
     render () {
-
         let formStyle = {
             width: '50%' ,
             margin: 'auto',
