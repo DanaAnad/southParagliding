@@ -23,10 +23,11 @@ export default class Admin extends React.Component {
             titlu:"",
             description:"",
             fotos :"",
-            videos : "",
+            // videos : "",
             email:"",
             phone:"",
             type : "",
+            file: false
         }    
     }
     
@@ -40,7 +41,8 @@ export default class Admin extends React.Component {
     getVideos = (video)=> {
         console.log("video de bagat in db::", video)
         this.setState({
-            videos:video
+            // videos:video
+            file: video
         })
     } 
 
@@ -89,7 +91,9 @@ export default class Admin extends React.Component {
         this.setContent(e);       
         console.log("submitState::", this.state);
         console.log("typeSelected::", this.state.type)
-        let data = this.state.data;
+        let data = this.state.data; //de ce faci aici data = state.date ?????
+
+        const formData = new FormData();
         switch(this.state.type){
             case 'news': {
                 const {type, description, titlu, fotos} = this.state;
@@ -135,17 +139,12 @@ export default class Admin extends React.Component {
             }
             case 'video' :{
                 const {type, videos} = this.state;
-                const videoData = {
-                    type: type,
-                    data: {
-                        type,
-                        data :{ 
-                            videos
-                        }
-                    },
-                    status:true
-                }
-                data = {...videoData};
+                
+                formData.append('attachedFile', this.state.file);
+                formData.append('type', type);
+                formData.append('status', 1);
+                formData.append('plm', 'asd');
+                data = formData;
                 break;
             }
             case "locatiidezbor" : {
@@ -176,15 +175,17 @@ export default class Admin extends React.Component {
             }
             default:
                 data = {};
+                //throw error
                 break;
         }
          axios({
             method: "POST",
             headers: {
                 'Accept': '*/*',
-                "Content-Type": "application/json"
+                // "Content-Type": "application/json"
+                "Content-Type": "multipart/form-data"
             },
-           data,
+            data,
             url : 'http://ms.homens.tricu.ro/data'
           })
             .then(
