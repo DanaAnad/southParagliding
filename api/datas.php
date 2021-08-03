@@ -104,6 +104,7 @@ class Data {
     $response['body'] = json_encode($result);
     return $response;
   }
+
   private function handleFileUpload($data) {
     $phpFileUploadErrors = array(
       0 => 'There is no error, the file uploaded with success',
@@ -153,6 +154,7 @@ class Data {
     }
     return $data;
   }
+  
   private function createData() {
     if (! $this->validatePost($_POST)) {
       return $this->unprocessableEntityResponse();
@@ -183,7 +185,7 @@ class Data {
       $statement->execute(array(
         'data' => json_encode($data),
         'type'  => $_POST['type'],
-        'status' => $_POST['status'] !== "1" ? 0 : 1
+        'status' => !isset($_POST['status']) || $_POST['status'] !== "1" ? 0 : 1
       ));
       $lastId = $this->db->lastInsertId();
     } catch (\PDOException $e) {
