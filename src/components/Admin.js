@@ -22,7 +22,7 @@ export default class Admin extends React.Component {
             showPhone:false,
             titlu:"",
             description:"",
-            fotos :"",
+            //fotos :"",
             // videos : "",
             email:"",
             phone:"",
@@ -34,7 +34,7 @@ export default class Admin extends React.Component {
     getFotos = (pic)=> {
         console.log("poza de bagat in db::", pic)
          this.setState({
-            fotos:pic
+            file:pic
         })
     } 
      
@@ -91,86 +91,57 @@ export default class Admin extends React.Component {
         this.setContent(e);       
         console.log("submitState::", this.state);
         console.log("typeSelected::", this.state.type)
-        let data = this.state.data; //de ce faci aici data = state.date ?????
-
+        let data = this.state.data;
         const formData = new FormData();
         switch(this.state.type){
             case 'news': {
-                const {type, description, titlu, fotos} = this.state;
-                const newsData = {
-                    type: type,
-                    data:{
-                        description, titlu, fotos
-                    },
-                    status:true
-                }
-                data = {...newsData};
+                const {type, description, titlu, file} = this.state;
+                formData.append('type', type);
+                formData.append('description', description);
+                formData.append('titlu', titlu);
+                formData.append('attachedFile', file);
+                data = formData;
                 break;
             }
             case "backgrounds" :{
-                const {type, fotos} = this.state;
-                const backgroundData = {
-                    type:type,
-                    data:{
-                        type, 
-                        data :{
-                            fotos
-                        }
-                    },
-                    status:true
-                }
-                data = {...backgroundData};
+                const {type, file} = this.state;
+                formData.append('type', type);
+                formData.append('attachyedFile', file)
+                data = formData;
                 break;
             }
             case "foto" : {
-                const {type, fotos} = this.state;
-                const fotoData = {
-                    type: type,
-                    data:{
-                        type,
-                        data: {
-                            fotos
-                        }
-                    },
-                    status:true
-                }
-                data = {...fotoData};
+                const {type, file} = this.state;
+                formData.append('type', type);
+                formData.append('attachedFile', file);
+                data = formData;
                 break;
             }
             case 'video' :{
-                const {type, videos} = this.state;
-                
-                formData.append('attachedFile', this.state.file);
+                const {type, file} = this.state;
+                formData.append('attachedFile', file);
                 formData.append('type', type);
-                formData.append('status', 1);
-                formData.append('plm', 'asd');
+                // formData.append('status', 1);
+                // formData.append('plm', 'asd');
                 data = formData;
                 break;
             }
             case "locatiidezbor" : {
-                const {type, titlu, fotos} = this.state;
-                const locationsData = {
-                    type: type,
-                    data:{
-                        data :{
-                            titlu, fotos
-                        }
-                    },
-                    status:true
-                }
-                data = {...locationsData};
+                const {type, titlu, file} = this.state;
+                formData.append('type', type);
+                formData.append('attachedFile', file);
+                formData.append('titlu', titlu);
+                data = formData;
                 break;
             }
             case "rezervaricontact" : {
                 const {type, titlu, description, phone, email} = this.state;
-                const contactData = {
-                    type: type,
-                    data :{
-                        titlu, description, phone, email
-                    },
-                    status:false
-                }
-                data = {...contactData};
+                formData.append('type', type);
+                formData.append('titlu', titlu);
+                formData.append('description', description);
+                formData.append('phone', phone);
+                formData.append('email', email);
+                data = formData;
                 break;
             }
             default:
@@ -191,7 +162,7 @@ export default class Admin extends React.Component {
             .then(
                 (response) => {
                 console.log("Response::",response.data);
-                console.log("Response:2:", response.config.data)
+                console.log("Response:2:", response.config)
                 response.status===201 && alert("success");
             })
             .catch((error) => {
