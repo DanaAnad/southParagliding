@@ -12,10 +12,6 @@ import Admin from "./components/Admin.js";
 
 
 export default class App extends React.Component {
- componentDidMount() {
-   console.log("componentDidMount::",this.props)
- }
-
   render() {
     return (
       <Router>
