@@ -13,19 +13,7 @@ import Admin from "./components/Admin.js";
 
 export default class App extends React.Component {
  componentDidMount() {
-   console.log("componentDidMount::")
-    // var connection = mysql.createConnection({
-    //   host: 'localhost',
-    //   user: 'root',
-    //   password: 'my-secret-pw',
-    //   database: 'southParagliding',
-    // });
-    
-    // // Connect to database.
-    // connection.connect(function(err) {
-    //     if (err) throw err;
-    //     console.log("Connected!");
-    //   });
+   console.log("componentDidMount::",this.props)
  }
 
   render() {

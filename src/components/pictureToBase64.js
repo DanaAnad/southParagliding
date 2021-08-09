@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form';
 // import Resizer from "react-image-file-resizer";
-// const Compress = require("compress.js");
-
 
 
 export default class Picture extends Component {
@@ -9,12 +8,16 @@ export default class Picture extends Component {
         super(props);
         this.state={
             file:"",
-            imgFile:'',
         }
         this.getFiles = this.getFiles.bind(this);
     }
-
+   
     getFiles = async (e) => {
+        e.preventDefault();
+        // this.setState({
+        //     fileName: e.target.value
+        // }) 
+        // this.handlePicName(e);
         // const resizeFile = (file) =>
         //     new Promise((resolve) => {
         //         Resizer.imageFileResizer(
@@ -35,6 +38,8 @@ export default class Picture extends Component {
             console.log("PicSize::",pic_size);
             let file = e.target.files[0];
             console.log("filess::", file)
+            // const fileName = file.name;
+            // console.log("picName::", fileName);
         //     let file_size = e.target.files[0].size;
         //     console.log("fileSize::",file_size);
         //     let file = e.target.files[0];
@@ -50,16 +55,6 @@ export default class Picture extends Component {
           }
 
     }
-
-    // const compress = new Compress();
-    // compress
-    // .attach("#upload", {
-    //     size: 4,
-    //     quality: 0.75
-    // })
-    // .then((data) => {
-    //     console.log(data);
-    // });
    
     render() {
 
@@ -74,8 +69,12 @@ export default class Picture extends Component {
         }
         return(
             <div>
-                <input type="file" name="picture" id="upload" onChange={this.getFiles}/><br/>
-                {this.state.imgFile && <img src={this.state.imgFile} style = {previewStyle} alt="poza"/>} 
+                <Form>
+                    <Form.Group>
+                        <Form.Control type="file" name="picture" id="upload" onChange={this.getFiles}/><br/>
+                        {this.state.imgFile && <img src={this.state.imgFile} style = {previewStyle} alt="poza"/>} 
+                    </Form.Group>
+                </Form>
             </div>
         )
     }

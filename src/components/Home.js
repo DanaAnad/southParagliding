@@ -145,7 +145,7 @@ export default class Home extends React.Component {
    console.log("type::",type)
    const url = "http://ms.homens.tricu.ro/datas";
    axios.get(url).then(response => {
-     console.log("responsee::", response);
+     console.log("responsee::", response.data);
    })
  }
 

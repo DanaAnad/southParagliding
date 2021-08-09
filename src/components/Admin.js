@@ -22,26 +22,24 @@ export default class Admin extends React.Component {
             showPhone:false,
             titlu:"",
             description:"",
-            //fotos :"",
-            // videos : "",
             email:"",
             phone:"",
             type : "",
-            file: false
+            file: false,
+            fileName:""
         }    
     }
     
     getFotos = (pic)=> {
         console.log("poza de bagat in db::", pic)
          this.setState({
-            file:pic
+            file:pic,
         })
     } 
      
     getVideos = (video)=> {
         console.log("video de bagat in db::", video)
         this.setState({
-            // videos:video
             file: video
         })
     } 
@@ -91,7 +89,7 @@ export default class Admin extends React.Component {
         this.setContent(e);       
         console.log("submitState::", this.state);
         console.log("typeSelected::", this.state.type)
-        let data = this.state.data;
+        let data = [];
         const formData = new FormData();
         switch(this.state.type){
             case 'news': {
@@ -100,13 +98,15 @@ export default class Admin extends React.Component {
                 formData.append('description', description);
                 formData.append('titlu', titlu);
                 formData.append('attachedFile', file);
+                formData.append('status', 1);
                 data = formData;
                 break;
             }
             case "backgrounds" :{
                 const {type, file} = this.state;
                 formData.append('type', type);
-                formData.append('attachyedFile', file)
+                formData.append('attachedFile', file);
+                formData.append('status', 1);
                 data = formData;
                 break;
             }
@@ -114,6 +114,7 @@ export default class Admin extends React.Component {
                 const {type, file} = this.state;
                 formData.append('type', type);
                 formData.append('attachedFile', file);
+                formData.append('status', 1);
                 data = formData;
                 break;
             }
@@ -121,8 +122,7 @@ export default class Admin extends React.Component {
                 const {type, file} = this.state;
                 formData.append('attachedFile', file);
                 formData.append('type', type);
-                // formData.append('status', 1);
-                // formData.append('plm', 'asd');
+                formData.append('status', 1);
                 data = formData;
                 break;
             }
@@ -131,6 +131,7 @@ export default class Admin extends React.Component {
                 formData.append('type', type);
                 formData.append('attachedFile', file);
                 formData.append('titlu', titlu);
+                formData.append('status', 1);
                 data = formData;
                 break;
             }
@@ -141,6 +142,7 @@ export default class Admin extends React.Component {
                 formData.append('description', description);
                 formData.append('phone', phone);
                 formData.append('email', email);
+                formData.append('status', 1);
                 data = formData;
                 break;
             }
