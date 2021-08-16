@@ -5,8 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
-
-
 export default class Admin extends React.Component {
     constructor(props) {
         super(props);
@@ -26,7 +24,6 @@ export default class Admin extends React.Component {
             phone:"",
             type : "",
             file: false,
-            fileName:""
         }    
     }
     
@@ -55,12 +52,16 @@ export default class Admin extends React.Component {
         type = e.target.value;
         console.log("type::", type)
         switch(type) {
+            case"newsTitle" : {
+                this.setState({showTitle: true, showDescription:false, showVideo:false, showPhone:false, showEmail:false, showFotos:false});
+                break;
+            }
             case "backgrounds" : {
                 this.setState({showFotos: true, showDescription:false, showPhone:false, showEmail:false, showTitle:false, showVideos:false});
                 break;
             }
             case "news" : {
-                this.setState({showTitle:true, showDescription:true, showFotos:true, showVideo:false, showPhone:false, showEmail:false})
+                this.setState({showNewsTitle:true, showTitle:true, showDescription:true, showFotos:true, showVideo:false, showPhone:false, showEmail:false})
                 break;
             }
             case "foto" : {
@@ -86,12 +87,20 @@ export default class Admin extends React.Component {
     }
     onSubmit = (e) => {
         e.preventDefault();
-        this.setContent(e);       
+        this.setContent(e);     
         console.log("submitState::", this.state);
         console.log("typeSelected::", this.state.type)
         let data = [];
         const formData = new FormData();
         switch(this.state.type){
+            case "newsTitle" :{
+                const {type, titlu} = this.state;
+                formData.append("type", type);
+                formData.append('titluStiri', titlu);
+                formData.append('status', 1);
+                data = formData;
+                break
+            }
             case 'news': {
                 const {type, description, titlu, file} = this.state;
                 formData.append('type', type);
@@ -148,7 +157,6 @@ export default class Admin extends React.Component {
             }
             default:
                 data = {};
-                //throw error
                 break;
         }
          axios({
@@ -166,6 +174,7 @@ export default class Admin extends React.Component {
                 console.log("Response::",response.data);
                 console.log("Response:2:", response.config)
                 response.status===201 && alert("success");
+                
             })
             .catch((error) => {
               console.log("catchErrResp::",error);
@@ -173,7 +182,6 @@ export default class Admin extends React.Component {
 
 
     }
-
     render () {
         let formStyle = {
             width: '50%' ,
@@ -184,11 +192,12 @@ export default class Admin extends React.Component {
         return (
             <div className="adminForm" style = {formStyle}>
                 <Form>
-                    <Form.Group controlId="exampleForm.SelectCustom" >
+                    <Form.Group controlId="Admin Form" >
                         <br />
                         <Form.Control as="select" size="sm" name="type" onChange={(e)=>this.setContent(e)}> 
                             <option value="ChoseSection">Alege sectiunea...</option>
                             <option value='backgrounds'>Backgrounds</option>
+                            <option value="newsTitle">News Title</option>
                             <option value="news">News</option>
                             <option value='foto'>Foto</option>
                             <option value="video">Video</option>

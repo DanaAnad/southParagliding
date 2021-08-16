@@ -13,7 +13,7 @@ export default class VideoCarousel extends Component {
               return (
                 <Carousel.Item key={index}>
                   <video className="videoItem" controls="controls">
-                        <source src={item.src} type="video/mp4"/>
+                        <source src={item.fileName} type="video/mp4"/>
                   </video>
                 </Carousel.Item>
               );

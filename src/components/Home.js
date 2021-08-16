@@ -9,15 +9,6 @@ import VideoCarousel from "../components/VideoCarousel";
 import LocationsCarousel from "../components/LocationsCarousel.js";
 import '../SP.css';
 import FbLogo from '../assets/SocialMedia/FbLogo.png';
-import desktopBackground from "../assets/Background/desktopBackground.png";
-import pic1 from "../assets/Images/pic1.jpg";
-import pic2 from "../assets/Images/pic2.jpg";
-import pic3 from "../assets/Images/pic3.jpg";
-import pic4 from "../assets/Images/pic4.jpg";
-import pic5 from "../assets/Images/pic5.jpg";
-import MyVideo from "../assets/video/MyVideo.MP4";
-import ParaSea from "../assets/video/ParaSea.mp4";
-import Paragliding from "../assets/video/Paragliding.mp4";
 import axios from 'axios';
 
 
@@ -26,59 +17,28 @@ export default class Home extends React.Component {
   constructor(props) {
       super(props);
 
-      this.state ={
-        windowWidth: window.innerWidth,
-
+      this.state = {
         modal:{
             show: false,
             data:[],
         },
-        backgroundImg:{src:desktopBackground},
-
-        // backgroundImgMob:{src:poza3},
-
-        newsTitle: "Program si anunturi ",
-
-        news:[
-          {src:pic1, title:"Vara 2021", text:"Vremea este numai buna de zbor, asa ca in weekendul acesta va asteptam la distractie!"},
-          {src:pic2, title:"Sezon 2021", text:"Vremea buna a venit, asa ca in weekendul asta se zboara. Va asteptam!"},
-          {src:pic3, title:"Scoala de parapantism", text:"Vrei sa inveti sa zbori cu parapanta? Intra in contact cu noi pt a face o programare."}
+        types:[
+          'backgrounds','news','foto','video','locatiidezbor','rezervaricontact'
         ],
-
-        foto:[
-          {id:1, src :pic1},
-          {id:2, src :pic2},
-          {id:3, src :pic3},
-          {id:4, src :pic4},
-          {id:5, src :pic5},
-        ],
-
-        locationImgs:[
-          {id:1, src :pic1, title:"PARANG"},
-          {id:2, src :pic2, title:"CLOPOTIVA"},
-          {id:3, src :pic3, title:"BRASOV"},
-          {id:4, src :pic4, title:"BAIA MARE"},
-          {id:5, src :pic5, title:"RANCA"},
-        ],
-
-        rezervari:[
-          {
-            title:"PROGRAMARI",
-            text:<span>Echipa noastra este gata <br /> sa intre in contact cu tine.</span>,
-            phone: "+40 757 985 068", 
-            email:"parapantatandem@gmail.com"
-          }
-        ],
-
-        videos:[
-          {id:"1", src: MyVideo, title:"Paragliding"},
-          {id:"2", src: ParaSea, title:"Paragliding"},
-          {id:"3", src: Paragliding, title:"Paragliding"}
-         ]
+        alldata : [],
+        backgroundImg:false,
+        newsTitle: "",
+        news:[],
+        foto:[],
+        locatiiDeZbor:[],
+        rezervari:[],
+        videos:[]
       };
       this.setContent = this.setContent.bind(this);
       this.closeModal = this.closeModal.bind(this);
+      this.getData= this.getData.bind(this);
   }
+  
   closeModal = () => {
     this.setState({
       modal:{
@@ -87,47 +47,69 @@ export default class Home extends React.Component {
     });
   };
 
-
-
-   handleResize = (e) => {
-    this.setState({ windowWidth: window.innerWidth });
-   };
-  
    componentDidMount= () => {
-    window.addEventListener("resize", this.handleResize);
     this.getData();
    }
-  
-   componentWillUnMount= () => {
-    window.addEventListener("resize", this.handleResize);
-   } 
+ 
+  setNewsContent = (type) => {
+    let items = this.state.alldata.filter(row => row.type === type);
+    items =  items.map(row => row.data);
+    console.log("newsItems::", items);
+     return  <NewsCarousel title = {this.state.newsTitle} items = {items} />
+  } 
+ 
+  setFotoContent = (type) =>{
+    let items = this.state.alldata.filter(row => row.type === type);
+    items = items.map( row => { return row.data});
+    console.log("fotoItems::", items)
+    return <PhotoCarousel items = {items}/>
+  }
 
+  setLocationsContent = (type) => {
+    let items = this.state.alldata.filter(row => row.type === type);
+    items = items.map(row => row.data);
+    console.log("locationItems::", items)
+    return <LocationsCarousel items = {items} />
+  }
 
-  setContent = (someContent) => {
+  setVideoContent = (type) => {
+    let items = this.state.alldata.filter(row => row.type === type);
+    items = items.map(row => row.data);
+    console.log("videoItems::", items);
+    return <VideoCarousel items = {items} />
+  }
+
+  setContactContent = (type) => {
+    let items = this.state.alldata.filter(row => row.type === type);
+    items = items.map(row => row.data);
+    console.log("contactItems::", items);
+    return <Contact items = {items} />
+  }
+
+  setContent = (type) => {
     let data = false;
-    switch(someContent) { 
+    switch(type) { 
       case 'news' : {
-        data = <NewsCarousel title = {this.state.newsTitle} items = {this.state.news} />;
+        data = this.setNewsContent(type);
         break;
       }
       case 'foto': {
-        data = <PhotoCarousel items ={this.state.foto}/>;
+        data = this.setFotoContent(type);
         break;
       }
-      case 'locations': {
-        data = <LocationsCarousel items ={this.state.locationImgs}/>;
+      case 'locatiidezbor': {
+        data = this.setLocationsContent(type);
         break;
       }
       case 'video': {
-        data = <VideoCarousel items ={this.state.videos}/>;
+        data = this.setVideoContent(type);
         break;
       }
-      case 'rezervari': {
-        data = <Contact items = {this.state.rezervari}/>;
+      case 'rezervaricontact': {
+        data = this.setContactContent(type);
         break;
       }
       default: 
-        data =false;
         break;
     }
     if (data) {
@@ -140,28 +122,25 @@ export default class Home extends React.Component {
     }; 
   }
 
- getData = () => {
-   const type = this.props
-   console.log("type::",type)
-   const url = "http://ms.homens.tricu.ro/datas";
-   axios.get(url).then(response => {
-     console.log("responsee::", response.data);
-   })
- }
+
+  getData = async () => {
+    const {data} = await axios.get(`http://ms.homens.tricu.ro/data`);
+    console.log("allData", data);
+      this.setState( { alldata: [ ...data ] } ); 
+    let backgrounds = data.filter(row => row.type === "backgrounds");
+    console.log("backgroundssGetData:::", backgrounds);
+      this.setState({backgroundImg:backgrounds[backgrounds.length-1].data.fileName});
+    let titluStiri = data.filter(row => row.type === "newsTitle");
+    console.log("titluStiri::", titluStiri);
+      this.setState({ newsTitle:titluStiri[titluStiri.length-1].data.titluStiri});
+  }
 
   render(){
     const background = {
-      backgroundImage:`url(${this.state.backgroundImg.src})`,
+      backgroundImage:`url(${this.state.backgroundImg})`
     }
 
-    // const mobileImgStyle = {
-    //   backgroundImage: `url(${this.state.backgroundImgMob.src})`,
-    // }
-
-  // const { windowWidth } = this.state; 
-
     return (
-      // <div className="Home" style= {windowWidth >= 480 ? desktopImgStyle : mobileImgStyle}>
       <div className="Home" style= {background}>
         <div className="header">
           <Header showContent={this.setContent}/>
@@ -177,8 +156,7 @@ export default class Home extends React.Component {
           onHide={this.closeModal}
           />
         </div>
-
-
+        
         <div className="footer">
           <div className="socialMedia">
             <a href = "https://www.facebook.com/zborcuparapantaranca"><img className ="socialMedia" src = {FbLogo} alt = "followUs"/></a>

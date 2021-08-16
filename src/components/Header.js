@@ -37,10 +37,10 @@ export default class Header extends React.Component {
                         <button className = "buton" value="video" onClick={() => {this.props.showContent('video')}} >
                             VIDEO
                         </button>
-                        <button className = "buton" value="locations" onClick={() => {this.props.showContent('locations')}}>
+                        <button className = "buton" value="locations" onClick={() => {this.props.showContent('locatiidezbor')}}>
                             LOCURI DE ZBOR
                         </button>
-                        <button className = "buton" value="rezervari" onClick={() => {this.props.showContent('rezervari')}}>
+                        <button className = "buton" value="rezervari" onClick={() => {this.props.showContent('rezervaricontact')}}>
                             REZERVARI
                         </button>
                     </div>
@@ -66,10 +66,10 @@ export default class Header extends React.Component {
                         <button className = "buton" value="video" onClick={() => {this.props.showContent('video');this.closeMenu()}}  >
                             VIDEO
                         </button>
-                        <button className = "buton" value="locations" onClick={() => {this.props.showContent('locations');this.closeMenu()}} >
+                        <button className = "buton" value="locations" onClick={() => {this.props.showContent('locatiidezbor');this.closeMenu()}} >
                             LOCURI DE ZBOR
                         </button>
-                        <button className = "buton" value="rezervari" onClick={() => {this.props.showContent('rezervari');this.closeMenu()}} >
+                        <button className = "buton" value="rezervari" onClick={() => {this.props.showContent('rezervaricontact');this.closeMenu()}} >
                             REZERVARI
                         </button>
                     </div>

@@ -11,7 +11,7 @@ export default class PhotoCarousel extends Component {
               return (
                   <Carousel.Item key={index}>
                   <div>
-                    <img className ="pozaModal" src = {item.src} alt = {item.id} />
+                    <img className ="pozaModal" src = {item.fileName} alt = {item.id} />
                   </div>
                   </Carousel.Item>
               );

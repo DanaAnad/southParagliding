@@ -9,22 +9,22 @@ export default class Contact extends React.Component {
     render() {
         return(
             <div className="contactComponent">
-                <div className= "contactIconContainer">
+                <div key = "iconContainer" className= "contactIconContainer">
                     <img alt="logo" className = "contactIcon" src = {contactLogo}/>
                 </div>
-                    <div className="contactDetails">
-                        {this.props.items.map((item,index) =>{
+                    <div key = "contactContainer" className="contactDetails">
+                        {this.props.items.map((item) =>{
                             return (
-                                <div className="">
+                                <div className="" key = "contactDetails">
                                     <div className="contactText" >
-                                        <span key="title">{item.title}</span> <br /><br />
-                                        <span key="text">{item.text}</span><br /> <br />
+                                        <span key="title">{item.titlu}</span> <br /><br />
+                                        <span key="text">{item.description}</span><br /> <br />
                                     </div>
-                                    <div className="contact">
+                                    <div className="contact" key = "contact">
                                         <a href ={`tel:${item.phone}`}>{item.phone}</a><br />
                                         <a href = {`mailto:${item.email}`}>{item.email}</a><br /><br />
                                     </div>
-                                    <div className="socialMediaContact">
+                                    <div className="socialMediaContact" key = "fb">
                                     <a href="https://www.facebook.com/zborcuparapantaranca"><img src ={FollowUs} alt="fb"/></a>
                                     </div>
                                 </div>

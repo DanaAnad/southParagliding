@@ -11,10 +11,10 @@ export default class LocationsCarousel extends Component {
               return (
                   <Carousel.Item className="locationsItem" key={index}>
                   <div>
-                    <img className ="pozaModal" src = {item.src} alt = {item.id} />
+                    <img className ="pozaModal" src = {item.fileName} alt = {item.id} />
                   </div>
                   <Carousel.Caption className="locationsCaption">
-                    <h5>{item.title}</h5>
+                    <h5>{item.titlu}</h5>
                   </Carousel.Caption>
                   </Carousel.Item>
               );
