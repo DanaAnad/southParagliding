@@ -15,7 +15,7 @@ export default class Contact extends React.Component {
                     <div key = "contactContainer" className="contactDetails">
                         {this.props.items.map((item) =>{
                             return (
-                                <div className="" key = "contactDetails">
+                                <div className="">
                                     <div className="contactText" >
                                         <span key="title">{item.titlu}</span> <br /><br />
                                         <span key="text">{item.description}</span><br /> <br />

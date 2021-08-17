@@ -11,15 +11,16 @@ export default class Picture extends Component {
         this.getFiles = this.getFiles.bind(this);
     }
    
-    getFiles = async (e) => {
+    getFiles = (e) => {
         e.preventDefault();
         // let pic_size = e.target.files[0].size;
         // console.log("PicSize::",pic_size);
         let file = e.target.files[0];
-                this.setState({
-                    file:file
-                })
-                this.props.cbf && this.props.cbf(file);
+        this.props.cbf && this.props.cbf(file);
+        this.setState({
+            file:file
+        })
+  
     }
    
     render() {

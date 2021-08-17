@@ -18,6 +18,7 @@ export default class Home extends React.Component {
       super(props);
 
       this.state = {
+        isLoading: true,
         modal:{
             show: false,
             data:[],
@@ -47,66 +48,57 @@ export default class Home extends React.Component {
     });
   };
 
-   componentDidMount= () => {
-    this.getData();
-   }
+  componentDidMount= async () => {
+    await this.getData();
+    this.setState({isLoading : false});
+  }
  
-  setNewsContent = (type) => {
+
+  setContentByType = (type) =>  {
     let items = this.state.alldata.filter(row => row.type === type);
     items =  items.map(row => row.data);
-    console.log("newsItems::", items);
-     return  <NewsCarousel title = {this.state.newsTitle} items = {items} />
-  } 
- 
-  setFotoContent = (type) =>{
-    let items = this.state.alldata.filter(row => row.type === type);
-    items = items.map( row => { return row.data});
-    console.log("fotoItems::", items)
-    return <PhotoCarousel items = {items}/>
-  }
-
-  setLocationsContent = (type) => {
-    let items = this.state.alldata.filter(row => row.type === type);
-    items = items.map(row => row.data);
-    console.log("locationItems::", items)
-    return <LocationsCarousel items = {items} />
-  }
-
-  setVideoContent = (type) => {
-    let items = this.state.alldata.filter(row => row.type === type);
-    items = items.map(row => row.data);
-    console.log("videoItems::", items);
-    return <VideoCarousel items = {items} />
-  }
-
-  setContactContent = (type) => {
-    let items = this.state.alldata.filter(row => row.type === type);
-    items = items.map(row => row.data);
-    console.log("contactItems::", items);
-    return <Contact items = {items} />
+    switch(type) {
+      case 'news' : {
+        return  <NewsCarousel title = {this.state.newsTitle} items = {items} />
+      }
+      case 'foto': {
+        return <PhotoCarousel items = {items}/>
+      }
+      case 'locatiidezbor': {
+        return <LocationsCarousel items = {items} />
+      }
+      case 'video': {
+        return <VideoCarousel items = {items} />
+      }
+      case 'rezervaricontact': {
+        return <Contact items = {items} />
+      }
+      default: 
+        break;
+    }
   }
 
   setContent = (type) => {
     let data = false;
     switch(type) { 
       case 'news' : {
-        data = this.setNewsContent(type);
+        data = this.setContentByType(type);
         break;
       }
       case 'foto': {
-        data = this.setFotoContent(type);
+        data = this.setContentByType(type);
         break;
       }
       case 'locatiidezbor': {
-        data = this.setLocationsContent(type);
+        data = this.setContentByType(type);
         break;
       }
       case 'video': {
-        data = this.setVideoContent(type);
+        data = this.setContentByType(type);
         break;
       }
       case 'rezervaricontact': {
-        data = this.setContactContent(type);
+        data = this.setContentByType(type);
         break;
       }
       default: 
@@ -126,13 +118,18 @@ export default class Home extends React.Component {
   getData = async () => {
     const {data} = await axios.get(`http://ms.homens.tricu.ro/data`);
     console.log("allData", data);
-      this.setState( { alldata: [ ...data ] } ); 
+      // this.setState( { alldata: [ ...data ] } ); 
     let backgrounds = data.filter(row => row.type === "backgrounds");
     console.log("backgroundssGetData:::", backgrounds);
-      this.setState({backgroundImg:backgrounds[backgrounds.length-1].data.fileName});
+      // this.setState({backgroundImg:backgrounds[backgrounds.length-1].data.fileName});
     let titluStiri = data.filter(row => row.type === "newsTitle");
     console.log("titluStiri::", titluStiri);
-      this.setState({ newsTitle:titluStiri[titluStiri.length-1].data.titluStiri});
+      // this.setState({ newsTitle:titluStiri[titluStiri.length-1].data.titluStiri});
+      this.setState({
+        alldata: [ ...data ],
+        backgroundImg: backgrounds[backgrounds.length-1].data.fileName,
+        newsTitle: titluStiri[titluStiri.length-1].data.titluStiri
+      });
   }
 
   render(){

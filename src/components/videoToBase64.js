@@ -5,8 +5,7 @@ export default class Video extends Component {
     constructor(props) {
         super(props);
         this.state={
-            file:"",
-            videoFile:""
+            file:""
         }
         this.getFiles = this.getFiles.bind(this);
     }

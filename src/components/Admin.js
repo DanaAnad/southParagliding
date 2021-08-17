@@ -27,6 +27,8 @@ export default class Admin extends React.Component {
         }    
     }
     
+
+
     getFotos = (pic)=> {
         console.log("poza de bagat in db::", pic)
          this.setState({
@@ -42,15 +44,18 @@ export default class Admin extends React.Component {
     } 
 
     handleChange = (e) =>{
+        //este f criptca cumva
             this.setState({
                 [e.target.name]: e.target.value
             })      
     } 
    
-    setContent = (e,type) => {
+    setContent = (e) => {
+        console.log('e.target.name:: ', e.target.name);
+        console.log('e.target.name:: ', e.target.value);
         this.handleChange(e);
-        type = e.target.value;
-        console.log("type::", type)
+
+        let type = e.target.value;
         switch(type) {
             case"newsTitle" : {
                 this.setState({showTitle: true, showDescription:false, showVideo:false, showPhone:false, showEmail:false, showFotos:false});
@@ -85,21 +90,23 @@ export default class Admin extends React.Component {
                 break;
         }
     }
+
     onSubmit = (e) => {
         e.preventDefault();
-        this.setContent(e);     
+        this.setContent(`e`);     //?
         console.log("submitState::", this.state);
         console.log("typeSelected::", this.state.type)
         let data = [];
         const formData = new FormData();
-        switch(this.state.type){
+        const type =this.state.type;
+        switch(type){
             case "newsTitle" :{
-                const {type, titlu} = this.state;
+                const {titlu} = this.state;
                 formData.append("type", type);
                 formData.append('titluStiri', titlu);
                 formData.append('status', 1);
                 data = formData;
-                break
+                break;
             }
             case 'news': {
                 const {type, description, titlu, file} = this.state;
