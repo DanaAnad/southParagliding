@@ -6,8 +6,8 @@ import {
   Link,
 } from "react-router-dom";
 
-import Home from "./components/Home.js";
-import Admin from "./components/Admin.js";
+import Home from "./Pages/Home.js";
+import Admin from "./Pages/Admin.js";
 
 
 

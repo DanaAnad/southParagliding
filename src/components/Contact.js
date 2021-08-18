@@ -13,18 +13,18 @@ export default class Contact extends React.Component {
                     <img alt="logo" className = "contactIcon" src = {contactLogo}/>
                 </div>
                     <div key = "contactContainer" className="contactDetails">
-                        {this.props.items.map((item) =>{
+                        {this.props.items.map((item,index) =>{
                             return (
-                                <div className="">
-                                    <div className="contactText" >
+                                <div className="" >
+                                    <div className="contactText" key = {index}>
                                         <span key="title">{item.titlu}</span> <br /><br />
                                         <span key="text">{item.description}</span><br /> <br />
                                     </div>
-                                    <div className="contact" key = "contact">
+                                    <div className="contact" key = {index}>
                                         <a href ={`tel:${item.phone}`}>{item.phone}</a><br />
                                         <a href = {`mailto:${item.email}`}>{item.email}</a><br /><br />
                                     </div>
-                                    <div className="socialMediaContact" key = "fb">
+                                    <div className="socialMediaContact" key = {index}>
                                     <a href="https://www.facebook.com/zborcuparapantaranca"><img src ={FollowUs} alt="fb"/></a>
                                     </div>
                                 </div>

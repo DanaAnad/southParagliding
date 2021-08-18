@@ -11,20 +11,22 @@ export default class Picture extends Component {
         this.getFiles = this.getFiles.bind(this);
     }
    
-    getFiles = (e) => {
-        e.preventDefault();
-        // let pic_size = e.target.files[0].size;
-        // console.log("PicSize::",pic_size);
-        let file = e.target.files[0];
-        this.props.cbf && this.props.cbf(file);
-        this.setState({
-            file:file
-        })
-  
+    getFiles = async (e) => {
+        try {
+            let file_size = e.target.files[0].size;
+            console.log("fileSize::",file_size);
+            let file = e.target.files[0];
+            console.log("filess::", file)
+            this.props.cbf && this.props.cbf(file)
+            this.setState({file})
+        }   catch (err) {
+                console.log(err);
+            }
     }
    
     render() {
 
+        console.log("file:Pic:", this.state.file);
         const previewStyle = {
             width: "100px",
             height:"100px",
@@ -36,12 +38,13 @@ export default class Picture extends Component {
         }
         return(
             <div>
-                <Form>
+                {/* <Form>
                     <Form.Group>
-                        <Form.Control type="file" name="picture" id="upload" onChange={this.getFiles}/><br/>
+                        <Form.Control  */}
+                        <input type="file" name="picture" id="upload" onChange={this.getFiles}/><br/>
                         {this.state.file && <img src={this.state.file} style = {previewStyle} alt="poza"/>} 
-                    </Form.Group>
-                </Form>
+                    {/* </Form.Group>
+                </Form> */}
             </div>
         )
     }

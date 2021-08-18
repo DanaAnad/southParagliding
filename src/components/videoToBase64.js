@@ -16,26 +16,17 @@ export default class Video extends Component {
             console.log("fileSize::",file_size);
             let file = e.target.files[0];
             console.log("filess::", file)
-            // let reader = new FileReader();
-            // reader.readAsDataURL(file);
-            // reader.onload = (e) => {
-            //     console.log("event::", e)
-            //     console.log("result::",e.target.result)
-            //     console.log("readerRes::", reader.result);
-            //     // this.props.cb(reader.result);
-            //     this.setState({
-            //         videoFile:reader.result,
-            //     },
-            //     () =>{this.props.cbf && this.props.cbf(reader.result)})
-            
-            // }
             this.props.cbf && this.props.cbf(file)
+            this.setState({file})
         }   catch (err) {
                 console.log(err);
             }
     }
    
     render() {
+
+        console.log("file:Video:", this.state.file);
+
         const previewStyle = {
             width: "70px",
             height:"70px",

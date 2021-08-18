@@ -1,6 +1,6 @@
 import React from 'react';
-import Picture from "./pictureToBase64.js";
-import Video from "./videoToBase64.js";
+import Picture from "../components/pictureToBase64.js";
+import Video from "../components/videoToBase64.js";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -27,8 +27,6 @@ export default class Admin extends React.Component {
         }    
     }
     
-
-
     getFotos = (pic)=> {
         console.log("poza de bagat in db::", pic)
          this.setState({
@@ -43,18 +41,14 @@ export default class Admin extends React.Component {
         })
     } 
 
-    handleChange = (e) =>{
-        //este f criptca cumva
+    handleChange = (e) => {
             this.setState({
                 [e.target.name]: e.target.value
             })      
     } 
    
     setContent = (e) => {
-        console.log('e.target.name:: ', e.target.name);
-        console.log('e.target.name:: ', e.target.value);
         this.handleChange(e);
-
         let type = e.target.value;
         switch(type) {
             case"newsTitle" : {
@@ -93,7 +87,7 @@ export default class Admin extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.setContent(`e`);     //?
+        this.setContent(`e`);     
         console.log("submitState::", this.state);
         console.log("typeSelected::", this.state.type)
         let data = [];

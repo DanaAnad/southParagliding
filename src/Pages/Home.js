@@ -118,13 +118,10 @@ export default class Home extends React.Component {
   getData = async () => {
     const {data} = await axios.get(`http://ms.homens.tricu.ro/data`);
     console.log("allData", data);
-      // this.setState( { alldata: [ ...data ] } ); 
     let backgrounds = data.filter(row => row.type === "backgrounds");
     console.log("backgroundssGetData:::", backgrounds);
-      // this.setState({backgroundImg:backgrounds[backgrounds.length-1].data.fileName});
     let titluStiri = data.filter(row => row.type === "newsTitle");
     console.log("titluStiri::", titluStiri);
-      // this.setState({ newsTitle:titluStiri[titluStiri.length-1].data.titluStiri});
       this.setState({
         alldata: [ ...data ],
         backgroundImg: backgrounds[backgrounds.length-1].data.fileName,
