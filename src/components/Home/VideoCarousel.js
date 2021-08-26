@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-bootstrap/Carousel';
-import "../carousel.css";
+import "../../carousel.css";
 
 export default class VideoCarousel extends Component {
 
   render(){
+    console.log("propsVideo::", this.props);
     return(
       <div>
       <Carousel className="videoCarousel" interval={null} >

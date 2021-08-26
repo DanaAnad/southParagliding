@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Carousel from 'react-bootstrap/Carousel';
-import "../carousel.css";
+import "../../carousel.css";
 
 export default class LocationsCarousel extends Component {
   render(){
+    console.log("propsLocations::", this.props);
     return(
       <div>
       <Carousel interval={null} className="locationsCarousel">

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Modal from 'react-bootstrap/Modal'
-import "../modal.css";
+import "../../modal.css";
 
 
 export default class MyModal extends Component {
     render() {
         return (
             <div>
-                <Modal centered show={this.props.show} onHide={() => {this.props.onHide()}}
+                <Modal static = "true" centered show={this.props.show} onHide={() => {this.props.onHide()}}
                 >
                     <Modal.Body className ="modal-body">
                     

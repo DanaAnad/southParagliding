@@ -5,7 +5,6 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-
 import Home from "./Pages/Home.js";
 import Admin from "./Pages/Admin.js";
 
@@ -27,13 +26,12 @@ export default class App extends React.Component {
               </li>
             </ul>
           </nav>
-
           <Switch>
             <Route path="/admin" component={Admin}/>
             <Route path="/" component={Home}/>
           </Switch>
         </div>
-      </Router>
+      </Router>  
     );
   };
 

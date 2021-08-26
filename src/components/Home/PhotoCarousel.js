@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Carousel from 'react-bootstrap/Carousel';
-import "../carousel.css";
+import "../../carousel.css";
 
 export default class PhotoCarousel extends Component {
   render(){
+    console.log("propsFoto::", this.props);
     return(
       <div >
         <Carousel interval={null} className="FotoCarousel">

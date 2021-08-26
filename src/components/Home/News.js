@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Carousel from 'react-bootstrap/Carousel';
-import "../NewsCarousel.css";
+import "../../NewsCarousel.css";
 
 export default class NewsCarousel extends Component {
     render(){

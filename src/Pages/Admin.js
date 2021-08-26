@@ -1,6 +1,6 @@
 import React from 'react';
-import Picture from "../components/pictureToBase64.js";
-import Video from "../components/videoToBase64.js";
+import ShowDataFromApi from "../components/Admin/ShowDataFromApi.js";
+import FileAttachment from "../components/Admin/FileAttachment.js";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -10,6 +10,7 @@ export default class Admin extends React.Component {
         super(props);
 
         this.state = {
+            allData:[],
             data : [],
             status : false,
             showTitle:false,
@@ -26,25 +27,26 @@ export default class Admin extends React.Component {
             file: false,
         }    
     }
-    
-    getFotos = (pic)=> {
-        console.log("poza de bagat in db::", pic)
-         this.setState({
-            file:pic,
-        })
-    } 
-     
-    getVideos = (video)=> {
-        console.log("video de bagat in db::", video)
-        this.setState({
-            file: video
-        })
-    } 
+    componentDidMount = async () =>  {
+      this.getAllData();
+    }
+    getAllData = async () => {
+        const {data} = await axios.get(`http://ms.homens.tricu.ro/data`);
+        console.log("dataGET::", data);
+        this.setState({allData:data})
+    }
+
+    setFileUpload = (file) => {
+        console.log("fileToUpload::", file)
+        this.setState({file:file})
+    }
 
     handleChange = (e) => {
             this.setState({
                 [e.target.name]: e.target.value
-            })      
+            })
+        console.log("e.name:", e.target.name);
+        console.log("e.value:", e.target.value);          
     } 
    
     setContent = (e) => {
@@ -86,10 +88,7 @@ export default class Admin extends React.Component {
     }
 
     onSubmit = (e) => {
-        e.preventDefault();
-        this.setContent(`e`);     
-        console.log("submitState::", this.state);
-        console.log("typeSelected::", this.state.type)
+        e.preventDefault();   
         let data = [];
         const formData = new FormData();
         const type =this.state.type;
@@ -164,7 +163,6 @@ export default class Admin extends React.Component {
             method: "POST",
             headers: {
                 'Accept': '*/*',
-                // "Content-Type": "application/json"
                 "Content-Type": "multipart/form-data"
             },
             data,
@@ -174,7 +172,10 @@ export default class Admin extends React.Component {
                 (response) => {
                 console.log("Response::",response.data);
                 console.log("Response:2:", response.config)
+                console.log("Response:3:", data.formData)
+                // response.status===201 && this.state.allData.push()
                 response.status===201 && alert("success");
+
                 
             })
             .catch((error) => {
@@ -189,7 +190,6 @@ export default class Admin extends React.Component {
             margin: 'auto',
             textAlign: 'center',
         }
-
         return (
             <div className="adminForm" style = {formStyle}>
                 <Form>
@@ -210,9 +210,9 @@ export default class Admin extends React.Component {
                         <br />
                         {this.state.showDescription && <Form.Control as="textarea" rows ={2} name="description" placeholder="Informatii..." onChange={this.handleChange}/>}
                         <br />
-                        {this.state.showFotos && <Picture cbf = {this.getFotos}/>}
+                        {this.state.showFotos && <FileAttachment cbf = {this.setFileUpload}/>}
                         <br />
-                        {this.state.showVideos && <Video cbf = {this.getVideos}/>}
+                        {this.state.showVideos && <FileAttachment cbf = {this.setFileUpload}/>}
                         <br />
                         {this.state.showEmail && <Form.Control type="email" name="email" placeholder="Enter email" onChange={this.handleChange}/> }
                         <br />
@@ -220,6 +220,8 @@ export default class Admin extends React.Component {
                     </Form.Group>
                     <Button type="submit" onClick={this.onSubmit}>Submit form</Button>
                 </Form>
+                <br /><br />
+                 <ShowDataFromApi />
             </div>
         )
     }

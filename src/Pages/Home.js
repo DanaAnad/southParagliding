@@ -1,15 +1,17 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyModal from "../components/MyModal.js";
-import Header from "../components/Header.js";
-import Contact from "../components/Contact.js";
-import NewsCarousel from "../components/News.js";
-import PhotoCarousel from "../components/PhotoCarousel.js";
-import VideoCarousel from "../components/VideoCarousel";
-import LocationsCarousel from "../components/LocationsCarousel.js";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import MyModal from "../components/Home/MyModal.js";
+import Header from "../components/Home/Header.js";
+import Contact from "../components/Home/Contact.js";
+import NewsCarousel from "../components/Home/News.js";
+import PhotoCarousel from "../components/Home/PhotoCarousel.js";
+import VideoCarousel from "../components/Home/VideoCarousel";
+import LocationsCarousel from "../components/Home/LocationsCarousel.js";
 import '../SP.css';
 import FbLogo from '../assets/SocialMedia/FbLogo.png';
 import axios from 'axios';
+import Loader from "react-loader-spinner";
 
 
 export default class Home extends React.Component {
@@ -50,7 +52,6 @@ export default class Home extends React.Component {
 
   componentDidMount= async () => {
     await this.getData();
-    this.setState({isLoading : false});
   }
  
 
@@ -121,11 +122,11 @@ export default class Home extends React.Component {
     let backgrounds = data.filter(row => row.type === "backgrounds");
     console.log("backgroundssGetData:::", backgrounds);
     let titluStiri = data.filter(row => row.type === "newsTitle");
-    console.log("titluStiri::", titluStiri);
       this.setState({
         alldata: [ ...data ],
         backgroundImg: backgrounds[backgrounds.length-1].data.fileName,
-        newsTitle: titluStiri[titluStiri.length-1].data.titluStiri
+        newsTitle: titluStiri[titluStiri.length-1].data.titluStiri,
+        isLoading: false
       });
   }
 
@@ -133,7 +134,6 @@ export default class Home extends React.Component {
     const background = {
       backgroundImage:`url(${this.state.backgroundImg})`
     }
-
     return (
       <div className="Home" style= {background}>
         <div className="header">
@@ -149,6 +149,15 @@ export default class Home extends React.Component {
           data={this.state.modal.data}
           onHide={this.closeModal}
           />
+            { this.state.isLoading && 
+              <Loader
+                type="TailSpin"
+                color="Black"
+                height={85}
+                width={85}
+                timeout={5000}
+              />
+            }
         </div>
         
         <div className="footer">
