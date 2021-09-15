@@ -22,12 +22,12 @@ export default class App extends React.Component {
                 <Link to='/'>South-Paragliding</Link>
               </li>
               <li key = 'admin' >
-                <Link to='/admin'>Admin</Link>
+                <Link to='/sefulaparapanta'>South-Para-Admin</Link>
               </li>
             </ul>
           </nav>
           <Switch>
-            <Route path="/admin" component={Admin}/>
+            <Route path="/sefulaparapanta" component={Admin}/>
             <Route path="/" component={Home}/>
           </Switch>
         </div>

@@ -45,7 +45,8 @@ export default class Home extends React.Component {
   closeModal = () => {
     this.setState({
       modal:{
-      show: false
+      show: false,
+      data:[]
       }
     });
   };
@@ -130,10 +131,22 @@ export default class Home extends React.Component {
       });
   }
 
+  
   render(){
     const background = {
       backgroundImage:`url(${this.state.backgroundImg})`
     }
+   if(this.state.isLoading===true){
+    return (
+      <Loader
+      type="TailSpin"
+      color="Black"
+      height={85}
+      width={85}
+      timeout={10000}
+    />
+    )
+   } else {
     return (
       <div className="Home" style= {background}>
         <div className="header">
@@ -149,15 +162,7 @@ export default class Home extends React.Component {
           data={this.state.modal.data}
           onHide={this.closeModal}
           />
-            { this.state.isLoading && 
-              <Loader
-                type="TailSpin"
-                color="Black"
-                height={85}
-                width={85}
-                timeout={5000}
-              />
-            }
+          
         </div>
         
         <div className="footer">
@@ -167,5 +172,6 @@ export default class Home extends React.Component {
         </div>
       </div>
     );
+  }
   }
 }

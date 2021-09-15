@@ -8,7 +8,8 @@ export default class LocationsCarousel extends Component {
     return(
       <div>
       <Carousel interval={null} className="locationsCarousel">
-          {this.props.items.map((item, index) => {
+
+          {this.props.items ? this.props.items.map((item, index) => {
               return (
                   <Carousel.Item className="locationsItem" key={index}>
                   <div>
@@ -19,7 +20,7 @@ export default class LocationsCarousel extends Component {
                   </Carousel.Caption>
                   </Carousel.Item>
               );
-          })}
+          }) : null}
       </Carousel>
 
       </div>

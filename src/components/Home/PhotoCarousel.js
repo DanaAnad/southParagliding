@@ -8,15 +8,15 @@ export default class PhotoCarousel extends Component {
     return(
       <div >
         <Carousel interval={null} className="FotoCarousel">
-            {this.props.items.map((item, index) => {
+            {this.props.items ? this.props.items.map((item, index) => {
                 return (
                     <Carousel.Item key={index}>
                     <div>
-                      <img className ="pozaModal" src = {item.fileName} alt = {item.id} />
+                      {item.fileName && <img className ="pozaModal" src = {item.fileName} alt = {item.id} />}
                     </div>
                     </Carousel.Item>
                 );
-            })}
+            }) : null}
         </Carousel>
       </div>
     )

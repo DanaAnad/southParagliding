@@ -10,15 +10,15 @@ export default class VideoCarousel extends Component {
     return(
       <div>
       <Carousel className="videoCarousel" interval={null} >
-          {this.props.items.map((item, index) => {
+          {this.props.items ? this.props.items.map((item, index) => {
               return (
                 <Carousel.Item key={index}>
                   <video className="videoItem" controls="controls">
-                        <source src={item.fileName} type="video/mp4"/>
+                      {item.fileName && <source src={item.fileName} type="video/mp4"/> }
                   </video>
                 </Carousel.Item>
               );
-          })}
+          }) : null}
       </Carousel>
       </div>
     )
