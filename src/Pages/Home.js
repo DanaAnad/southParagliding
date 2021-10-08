@@ -139,12 +139,13 @@ export default class Home extends React.Component {
    if(this.state.isLoading===true){
     return (
       <Loader
-      type="TailSpin"
-      color="Black"
-      height={85}
-      width={85}
-      timeout={10000}
-    />
+        type="TailSpin"
+        color="Black"
+        height={85}
+        width={85}
+        timeout={10000}
+        radius={10}
+      />
     )
    } else {
     return (

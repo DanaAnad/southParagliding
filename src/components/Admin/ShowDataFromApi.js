@@ -1,6 +1,8 @@
 import React from 'react';
 import {Accordion, Card, Button} from 'react-bootstrap';
 import axios from 'axios';
+import Loader from "react-loader-spinner";
+import "../../Accordion.css"
 
 export default class ShowDataFromApi extends React.Component {
 
@@ -10,14 +12,20 @@ export default class ShowDataFromApi extends React.Component {
         const url = "http://ms.homens.tricu.ro/data/" + dataId.id;
         const headers= {"Access-Control-Allow-Origin" : "*"};
         const resp = await axios.delete(url, headers);
-        console.log("response::", resp);  
+        console.log("response::", resp);
+        const index = this.props.data.allData.findIndex(x => x.id === dataId.id);
+        console.log("indexxx::", index); 
+        resp.status === 200 && this.setState( () => {
+            this.props.data.allData.splice(index, 1);
+                return {allData: this.props.data.allData}
+        });
     }
 
     render() {
         const reversedAllData = this.props.data.allData.slice().reverse();
         return(
             <div className="showDataContainer">
-                    {this.props.data.allData.length ? 
+                {this.props.data.allData.length ? 
                     reversedAllData.map((rowData, index) => {
                         if(rowData.type === this.props.data.type) {
                             return (
@@ -27,6 +35,7 @@ export default class ShowDataFromApi extends React.Component {
                                         <Accordion>
                                             <Card>
                                                 <Accordion.Toggle as={Card.Header} eventKey="0">
+                                                <Button className="btn-danger" onClick ={() => this.deleteDataById(rowData.id)}>Sterge</Button>
                                                     Sectiunea: {rowData.type} 
                                                 </Accordion.Toggle>
                                                 <Accordion.Collapse eventKey="0">
@@ -39,7 +48,6 @@ export default class ShowDataFromApi extends React.Component {
                                                 </Accordion.Collapse>
                                             </Card>
                                         </Accordion>
-                                        <Button className="btn-danger" onClick ={() => this.deleteDataById(rowData.id)}>Sterge</Button>
                                     </li> 
                                     :  
                                     <li key ={index}>
@@ -47,6 +55,7 @@ export default class ShowDataFromApi extends React.Component {
                                             <Card>
                                                 <Accordion.Toggle as={Card.Header} eventKey="0">
                                                 Sectiunea: {rowData.type}
+                                                <Button className="btn-danger" onClick ={() => this.deleteDataById(rowData.id)}>Sterge</Button>
                                                 </Accordion.Toggle>
                                                 <Accordion.Collapse eventKey="0">
                                                     <Card.Body>
@@ -60,13 +69,21 @@ export default class ShowDataFromApi extends React.Component {
                                                 </Accordion.Collapse> 
                                             </Card>
                                         </Accordion>
-                                        <Button className="btn-danger" onClick ={() => this.deleteDataById(rowData.id)}>Sterge</Button>
                                     </li> 
                                     }
                                 </ul>
                             ) 
                         } else {return null};
-                    }) : <span>Data is loading...</span>
+                    }) : <span> 
+                        <Loader
+                            type="TailSpin"
+                            color="Black"
+                            height={65}
+                            width={65}
+                            timeout={10000}
+                            radius={2}
+                        />
+                        </span>
                 } 
             </div>
         )

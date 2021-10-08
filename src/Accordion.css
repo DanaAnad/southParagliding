@@ -1,0 +1,17 @@
+.card-img, .card-img-bottom {
+    border-radius: calc(.25rem - 1px);
+    margin-top:-16px;
+    aspect-ratio: 16/9;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: flex-start;
+    align-items: center;
+}

@@ -6,7 +6,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex;
+        /* justify-content: flex; */
         padding-top:5px;
         padding-bottom:5px;
         font-family: Montserrat;  
@@ -37,8 +37,9 @@
     .pozaModalNews {
         max-width:70%;
         max-height:100%;
-        margin-left:15%;
+        margin-left: 15%;
         border-radius:7px;
+        aspect-ratio: 16/9;
     }
 
     .newsText  {
@@ -48,7 +49,7 @@
         align-content: center;
         justify-content: center;
         align-items: center;
-        padding-top:10px;
+        /* padding-top:15px; */
         color:black;
         margin:auto;
         bottom:auto;
@@ -112,11 +113,11 @@
     }
 
     .newsCarousel .carousel-indicators {
-        margin-bottom: -7px;
+        /* margin-bottom: -7px; */
     }
     .carousel-inner{
         margin-bottom: 15px;
-        overflow:scroll;
+        /* overflow:scroll; */
     }
     /* .carouse-inner .newsItem .newsText .span {
         color:green;

@@ -1,7 +1,6 @@
 import React from 'react';
 import ShowDataFromApi from "../components/Admin/ShowDataFromApi.js";
 import FileAttachment from "../components/Admin/FileAttachment.js";
-// import DataValidation from '../components/Admin/DataValidation.js';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -12,7 +11,7 @@ export default class Admin extends React.Component {
 
         this.state = {
             allData:[],
-            isUploaded:false,
+            isButtonDisabled:true,
             showTitle:false,
             showDescription:false,
             showFotos:false,
@@ -41,115 +40,185 @@ export default class Admin extends React.Component {
     setFileUpload = (file) => {
         console.log("file::", file);
         console.log("fileType::", file.type);
-        const acceptedFiles = ["image/jpeg", "image/png", "image/jpg", "video/mp4"];
-        if(!acceptedFiles.includes(file.type)){
+        file ?
             this.setState({
-                errors : [
+                file :file,
+                isButtonDisabled:false,
+            }) : this.setState({
+                errors :[
                     ...this.state.errors,
                     {
-                    error: "Te rog ataseaza un fisier avand una din extensiile mentionate mai sus...",
-                    // field:e.name
+                        error:"No file selected..."
                     }
-                ]
+                ], isButtonDisabled:true
             })
-        } else if(!file) {
-            this.setState({
-                errors : [
-                    ...this.state.errors,
-                    {
-                    error: "Trenuie sa atasezi un fisier",
-                    // field:e.name
-                    }
-                ]
-            })
-        } else {
-            this.setState({
-                file :file
-            })
-        }
+        
     }
 
     handleChange = (e) => {
             this.setState({
-                [e.target.name]: e.target.value
+                [e.target.name]: e.target.value,
             });
-            this.handleValidation(e.target.name, e.target.value); 
+            this.handleSubmitButton(e);
     } 
 
     resetInputs = () => {
-        this.setState({titlu: "", description: "", status:0, email: "", phone: ""})
+        this.setState({titlu: "", description: "", status:0, email: "", phone: "", file:false});
     }
 
-    handleValidation = (eventName, eventValue) => {
+    handleFormValidation = (eventName, eventValue) => {
         console.log("eventName::", eventName);
         console.log("eventValue::", eventValue);
         switch(eventName) {
             case("titlu") : {
-                eventValue.length === 0 && this.setState({
+                eventValue.length !== 0 ? this.setState({isButtonDisabled:false}) :
+                this.setState({
                     errors : [
                         ...this.state.errors,
                         { 
-                            error: "Title must not be empty",
+                            error: "Titlul este gol.",
                             field:eventName 
                         }
-                    ]
-                })
+                    ], 
+                    isButtonDisabled:true
+                })  
                 break;
             }
             case("description") :{
-                eventValue.length === 0 && this.setState({
+                eventValue.length !== 0 ? this.setState({isButtonDisabled:false}) : 
+                this.setState({
                    errors :[
                         ...this.state.errors,
                         {
-                            error:"Please add a description.",
+                            error:"Adauga o descriere.",
                             field:eventName
                         }
-                    ]
+                    ],
+                    isButtonDisabled:true
                 })
                 break;
             }
             case ("email") : {
-                eventValue.length === 0 && this.setState({
+                eventValue.length !== 0 ? this.setState({isButtonDisabled:false}) :
+                this.setState({
                     errors :[
                          ...this.state.errors,
                          {
-                             error:"Email must not be empty.",
+                             error:"Email-ul nu trebuie sa fie gol.",
                              field:eventName
                          }
-                     ]
+                     ],
+                     isButtonDisabled:true
                  })
                  break;
             }
             case ("phone") :{
-                eventValue.length === 0 && this.setState({
+                eventValue.length !== 0 ? this.setState({isButtonDisabled:false}) :
+                this.setState({
                     errors :[
                          ...this.state.errors,
                          {
-                             error:"Please add a phone number.",
+                             error:"Adauga un nr. de telefon.",
                              field:eventName
                          }
-                     ]
+                     ],
+                     isButtonDisabled:true
                  })
                  break;
             }
-            case ("foto") : {
-                console.log("eventValue::", eventValue);
-                eventValue.length === 0 && this.setState({
-                    errors :[
-                         ...this.state.errors,
-                         {
-                             error:"Please attach a file.",
-                             field:eventName
-                         }
-                     ]
-                 })
-                 break;
-            }
+            // case ("file") : {
+            //     console.log("eventValue::", eventValue);
+            //     eventValue.length !== 0 ? this.setState({isButtonDisabled:false}) :
+            //     this.setState({
+            //         errors :[
+            //              ...this.state.errors,
+            //              {
+            //                  error:"Please attach a file.",
+            //                  field:eventName
+            //              }
+            //          ],
+            //          isButtonDisabled:true
+            //      })
+            //      break;
+            // }
             default: 
-                this.errors = [];
                 break;
         }
-    }   
+        console.log("stateErrors::", this.state.errors);
+        const errToDelete = this.state.errors.findIndex(err => err.field === eventName);
+            this.state.errors.map(err => 
+                (err.field === eventName && eventValue.length !== 0) ? this.setState(state => {
+                    this.state.errors.splice(errToDelete,1); 
+                    return { errors : this.state.errors}
+                }) : this.state.errors
+            )
+    }
+
+
+   handleSubmitButton = (e) =>{
+        let type = e.target.value;
+        switch(type){
+            case "newsTitle" : {
+                if(this.state.titlu !==""){
+                    this.setState({isButtonDisabled:false})
+                }
+                break;
+            }
+            case "backgrounds" : {
+                if(this.state.file ){
+                    this.setState({
+                        isButtonDisabled:false
+                    })
+                }
+                break;
+            }
+            case "news" : {
+                if(this.state.titlu !== "" && this.state.description !== "" && this.state.file){
+                    this.setState({
+                        isButtonDisabled:false
+                    })
+                }
+                break;
+            }
+            case "foto" : {
+                if( this.state.file ){
+                    this.setState({
+                        isButtonDisabled:false
+                    })
+                }
+                break;
+            }
+            case "video" : {
+                if(this.state.file ){
+                    this.setState({
+                        isButtonDisabled:false
+                    })
+                }
+                break;
+            }
+            case "locatiidezbor" : {
+                if(this.state.titlu !== ""  && this.state.file ){
+                    this.setState({
+                        isButtonDisabled:false
+                    })
+                }
+                break;
+            }
+            case "rezervaricontact" : {
+                if(this.state.titlu !== "" && this.state.description !== "" && this.state.email !== "" && this.state.phone !== ""){
+                    this.setState({
+                        isButtonDisabled:false
+                    })
+                } 
+                break;
+            }
+            default : 
+                break;
+        }
+        this.handleFormValidation(e.target.name, e.target.value);
+    }
+   
+   
 
 
     setContent = (e) => {
@@ -191,7 +260,7 @@ export default class Admin extends React.Component {
     }
 
     onSubmit = async (e) => {
-        e.preventDefault();   
+        e.preventDefault(); 
         let data = [];
         let lastInsertedData = {};
         const formData = new FormData();
@@ -207,7 +276,8 @@ export default class Admin extends React.Component {
                     data: {titluStiri: titlu},
                     status: "1",
                     type
-                }  
+                }
+                this.state.titlu !== "" && this.setState({isButtonDisabled:false});
                 break;
             }
             case 'news': {
@@ -217,8 +287,16 @@ export default class Admin extends React.Component {
                 formData.append('titlu', titlu);
                 formData.append('attachedFile', file);
                 formData.append('status', 1);
-                // if(!file){throw new Error("No attached file.Please attach a file and fill all the fiels before submitting...")}
                 data = formData;
+                lastInsertedData = {
+                    data: {
+                        titlu: titlu,
+                        description: description,
+                        attachedFile: file,
+                    },
+                    status: "1",
+                    type
+                } 
                 break;
             }
             case "backgrounds" :{
@@ -226,8 +304,12 @@ export default class Admin extends React.Component {
                 formData.append('type', type);
                 formData.append('attachedFile', file);
                 formData.append('status', 1);
-                // if(!file){throw new Error("No attached file.Please attach a file and fill all the fiels before submitting...")}
                 data = formData;
+                lastInsertedData = {
+                    data: {attachedFile: file},
+                    status: "1",
+                    type
+                }  
                 break;
             }
             case "foto" : {
@@ -235,8 +317,12 @@ export default class Admin extends React.Component {
                 formData.append('type', type);
                 formData.append('attachedFile', file);
                 formData.append('status', 1);
-                // if(!file){throw new Error("No attached file.Please attach a file and fill all the fiels before submitting...")}
                 data = formData;
+                lastInsertedData = {
+                    data: {attachedFile: file},
+                    status: "1",
+                    type
+                } 
                 break;
             }
             case 'video' :{
@@ -244,8 +330,12 @@ export default class Admin extends React.Component {
                 formData.append('attachedFile', file);
                 formData.append('type', type);
                 formData.append('status', 1);
-                // if(!file){throw new Error("No attached file.Please attach a file and fill all the fiels before submitting...")}
                 data = formData;
+                lastInsertedData = {
+                    data: {attachedFile: file},
+                    status: "1",
+                    type
+                } 
                 break;
             }
             case "locatiidezbor" : {
@@ -254,8 +344,15 @@ export default class Admin extends React.Component {
                 formData.append('attachedFile', file);
                 formData.append('titlu', titlu);
                 formData.append('status', 1);
-                // if(!file){throw new Error("No attached file.Please attach a file and fill all the fiels before submitting...")}
                 data = formData;
+                lastInsertedData = {
+                    data: {
+                        attachedFile: file,
+                        titlu,
+                    },
+                    status: "1",
+                    type
+                } 
                 break;
             }
             case "rezervaricontact" : {
@@ -267,6 +364,16 @@ export default class Admin extends React.Component {
                 formData.append('email', email);
                 formData.append('status', 1);
                 data = formData;
+                lastInsertedData = {
+                    data: {
+                        titlu,
+                        description,
+                        phone,
+                        email
+                },
+                    status: "1",
+                    type
+                } 
                 break;
             }
             default:
@@ -278,27 +385,27 @@ export default class Admin extends React.Component {
                     'Accept': '*/*',
                     "Content-Type": "multipart/form-data"
                 };
-        try {
-            const response = await axios.post(url, data, headers);
-            console.log("response::", response);
-            response.status === 201 && (lastInsertedData.id = response.data.id);
-            console.log("lastInsertedData::", lastInsertedData);
-            this.setState({
-                allData:[
-                    ...this.state.allData, 
-                    lastInsertedData
-                ]
-            });
-            console.log("thisallData::", this.state);
-            this.resetInputs();
-        } 
+            try {
+                const response = await axios.post(url, data, headers);
+                console.log("response::", response);
+                response.status === 201 && (lastInsertedData.id = response.data.id);
+                console.log("lastInsertedData::", lastInsertedData);
+                this.setState({
+                    allData:[
+                        ...this.state.allData, 
+                        lastInsertedData
+                    ],
+                });
+                console.log("thisallData::", this.state);
+                this.resetInputs();
+            } 
             catch (err) {console.log("error::", err.response);
                 throw new Error("Ceva este in neregula. Verifica toate campurile...")
-            };  
-            
+            }; 
     };
 
     render () {
+        console.log("stateAll::", this.state);
         let formStyle = {
             width: '50%' ,
             margin: 'auto',
@@ -311,8 +418,7 @@ export default class Admin extends React.Component {
         }
         return (
             <div className="adminForm" style = {formStyle}>
-            {/* <DataValidation errors = {this.state.errors} handleChangeEvent = {this.handleChange}/> */}
-                <Form>
+                <Form onSubmit={this.onSubmit}>
                     <Form.Group controlId="Admin Form" >
                         <br />
                         <Form.Control as="select" size="sm" name="type" onChange={(e)=>this.setContent(e)}> 
@@ -326,25 +432,24 @@ export default class Admin extends React.Component {
                             <option value="rezervaricontact">Rezervari/Contact</option>
                         </Form.Control>
                          <br /><br />
-                        {this.state.showTitle && <Form.Control type="text"  value={this.state.titlu} name="titlu" placeholder="Titlu..."  onChange={this.handleChange}/>}
+                        {this.state.showTitle && <Form.Control type="text" value={this.state.titlu} name="titlu" placeholder="Titlu..."  onChange={this.handleChange}/>}
                         <br />
-                        {this.state.showDescription && <Form.Control as="textarea"  value={this.state.description} rows ={2} name="description" placeholder="Informatii..." onChange={this.handleChange}/>}
+                        {this.state.showDescription && <Form.Control as="textarea" value={this.state.description} rows ={2} name="description" placeholder="Informatii..." onChange={this.handleChange}/>}
                         <br />
-                        {this.state.showFotos && <FileAttachment  name = "foto" value = {this.state.fotos} cbf = {this.setFileUpload}/>}
+                        {this.state.showFotos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
                         <br />
-                        {this.state.showVideos && <FileAttachment name = "video" value = {this.state.video} cbf = {this.setFileUpload}/>}
+                        {this.state.showVideos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
                         <br />
                         {this.state.showEmail && <Form.Control type="email" value ={this.state.email} name="email" placeholder="Enter email" onChange={this.handleChange}/> }
                         <br />
-                        {this.state.showPhone && <Form.Control type="phone"  value ={this.state.phone} name='phone' placeholder="Phone nr..." onChange={this.handleChange}/>}
+                        {this.state.showPhone && <Form.Control type="phone" value ={this.state.phone} name='phone' placeholder="Phone nr..."  pattern="[0-9]*"  onChange={this.handleChange}/>}
                     </Form.Group>
-                    <Button type="submit" onClick={this.onSubmit}>Submit form</Button>
+                    <Button type="submit" disabled={this.state.isButtonDisabled}>Submit form</Button>
                 </Form>
                 <br /><br />
                 {this.state.errors.length ? this.state.errors.map((errorObject, index) => {
                      return <span style = {errorStyle} key = {index}>{errorObject.error}<br /></span>
                  }) : null} <br />
-                {this.state.isUploaded && <p>Datele au fost trimise cu succes catre DB.</p> }
                  <ShowDataFromApi data = {this.state} />
             </div>
         )
