@@ -1,6 +1,7 @@
 @media screen and (min-width:1025px) {
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+@import "./assets/icons/rightArrow.png";
 
     .News {
         display: flex;
@@ -59,6 +60,7 @@
         font-size:1rem;
         color :rgb(0, 0, 0);
         display: flex;
+        font-weight: bold;
         font-family: 'Montserrat';
     }
     .newsText p {
@@ -68,6 +70,7 @@
         font-family: 'Montserrat';
     }
 
+    
     .carousel-control-next-icon, .carousel-control-prev-icon {
         width:25px;
         height:25px;
@@ -77,15 +80,25 @@
         height:50%;
         margin:auto;
     }
+    
+    .bodyCard {
+        text-align:center;
+        border: none;
+        margin: auto;
+        background-color:rgb(221, 221, 221);
+    }
 }
 
 @media screen and (min-width: 481px) and (max-width: 1024px )  {
     .News {
         display:flex;
         flex-direction:column;
-        height:210px;
+        background-color:rgb(221, 221, 221);
+        /* height:210px; */
+        height:auto;
         padding-top:10px;
         overflow:scroll;
+        font-family: Montserrat; 
     }
     .newsTitle {
         display: flex;
@@ -99,7 +112,9 @@
     .newsCarousel {
         display:flex;
         flex-direction:column;
-        height: 100vh;
+        /* height: 50vh; */
+        height:auto;
+        padding-bottom: 5px;
     }
 
     .pozaModalNews {
@@ -112,16 +127,13 @@
         overflow: hidden;
     }
 
-    .newsCarousel .carousel-indicators {
-        /* margin-bottom: -7px; */
-    }
-    .carousel-inner{
+    .newsCarousel .carousel-inner{
         margin-bottom: 15px;
-        /* overflow:scroll; */
+        margin-top: -10px;
+        overflow:auto;
+        font-size:12px;
     }
-    /* .carouse-inner .newsItem .newsText .span {
-        color:green;
-    } */
+  
     .carousel-indicators li{
         width: 7px;
         height: 7px;
@@ -143,16 +155,17 @@
     .newsText {
         display: flex;
         flex-direction: column;
-        margin-bottom: -48px;
+        margin-bottom: -31px;
         width: 40%;
-        margin-left: 185px;  
-        overflow:scroll;
+        margin-left: 185px; 
+        padding-bottom:10px; 
     }
 
     .newsText span {
         color :black;
         font-family: 'Montserrat';
-        overflow:scroll;
+        font-size: 15px;
+        font-weight: bold;
         
     }
 
@@ -162,12 +175,21 @@
         margin-bottom:1px;
     }
 
+    .bodyCard {
+        text-align:center;
+        border: none;
+        margin: auto;
+        background-color:rgb(221, 221, 221);
+    }
+
 }
 @media screen and (min-width: 320px) and (max-width: 480px) {
 
-    .NEWS {
+    .News {
         display:flex;
+        background-color:rgb(221, 221, 221);
         flex-direction:column;
+        font-family: Montserrat; 
     }
 
     .newsTitle {
@@ -231,6 +253,7 @@
     .newsText span {
         color :black;
         font-family: 'Montserrat';
+        font-weight: bold;
     }
     .newsText p {
         color:black;
@@ -239,5 +262,13 @@
     .carousel-control-next, .carousel-control-prev {
         height:9%;
         margin-top: 100px;
+    }
+
+    .bodyCard {
+        text-align:center;
+        border: none;
+        margin: auto;
+        width:20rem;
+        background-color:rgb(221, 221, 221);
     }
 }

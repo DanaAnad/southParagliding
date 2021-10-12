@@ -32,9 +32,9 @@ export default class FileAttachment extends Component {
             };
     }
     
-    resetInput = () => {
-      this.imgRef.current.value = "";
-    }
+    // resetInput = () => {
+    //   this.imgRef.current.value = "";
+    // }
     getFiles = async (e,file) => {    
         file = e.target.files[0];
         console.log("fileGetFiles::", file);
@@ -85,7 +85,7 @@ export default class FileAttachment extends Component {
                     throw (err);
                 } 
         }
-        this.resetInput(); 
+        // this.resetInput(); 
     }
     render() {
         console.log("propss::", this.props);
@@ -103,13 +103,13 @@ export default class FileAttachment extends Component {
             <div>
             {console.log("errors;;",this.props.data.errors)}
                 Accepted file types: "jpeg", "jpg", "png" or "mp4". <br/><br/>
-                <input type="file"  accept="image/png, image/jpeg, video/mp4" ref = {this.imgRef} name="file" onChange = {this.getFiles} onSubmit={this.resetInput}/><br/>
+                <input type="file" required accept="image/png, image/jpeg, video/mp4" ref = {this.imgRef} name="file" onChange = {this.getFiles} onSubmit={this.resetInput}/><br/>
                     
-                    {this.state.inputFile && (this.state.inputFile.type === "image/jpeg" || 
+                    {this.state.inputFile  !== "" && (this.state.inputFile.type === "image/jpeg" || 
                         this.state.inputFile.type === "image/png") ? 
                     <img src = {this.state.convertedFile} 
                     style = {fileStyle} alt = "foto" /> : 
-                    this.state.inputFile && this.state.inputFile.type === "video/mp4" ? 
+                    this.state.inputFile !== "" && this.state.inputFile.type === "video/mp4" ? 
                     <video width="400" controls>
                             <source src={this.state.convertedFile} /> 
                         </video> : null }

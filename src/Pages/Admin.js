@@ -157,15 +157,16 @@ export default class Admin extends React.Component {
 
    handleSubmitButton = (e) =>{
         let type = e.target.value;
+        const {titlu, description, phone, email, file} = this.state;
         switch(type){
             case "newsTitle" : {
-                if(this.state.titlu !==""){
+                if(titlu !==""){
                     this.setState({isButtonDisabled:false})
                 }
                 break;
             }
             case "backgrounds" : {
-                if(this.state.file ){
+                if(file ){
                     this.setState({
                         isButtonDisabled:false
                     })
@@ -173,7 +174,7 @@ export default class Admin extends React.Component {
                 break;
             }
             case "news" : {
-                if(this.state.titlu !== "" && this.state.description !== "" && this.state.file){
+                if(titlu !== "" && description !== "" && file){
                     this.setState({
                         isButtonDisabled:false
                     })
@@ -181,7 +182,7 @@ export default class Admin extends React.Component {
                 break;
             }
             case "foto" : {
-                if( this.state.file ){
+                if( file ){
                     this.setState({
                         isButtonDisabled:false
                     })
@@ -189,7 +190,7 @@ export default class Admin extends React.Component {
                 break;
             }
             case "video" : {
-                if(this.state.file ){
+                if( file ){
                     this.setState({
                         isButtonDisabled:false
                     })
@@ -197,7 +198,7 @@ export default class Admin extends React.Component {
                 break;
             }
             case "locatiidezbor" : {
-                if(this.state.titlu !== ""  && this.state.file ){
+                if(titlu !== ""  && file ){
                     this.setState({
                         isButtonDisabled:false
                     })
@@ -205,7 +206,7 @@ export default class Admin extends React.Component {
                 break;
             }
             case "rezervaricontact" : {
-                if(this.state.titlu !== "" && this.state.description !== "" && this.state.email !== "" && this.state.phone !== ""){
+                if(titlu !== "" && description !== "" && email !== "" && phone !== ""){
                     this.setState({
                         isButtonDisabled:false
                     })
@@ -432,17 +433,17 @@ export default class Admin extends React.Component {
                             <option value="rezervaricontact">Rezervari/Contact</option>
                         </Form.Control>
                          <br /><br />
-                        {this.state.showTitle && <Form.Control type="text" value={this.state.titlu} name="titlu" placeholder="Titlu..."  onChange={this.handleChange}/>}
+                        {this.state.showTitle && <Form.Control required minLength={7} type="text" value={this.state.titlu} name="titlu" placeholder="Titlu..."  onChange={this.handleChange}/>}
                         <br />
-                        {this.state.showDescription && <Form.Control as="textarea" value={this.state.description} rows ={2} name="description" placeholder="Informatii..." onChange={this.handleChange}/>}
+                        {this.state.showDescription && <Form.Control required minLength={25} type="textarea" value={this.state.description} name="description" placeholder="Informatii..." onChange={this.handleChange}/>}
                         <br />
                         {this.state.showFotos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
                         <br />
                         {this.state.showVideos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
                         <br />
-                        {this.state.showEmail && <Form.Control type="email" value ={this.state.email} name="email" placeholder="Enter email" onChange={this.handleChange}/> }
+                        {this.state.showEmail && <Form.Control required type="email" minLength={5} value ={this.state.email} name="email" placeholder="Enter email" onChange={this.handleChange}/> }
                         <br />
-                        {this.state.showPhone && <Form.Control type="phone" value ={this.state.phone} name='phone' placeholder="Phone nr..."  pattern="[0-9]*"  onChange={this.handleChange}/>}
+                        {this.state.showPhone && <Form.Control required type="tel" inputMode="decimal" minLength={10} value ={this.state.phone} name='phone' placeholder="Phone nr..."  pattern="[0-9]*"  onChange={this.handleChange}/>}
                     </Form.Group>
                     <Button type="submit" disabled={this.state.isButtonDisabled}>Submit form</Button>
                 </Form>

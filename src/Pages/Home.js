@@ -113,7 +113,15 @@ export default class Home extends React.Component {
           data
         }
       })
-    }; 
+    } 
+    else {
+      this.setState({
+          modal:{
+            show:true,
+            data:<span>No Data avaliable.</span>
+          }
+      })
+    }
   }
 
 
