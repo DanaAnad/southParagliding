@@ -56,8 +56,9 @@ export default class Admin extends React.Component {
     }
 
     handleChange = (e) => {
+        const value = e.target.value;
             this.setState({
-                [e.target.name]: e.target.value,
+                [e.target.name]: value
             });
             this.handleSubmitButton(e);
     } 
@@ -126,21 +127,20 @@ export default class Admin extends React.Component {
                  })
                  break;
             }
-            // case ("file") : {
-            //     console.log("eventValue::", eventValue);
-            //     eventValue.length !== 0 ? this.setState({isButtonDisabled:false}) :
-            //     this.setState({
-            //         errors :[
-            //              ...this.state.errors,
-            //              {
-            //                  error:"Please attach a file.",
-            //                  field:eventName
-            //              }
-            //          ],
-            //          isButtonDisabled:true
-            //      })
-            //      break;
-            // }
+            case ("file") : {
+                this.props.file.value ? this.setState({isButtonDisabled:false}) :
+                this.setState({
+                    errors :[
+                         ...this.state.errors,
+                         {
+                             error:"Please attach a file.",
+                             field:eventName
+                         }
+                     ],
+                     isButtonDisabled:true
+                 })
+                 break;
+            }
             default: 
                 break;
         }
@@ -433,17 +433,29 @@ export default class Admin extends React.Component {
                             <option value="rezervaricontact">Rezervari/Contact</option>
                         </Form.Control>
                          <br /><br />
-                        {this.state.showTitle && <Form.Control required minLength={7} type="text" value={this.state.titlu} name="titlu" placeholder="Titlu..."  onChange={this.handleChange}/>}
+                        {this.state.showTitle && <Form.Control required minLength={7} 
+                            pattern = "[A-Za-z0-9\s]+" type="text" value={this.state.titlu} name="titlu" 
+                            placeholder="Titlu..."  onChange={this.handleChange}/>
+                        }
                         <br />
-                        {this.state.showDescription && <Form.Control required minLength={25} type="textarea" value={this.state.description} name="description" placeholder="Informatii..." onChange={this.handleChange}/>}
+                        {this.state.showDescription && <Form.Control required minLength={25} type="textarea" 
+                            value={this.state.description} name="description" pattern="[!-~\s]+"
+                             placeholder="Informatii..." onChange={this.handleChange}/>}
                         <br />
                         {this.state.showFotos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
                         <br />
                         {this.state.showVideos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
                         <br />
-                        {this.state.showEmail && <Form.Control required type="email" minLength={5} value ={this.state.email} name="email" placeholder="Enter email" onChange={this.handleChange}/> }
+                        {this.state.showEmail && <Form.Control required pattern="[A-Za-z0-9@._-]+" 
+                            type="email" minLength={5} value ={this.state.email} name="email" 
+                            placeholder="Enter email" onChange={this.handleChange}/> 
+                        }
                         <br />
-                        {this.state.showPhone && <Form.Control required type="tel" inputMode="decimal" minLength={10} value ={this.state.phone} name='phone' placeholder="Phone nr..."  pattern="[0-9]*"  onChange={this.handleChange}/>}
+                        {this.state.showPhone && <Form.Control required type="tel" 
+                            minLength={10} value ={this.state.phone} 
+                            name='phone' placeholder="Phone nr..."  pattern="[(-:]+"  
+                            onChange={this.handleChange}/>
+                        }
                     </Form.Group>
                     <Button type="submit" disabled={this.state.isButtonDisabled}>Submit form</Button>
                 </Form>

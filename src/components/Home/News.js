@@ -12,7 +12,28 @@ export default class NewsCarousel extends Component {
                     {console.log("propsss:news:", this.props)}
                         <span>{this.props.title}</span>
                     </div>
-                    {this.props.items.length > 0 ?
+                    {this.props.items.length === 1 ? 
+                    <Carousel controls={false} className="newsCarousel" interval={null}>
+                    {console.log("propsss::", this.props.items)}
+                    {this.props.items.reverse().map((item, index) => {
+                            return (
+                                <Carousel.Item className="newsItem" key={index}>
+                                {item.fileName ? <a href ="https://www.facebook.com/zborcuparapantaranca">
+                                    <img className="pozaModalNews"
+                                    src={item.fileName}
+                                    alt="slide"
+                                    /> 
+                                </a>  : null}
+                                    <Carousel.Caption className="newsText">
+                                    <span>{item.titlu}</span>
+                                    <p>{item.description}</p>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                            )
+                    })
+                    }
+                    </Carousel> : 
+                    this.props.items.length > 1 ? 
                     <Carousel className="newsCarousel" interval={null}>
                     {console.log("propsss::", this.props.items)}
                     {this.props.items.reverse().map((item, index) => {
@@ -32,7 +53,7 @@ export default class NewsCarousel extends Component {
                             )
                     })
                     }
-                    </Carousel>  : 
+                    </Carousel> :
                     <Card
                         bg={"#fff"}
                         text={ 'dark'}
@@ -44,8 +65,8 @@ export default class NewsCarousel extends Component {
                             Admin please upload some data for the users.</span>
                         </Card.Text>
                         </Card.Body>
-                    </Card>
-                    }
+                    </Card> 
+                    }                   
                 </div>
         )
     }

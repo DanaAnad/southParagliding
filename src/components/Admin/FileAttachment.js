@@ -73,10 +73,16 @@ export default class FileAttachment extends Component {
                             })
                         }
                     } 
-                    else { 
+                    else if (!file) { 
                         this.setstate({
                             convertedFile:"",
-                            inputFile:""
+                            inputFile:"",
+                            errors : [
+                                ...this.props.data.errors,
+                                {
+                                    error:"invalid file"
+                                }
+                            ]
                         })
                     }
             }   

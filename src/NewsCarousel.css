@@ -1,7 +1,7 @@
 @media screen and (min-width:1025px) {
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
-@import "./assets/icons/rightArrow.png";
+
 
     .News {
         display: flex;
@@ -112,8 +112,8 @@
     .newsCarousel {
         display:flex;
         flex-direction:column;
-        /* height: 50vh; */
-        height:auto;
+        height: 40vh;
+        /* height:auto; */
         padding-bottom: 5px;
     }
 

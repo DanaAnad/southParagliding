@@ -70,6 +70,14 @@
     height:50%;
     margin:auto;
   }
+
+  .bodyCard {
+    text-align:center;
+    border: none;
+    margin: auto;
+    background-color:rgb(221, 221, 221);
+}
+
 }
 
 @media screen and (min-width: 481px) and (max-width: 1024px )  {
