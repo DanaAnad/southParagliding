@@ -31,10 +31,7 @@ export default class FileAttachment extends Component {
                 throw new Error("FileValidation not working...")
             };
     }
-    
-    // resetInput = () => {
-    //   this.imgRef.current.value = "";
-    // }
+   
     getFiles = async (e,file) => {    
         file = e.target.files[0];
         console.log("fileGetFiles::", file);

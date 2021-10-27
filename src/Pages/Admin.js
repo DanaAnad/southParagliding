@@ -4,6 +4,7 @@ import FileAttachment from "../components/Admin/FileAttachment.js";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 export default class Admin extends React.Component {
     constructor(props) {
@@ -419,6 +420,9 @@ export default class Admin extends React.Component {
         }
         return (
             <div className="adminForm" style = {formStyle}>
+            <Helmet>
+                <title>South-Paragliding Admin</title>
+            </Helmet>
                 <Form onSubmit={this.onSubmit}>
                     <Form.Group controlId="Admin Form" >
                         <br />
@@ -433,7 +437,7 @@ export default class Admin extends React.Component {
                             <option value="rezervaricontact">Rezervari/Contact</option>
                         </Form.Control>
                          <br /><br />
-                        {this.state.showTitle && <Form.Control required minLength={7} 
+                        {this.state.showTitle && <Form.Control required minLength={5} 
                             pattern = "[A-Za-z0-9\s]+" type="text" value={this.state.titlu} name="titlu" 
                             placeholder="Titlu..."  onChange={this.handleChange}/>
                         }

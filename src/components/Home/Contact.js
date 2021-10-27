@@ -1,7 +1,8 @@
 import React from 'react';
 import contactLogo from "../../assets/icons/contactIcon.png";
 import  FollowUs from "../../assets/SocialMedia/FollowUs.png";
-import "../../Contact.css"
+import "../../Contact.css";
+import {Helmet} from "react-helmet";
 
 export default class Contact extends React.Component {
 
@@ -9,6 +10,25 @@ export default class Contact extends React.Component {
         console.log("propsContact::", this.props);
         return(
             <div className="contactComponent">
+                <Helmet>
+                <title>Contact - SouthParagliding</title>
+                <meta name="description" content="Contact si rezervari @ South Paragliding " />
+                <link rel="stylesheet" href="Contact.css" />
+                <link rel="icon" href = {contactLogo} />
+                <link rel="external" href ="https://www.facebook.com/zborcuparapantaranca" />
+                {this.props.items.map((item, index) => 
+                <meta key = {index} name="title" content = {item.titlu}/>
+                )}
+                {this.props.items.map((item, index) => 
+                <meta key = {index} name="description" content = {item.description}/>
+                )}
+                {this.props.items.map((item, index) => 
+                <link key = {index}  rel="author" href = {item.email}/>
+                )}
+                {this.props.items.map((item, index) => 
+                <link key = {index}  rel="author" href = {item.phone}/>
+                )}
+                </Helmet>
                     <div key = "iconContainer" className= "contactIconContainer">
                         <img alt="logo" className = "contactIcon" src = {contactLogo}/>
                     </div>
@@ -20,7 +40,7 @@ export default class Contact extends React.Component {
                                         <div className="" key = {index}>
                                             <div className="contactText" >
                                                 <span key="title">{row.titlu}</span> <br /><br />
-                                                <span key="text">{row.description}</span><br /> <br />
+                                                <span className = "contactDescription" key="text">{row.description}</span><br /> <br />
                                             </div>
                                             <div className="contact" >
                                                 <a href ={`tel:${row.phone}`}>{row.phone}</a><br />

@@ -1,13 +1,42 @@
 import React, { Component } from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import "../../NewsCarousel.css";
-import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card';
+import {Helmet} from "react-helmet";
 
 export default class NewsCarousel extends Component {
+
+    componentDidMount() {
+        this.loadImages();
+    }
+    
+      loadImages = () => {
+        this.props.items.forEach((item) => {
+          const img = new Image();
+          img.src = item.fileName;
+          console.log("image::", img); 
+      });
+      }
+
     render(){
         console.log("thisItemss:news::", this.props.items)
         return (
                 <div className="News"> 
+                 <Helmet>
+                    <title>News - SouthParagliding</title>
+                    {this.props.items.map((item, index)=> <meta key= {index} name="title" 
+                        content={item.titlu}
+                    /> 
+                    )}
+                    {this.props.items.map((item, index) => <meta key={index} name="description" 
+                        content={item.description}
+                    /> )}
+                    {this.props.items.map((item, index) => <meta key= {index} name = "image" content = {item.fileName} />
+                    )}
+                    <meta name="keywords"
+                        content="informatii noi despre zbor cu parapanta, parapanta, parapantism, Craiova, south paragliding, paragliding, zbor cu parapanta"
+                        />
+                </Helmet>
                     <div className="newsTitle">
                     {console.log("propsss:news:", this.props)}
                         <span>{this.props.title}</span>
@@ -19,7 +48,8 @@ export default class NewsCarousel extends Component {
                             return (
                                 <Carousel.Item className="newsItem" key={index}>
                                 {item.fileName ? <a href ="https://www.facebook.com/zborcuparapantaranca">
-                                    <img className="pozaModalNews"
+                                    <img onLoad = {this.loadImages}
+                                    className="pozaModalNews"
                                     src={item.fileName}
                                     alt="slide"
                                     /> 
@@ -40,7 +70,9 @@ export default class NewsCarousel extends Component {
                             return (
                                 <Carousel.Item className="newsItem" key={index}>
                                 {item.fileName ? <a href ="https://www.facebook.com/zborcuparapantaranca">
-                                    <img className="pozaModalNews"
+                                    <img 
+                                    onLoad = {this.loadImages}
+                                    className="pozaModalNews"
                                     src={item.fileName}
                                     alt="slide"
                                     /> 

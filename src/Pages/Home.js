@@ -30,12 +30,6 @@ export default class Home extends React.Component {
         ],
         alldata : [],
         backgroundImg:false,
-        newsTitle: "",
-        news:[],
-        foto:[],
-        locatiiDeZbor:[],
-        rezervari:[],
-        videos:[]
       };
       this.setContent = this.setContent.bind(this);
       this.closeModal = this.closeModal.bind(this);
@@ -53,6 +47,11 @@ export default class Home extends React.Component {
 
   componentDidMount= async () => {
     await this.getData();
+    this.state.alldata.forEach((picture) => {
+      const img = new Image();
+      img.src = picture.data.fileName;
+      console.log("image:Home:", img); 
+  });
   }
  
 
@@ -114,14 +113,6 @@ export default class Home extends React.Component {
         }
       })
     } 
-    else {
-      this.setState({
-          modal:{
-            show:true,
-            data:<span>No Data avaliable.</span>
-          }
-      })
-    }
   }
 
 
@@ -141,12 +132,19 @@ export default class Home extends React.Component {
 
   
   render(){
+    console.log("alldata::", this.state.alldata);
     const background = {
       backgroundImage:`url(${this.state.backgroundImg})`
     }
+    const loaderStyle = {
+       position: "fixed",
+       top: "50%", 
+       left: "50%", 
+       transform: "translate(-50%, -50%)"
+    }
    if(this.state.isLoading===true){
     return (
-      <Loader
+      <Loader style = {loaderStyle}
         type="TailSpin"
         color="Black"
         height={85}
@@ -166,7 +164,6 @@ export default class Home extends React.Component {
           <MyModal 
           transparent = "true"
           fullWidth={true} 
-          className="bodyModal"
           show={this.state.modal.show}
           data={this.state.modal.data}
           onHide={this.closeModal}

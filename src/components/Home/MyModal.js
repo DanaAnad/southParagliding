@@ -2,18 +2,19 @@ import React, { Component } from "react";
 import Modal from 'react-bootstrap/Modal'
 import "../../modal.css";
 
-
-
 export default class MyModal extends Component {
+  
+
     render() {
+        console.log("thisPropsFoto::", this.props.data.props);
         return (
             <div>
-                <Modal static = "true" max-width={'sm'} centered show={this.props.show} onHide={() => {this.props.onHide()}}
+                <Modal className="containerModal" centered show={this.props.show} onHide={() => {this.props.onHide()}}
                 >
                  <a href='true' className="Modal-close-button" onClick={(e) => {e.preventDefault(); this.props.onHide()}}>
                     <span className="closeModalIcon">&times;</span>
                 </a>
-                    <Modal.Body className ="modal-body">
+                    <Modal.Body className ="modalBody">
                     <div className = "Modal-data-container">
                         <div className = "Modal-data">
                             {this.props.data} 
