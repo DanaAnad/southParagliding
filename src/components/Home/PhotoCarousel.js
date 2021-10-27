@@ -7,16 +7,13 @@ import {Helmet} from "react-helmet";
 export default class PhotoCarousel extends Component {
 
   componentDidMount() {
-    this.loadImages();
-}
-
-  loadImages = () => {
     this.props.items.forEach((item) => {
       const img = new Image();
       img.src = item.fileName;
       console.log("image::", img); 
-  });
-  }
+    });
+}
+
 
   render(){
     console.log("propsFoto:i:", this.props.items);
@@ -25,8 +22,8 @@ export default class PhotoCarousel extends Component {
        <Helmet>
           <title>Foto - SouthParagliding</title>
           <meta name="description" content="Poze si filme de la zbor cu echipa South Paraglidig" />
-             {this.props.items.map(item =>
-          <meta name = "image" content={item.fileName} />
+             {this.props.items.map((item, index) =>
+          <meta key ={index} name = "image" content={item.fileName} />
               )} 
           <meta name="keywords"
             content="parapanta, locatii de zbor, parapantism, Craiova, south paragliding, paragliding, zbor cu parapanta"
@@ -38,7 +35,7 @@ export default class PhotoCarousel extends Component {
               return (
                 <Carousel.Item key={index}>
                 <div>
-                  {item.fileName && <img className ="pozaModal" onLoad = {this.loadImages} src = {item.fileName} alt = {item.id} />}
+                  {item.fileName && <img className ="pozaModal"  src = {item.fileName} alt = {item.id} />}
                 </div>
                 </Carousel.Item>    
               )
@@ -51,7 +48,7 @@ export default class PhotoCarousel extends Component {
               return (
                 <Carousel.Item key={index}>
                 <div>
-                  {item.fileName && <img onLoad = {this.loadImages} className ="pozaModal img-fluid" src = {item.fileName} alt = {item.id} />}
+                  {item.fileName && <img className ="pozaModal img-fluid" src = {item.fileName} alt = {item.id} />}
                 </div>
                 </Carousel.Item>    
               )

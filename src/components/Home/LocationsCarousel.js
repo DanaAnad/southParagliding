@@ -7,16 +7,13 @@ import {Helmet} from "react-helmet";
 export default class LocationsCarousel extends Component {
 
   componentDidMount() {
-    this.loadImages();
-  }
-
-  loadImages = () => {
     this.props.items.forEach((item) => {
       const img = new Image();
       img.src = item.fileName;
       console.log("image::", img); 
     });
   }
+
 
   render(){
     console.log("propsLocations::", this.props);
@@ -41,7 +38,7 @@ export default class LocationsCarousel extends Component {
             return (
               <Carousel.Item className="locationsItem" key={index}>
               <div>
-                <img onLoad = {this.loadImages} className ="pozaModal" src = {item.fileName} alt = {item.id} />
+                <img className ="pozaModal" src = {item.fileName} alt = {item.id} />
               </div>
               <Carousel.Caption className="locationsCaption">
                 <h5>{item.titlu}</h5>
@@ -57,7 +54,7 @@ export default class LocationsCarousel extends Component {
               return (
                 <Carousel.Item className="locationsItem" key={index}>
                 <div>
-                  <img onLoad = {this.loadImages} className ="pozaModal" src = {item.fileName} alt = {item.id} />
+                  <img className ="pozaModal" src = {item.fileName} alt = {item.id} />
                 </div>
                 <Carousel.Caption className="locationsCaption">
                   <h5>{item.titlu}</h5>

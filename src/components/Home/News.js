@@ -7,16 +7,12 @@ import {Helmet} from "react-helmet";
 export default class NewsCarousel extends Component {
 
     componentDidMount() {
-        this.loadImages();
-    }
-    
-      loadImages = () => {
         this.props.items.forEach((item) => {
-          const img = new Image();
-          img.src = item.fileName;
-          console.log("image::", img); 
-      });
-      }
+            const img = new Image();
+            img.src = item.fileName;
+            console.log("image::", img); 
+        });
+    }
 
     render(){
         console.log("thisItemss:news::", this.props.items)
@@ -48,7 +44,7 @@ export default class NewsCarousel extends Component {
                             return (
                                 <Carousel.Item className="newsItem" key={index}>
                                 {item.fileName ? <a href ="https://www.facebook.com/zborcuparapantaranca">
-                                    <img onLoad = {this.loadImages}
+                                    <img 
                                     className="pozaModalNews"
                                     src={item.fileName}
                                     alt="slide"
@@ -71,7 +67,6 @@ export default class NewsCarousel extends Component {
                                 <Carousel.Item className="newsItem" key={index}>
                                 {item.fileName ? <a href ="https://www.facebook.com/zborcuparapantaranca">
                                     <img 
-                                    onLoad = {this.loadImages}
                                     className="pozaModalNews"
                                     src={item.fileName}
                                     alt="slide"

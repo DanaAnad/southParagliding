@@ -8,16 +8,12 @@ import {Helmet} from "react-helmet";
 export default class VideoCarousel extends Component {
 
   componentDidMount() {
-    this.loadVideos();
-}
-
-  loadVideos = () => {
     this.props.items.forEach((item) => {
       const img = new Image();
       img.src = item.fileName;
       console.log("image::", img); 
   });
-  }
+}
 
   render(){
     console.log("propsVideo::", this.props);
@@ -36,7 +32,7 @@ export default class VideoCarousel extends Component {
             return (
               <Carousel.Item key={index}>
                 <video className="videoItem" controls="controls">
-                    {item.fileName && <source onLoad = {this.loadVideos} className="img-fluid" src={item.fileName} type="video/mp4"/> }
+                    {item.fileName && <source className="img-fluid" src={item.fileName} type="video/mp4"/> }
                 </video>
               </Carousel.Item>
             )
@@ -49,7 +45,7 @@ export default class VideoCarousel extends Component {
             return (
               <Carousel.Item key={index}>
                 <video className="videoItem" controls="controls">
-                    {item.fileName && <source onLoad = {this.loadVideos} className="img-fluid" src={item.fileName} type="video/mp4"/> }
+                    {item.fileName && <source className="img-fluid" src={item.fileName} type="video/mp4"/> }
                 </video>
               </Carousel.Item>
             )

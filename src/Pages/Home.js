@@ -47,11 +47,11 @@ export default class Home extends React.Component {
 
   componentDidMount= async () => {
     await this.getData();
-    this.state.alldata.forEach((picture) => {
+    this.state.alldata.forEach((item) => {
       const img = new Image();
-      img.src = picture.data.fileName;
+      img.src = item.data.fileName;
       console.log("image:Home:", img); 
-  });
+    });
   }
  
 
@@ -119,9 +119,9 @@ export default class Home extends React.Component {
   getData = async () => {
     const {data} = await axios.get(`http://ms.homens.tricu.ro/data`);
     console.log("allData", data);
-    let backgrounds = data.filter(row => row.type === "backgrounds");
+    let backgrounds = data && data.length ? data.filter(row => row.type === "backgrounds"): null;
     console.log("backgroundssGetData:::", backgrounds);
-    let titluStiri = data.filter(row => row.type === "newsTitle");
+    let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
       this.setState({
         alldata: [ ...data ],
         backgroundImg: backgrounds[backgrounds.length-1].data.fileName,

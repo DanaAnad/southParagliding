@@ -4,9 +4,7 @@ import "../../modal.css";
 
 export default class MyModal extends Component {
   
-
     render() {
-        console.log("thisPropsFoto::", this.props.data.props);
         return (
             <div>
                 <Modal className="containerModal" centered show={this.props.show} onHide={() => {this.props.onHide()}}
