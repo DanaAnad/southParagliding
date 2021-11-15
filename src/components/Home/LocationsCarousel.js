@@ -20,7 +20,9 @@ export default class LocationsCarousel extends Component {
     return(
       <div>
         <Helmet>
-          <title>Flying Locations - SouthParagliding </title>
+        <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1"/>
+          <title>Locatii de zbor - SouthParagliding </title>
           <meta name="description" content="Locatii de zbor cu echipa de la South Paragliding" />
              {this.props.items.map((item, index) => 
              <meta key={index} name="title" content={item.titlu} />
@@ -38,7 +40,7 @@ export default class LocationsCarousel extends Component {
             return (
               <Carousel.Item className="locationsItem" key={index}>
               <div>
-                <img className ="pozaModal" src = {item.fileName} alt = {item.id} />
+                <img className ="pozaModalLocations" src = {item.fileName} alt = {item.id} onClick = {(e) => this.fullScrn} />
               </div>
               <Carousel.Caption className="locationsCaption">
                 <h5>{item.titlu}</h5>
@@ -54,7 +56,7 @@ export default class LocationsCarousel extends Component {
               return (
                 <Carousel.Item className="locationsItem" key={index}>
                 <div>
-                  <img className ="pozaModal" src = {item.fileName} alt = {item.id} />
+                  <img className ="pozaModalLocations" src = {item.fileName} alt = {item.id} />
                 </div>
                 <Carousel.Caption className="locationsCaption">
                   <h5>{item.titlu}</h5>

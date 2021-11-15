@@ -11,23 +11,16 @@ export default class Contact extends React.Component {
         return(
             <div className="contactComponent">
                 <Helmet>
-                <title>Contact - SouthParagliding</title>
-                <meta name="description" content="Contact si rezervari @ South Paragliding " />
-                <link rel="stylesheet" href="Contact.css" />
-                <link rel="icon" href = {contactLogo} />
-                <link rel="external" href ="https://www.facebook.com/zborcuparapantaranca" />
-                {this.props.items.map((item, index) => 
-                <meta key = {index} name="title" content = {item.titlu}/>
-                )}
-                {this.props.items.map((item, index) => 
-                <meta key = {index} name="description" content = {item.description}/>
-                )}
-                {this.props.items.map((item, index) => 
-                <link key = {index}  rel="author" href = {item.email}/>
-                )}
-                {this.props.items.map((item, index) => 
-                <link key = {index}  rel="author" href = {item.phone}/>
-                )}
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                    <title>Contact - SouthParagliding</title>
+                    <meta name="description" content="Contact si rezervari @ South Paragliding " />
+                    <link rel="stylesheet" href="Contact.css" />
+                    <link rel="icon" href = {contactLogo} />
+                    <link rel="external" href ="https://www.facebook.com/zborcuparapantaranca" />
+                    <meta name="title" content = {this.props.items[this.props.items.length-1].titlu}/>
+                    <link rel="author" href = {this.props.items[this.props.items.length-1].email}/>
+                    <link rel="author" href = {this.props.items[this.props.items.length-1].phone}/>
                 </Helmet>
                     <div key = "iconContainer" className= "contactIconContainer">
                         <img alt="logo" className = "contactIcon" src = {contactLogo}/>

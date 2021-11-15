@@ -50,8 +50,13 @@ export default class Home extends React.Component {
     this.state.alldata.forEach((item) => {
       const img = new Image();
       img.src = item.data.fileName;
-      console.log("image:Home:", img); 
     });
+      let background = this.state.alldata.filter(item => item.type === "backgrounds")
+        const img = new Image();
+        img.src = background[background.length-1].data.fileName;
+        this.setState({backgroundImg: img.src});
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>;
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
   }
  
 
@@ -119,12 +124,9 @@ export default class Home extends React.Component {
   getData = async () => {
     const {data} = await axios.get(`http://ms.homens.tricu.ro/data`);
     console.log("allData", data);
-    let backgrounds = data && data.length ? data.filter(row => row.type === "backgrounds"): null;
-    console.log("backgroundssGetData:::", backgrounds);
     let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
       this.setState({
         alldata: [ ...data ],
-        backgroundImg: backgrounds[backgrounds.length-1].data.fileName,
         newsTitle: titluStiri[titluStiri.length-1].data.titluStiri,
         isLoading: false
       });
@@ -140,7 +142,8 @@ export default class Home extends React.Component {
        position: "fixed",
        top: "50%", 
        left: "50%", 
-       transform: "translate(-50%, -50%)"
+       transform: "translate(-50%, -50%)",
+       fontSize:"3px"
     }
    if(this.state.isLoading===true){
     return (
@@ -155,6 +158,9 @@ export default class Home extends React.Component {
     )
    } else {
     return (
+      <div>
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
       <div className="Home" style= {background}>
         <div className="header">
           <Header showContent={this.setContent}/>
@@ -162,13 +168,12 @@ export default class Home extends React.Component {
 
         <div className="body">
           <MyModal 
-          transparent = "true"
-          fullWidth={true} 
-          show={this.state.modal.show}
-          data={this.state.modal.data}
-          onHide={this.closeModal}
+            transparent = "true"
+            fullWidth={true} 
+            show={this.state.modal.show}
+            data={this.state.modal.data}
+            onHide={this.closeModal}
           />
-          
         </div>
         
         <div className="footer">
@@ -176,6 +181,7 @@ export default class Home extends React.Component {
             <a href = "https://www.facebook.com/zborcuparapantaranca"><img className ="socialMedia" src = {FbLogo} alt = "followUs"/></a>
           </div>
         </div>
+      </div>
       </div>
     );
   }

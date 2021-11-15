@@ -19,6 +19,8 @@ export default class NewsCarousel extends Component {
         return (
                 <div className="News"> 
                  <Helmet>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1"/>
                     <title>News - SouthParagliding</title>
                     {this.props.items.map((item, index)=> <meta key= {index} name="title" 
                         content={item.titlu}
@@ -65,13 +67,13 @@ export default class NewsCarousel extends Component {
                     {this.props.items.reverse().map((item, index) => {
                             return (
                                 <Carousel.Item className="newsItem" key={index}>
-                                {item.fileName ? <a href ="https://www.facebook.com/zborcuparapantaranca">
+                                {item.fileName ? 
                                     <img 
                                     className="pozaModalNews"
                                     src={item.fileName}
                                     alt="slide"
                                     /> 
-                                </a>  : null}
+                                  : null}
                                     <Carousel.Caption className="newsText">
                                     <span>{item.titlu}</span>
                                     <p>{item.description}</p>

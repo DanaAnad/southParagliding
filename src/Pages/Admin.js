@@ -442,7 +442,7 @@ export default class Admin extends React.Component {
                             placeholder="Titlu..."  onChange={this.handleChange}/>
                         }
                         <br />
-                        {this.state.showDescription && <Form.Control required minLength={25} type="textarea" 
+                        {this.state.showDescription && <Form.Control required minLength={25} maxLength={90} type="textarea" 
                             value={this.state.description} name="description" pattern="[!-~\s]+"
                              placeholder="Informatii..." onChange={this.handleChange}/>}
                         <br />

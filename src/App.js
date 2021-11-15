@@ -14,6 +14,9 @@ export default class App extends React.Component {
 
   render() {
     return (
+      <div>
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
       <Router>
       <div className = "body" >
         <Helmet>
@@ -40,7 +43,8 @@ export default class App extends React.Component {
             <Route path="/" component={Home}/>
           </Switch>
         </div>
-      </Router>  
+      </Router> 
+      </div> 
     );
   };
 

@@ -20,6 +20,8 @@ export default class VideoCarousel extends Component {
     return(
       <div>
       <Helmet>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <title>Videos - SouthParagliding</title>
       <meta name="description" content="Poze si filme de la zbor cu echipa South Paraglidig" />
       {this.props.items.map((item, index)=>

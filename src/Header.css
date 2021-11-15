@@ -111,6 +111,7 @@
         max-height: 90%;
         margin:auto;
         outline: none;
+        padding-top:3.5px;
         /* margin-left: */
     }  
 
@@ -120,7 +121,7 @@
         max-width:90%;
         max-height: 90%;
         margin:auto;
-        margin-left: 30px;
+        margin-left: 29.5px;
     }
  
     .mobileNavbar {
