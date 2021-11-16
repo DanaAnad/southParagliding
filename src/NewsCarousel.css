@@ -133,7 +133,8 @@
     /* .carousel-indicators {
         margin:5px;
     } */
-    .carousel-indicators li{
+    .newsCarousel .carousel-indicators li{
+        margin-bottom:-12px;
         width: 7px;
         height: 7px;
         border-radius: 100%;
