@@ -177,6 +177,7 @@ class Data {
     foreach($_POST as $key =>  $value) {
       if ($key !== 'type' && $key !== 'status' && $key !== 'attachedFile') { //array includes ?
         $data[$key] = $value;
+        // $data[$key] = json_decode($value);
       }
     }
 
