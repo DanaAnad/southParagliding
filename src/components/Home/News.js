@@ -32,7 +32,8 @@ export default class NewsCarousel extends Component {
                     {this.props.items.map((item, index) => <meta key= {index} name = "image" content = {item.fileName} />
                     )}
                     <meta name="keywords"
-                        content="informatii noi despre zbor cu parapanta, parapanta, parapantism, Craiova, south paragliding, paragliding, zbor cu parapanta"
+                        content="informatii noi despre zbor cu parapanta, parapanta, parapantism, Craiova, south paragliding, paragliding, zbor cu parapanta, parapanta Craiova, south paragliding Craiova, zbor cu parapanta Craiova
+                        program zbor, program south paragliding Craiova"
                         />
                 </Helmet>
                     <div className="newsTitle">
@@ -90,8 +91,8 @@ export default class NewsCarousel extends Component {
                     >
                         <Card.Body>
                         <Card.Text>
-                           <span> No news here. <br />
-                            Admin please upload some data for the users.</span>
+                        <span> Nothing here. <br />
+                        Out team will soon upload some data for the users.</span>
                         </Card.Text>
                         </Card.Body>
                     </Card> 

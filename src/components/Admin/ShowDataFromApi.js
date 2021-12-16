@@ -9,7 +9,7 @@ export default class ShowDataFromApi extends React.Component {
     deleteDataById = async (id) => {
         const dataId = { id };
         console.log("dataId::", dataId.id);
-        const url = "http://ms.homens.tricu.ro/data/" + dataId.id;
+        const url = "http://api.southparagliding.ro/index.php/data/" + dataId.id;
         const headers= {"Access-Control-Allow-Origin" : "*"};
         const resp = await axios.delete(url, headers);
         console.log("response::", resp);

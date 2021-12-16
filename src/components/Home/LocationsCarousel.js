@@ -4,6 +4,7 @@ import "../../carousel.css";
 import Card from 'react-bootstrap/Card';
 import {Helmet} from "react-helmet";
 
+
 export default class LocationsCarousel extends Component {
 
   componentDidMount() {
@@ -18,12 +19,12 @@ export default class LocationsCarousel extends Component {
   render(){
     console.log("propsLocations::", this.props);
     return(
-      <div>
+      <div className="Locations">
         <Helmet>
         <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <title>Locatii de zbor - SouthParagliding </title>
-          <meta name="description" content="Locatii de zbor cu echipa de la South Paragliding" />
+          <meta name="description" content="Locatii de zbor cu echipa de la South Paragliding Craiova" />
              {this.props.items.map((item, index) => 
              <meta key={index} name="title" content={item.titlu} />
             )} 
@@ -31,7 +32,7 @@ export default class LocationsCarousel extends Component {
               <meta key={index} name = "image" content={item.fileName} /> 
             )} 
           <meta name="keywords"
-            content="parapanta, locatii de zbor, parapantism, Craiova, south paragliding, paragliding, zbor cu parapanta, parasutism"
+            content="parapanta, locatii de zbor, parapantism, Craiova, Romania, south paragliding, paragliding, zbor cu parapanta, parasutism"
             />
         </Helmet>
       {this.props.items.length === 1 ? 
@@ -39,11 +40,12 @@ export default class LocationsCarousel extends Component {
         {this.props.items.reverse().map((item, index) => {
             return (
               <Carousel.Item className="locationsItem" key={index}>
-              <div>
+              <div className = "locationsPozaContainer">
                 <img className ="pozaModalLocations" src = {item.fileName} alt = {item.id} onClick = {(e) => this.fullScrn} />
               </div>
               <Carousel.Caption className="locationsCaption">
                 <h5>{item.titlu}</h5>
+                <p>{item.description}</p>
               </Carousel.Caption>
               </Carousel.Item>
             )
@@ -55,11 +57,12 @@ export default class LocationsCarousel extends Component {
           {this.props.items.reverse().map((item, index) => {
               return (
                 <Carousel.Item className="locationsItem" key={index}>
-                <div>
+                <div className = "locationsPozaContainer">
                   <img className ="pozaModalLocations" src = {item.fileName} alt = {item.id} />
                 </div>
                 <Carousel.Caption className="locationsCaption">
-                  <h5>{item.titlu}</h5>
+                  <span>{item.titlu}</span>
+                  <p>{item.description}</p>
                 </Carousel.Caption>
                 </Carousel.Item>
               )
@@ -73,8 +76,8 @@ export default class LocationsCarousel extends Component {
       >
           <Card.Body>
           <Card.Text>
-              <span> No news here. <br />
-              Admin please upload some data for the users.</span>
+              <span> Nothing here. <br />
+              Out team will soon upload some data for the users.</span>
           </Card.Text>
           </Card.Body>
     </Card>

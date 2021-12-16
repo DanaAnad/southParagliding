@@ -1,5 +1,9 @@
 
 @media screen and (min-width:1400px) {
+  .modal-open {
+    overflow:auto !important
+  }
+
   .containerModal{
     position: fixed;
     top: 50%;
@@ -32,7 +36,7 @@
     background-color:rgb(221, 221, 221);
     padding: 0px;
   }
-
+  
   .closeModalIcon {
     position: absolute;
     color:white;
@@ -48,6 +52,9 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 480px) {
+  .modal-open {
+    overflow:auto !important
+  }
   .modal-dialog {
     display:flex;
     flex: 1;
@@ -87,6 +94,9 @@
 }
 
 @media screen and (min-width: 481px) and (max-width: 900px ) {
+  .modal-open {
+    overflow:auto !important;
+  }
   .containerModal {
     display: flex !important;
     flex-direction:column;
@@ -130,6 +140,9 @@
   }
 }
   @media screen and (min-width: 900px) and (max-width: 1399px )  {
+    .modal-open {
+      overflow:auto !important;
+    }
     .containerModal {
       display: flex !important;
       flex-direction:column;

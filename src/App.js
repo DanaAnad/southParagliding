@@ -25,7 +25,7 @@ export default class App extends React.Component {
               content="South Paragling"
               />
         <meta name="keywords"
-              content="parapanta, parapantism, Craiova, south paragliding, paragliding, zbor cu parapanta"
+              content="parapanta, parapantism, Craiova, Romania, south paragliding, paragliding, zbor cu parapanta"
               />
         </Helmet>
           <nav className="routes">

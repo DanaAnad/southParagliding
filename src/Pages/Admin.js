@@ -27,6 +27,8 @@ export default class Admin extends React.Component {
             type : "",
             status:1,
             file: false,
+            descriptionCaracterCount:0,
+            titleCaracterCount:0
         }    
     }
 
@@ -34,7 +36,7 @@ export default class Admin extends React.Component {
       this.getAllData();
     }
     getAllData = async () => {
-        const {data} = await axios.get(`http://ms.homens.tricu.ro/data`);
+        const {data} = await axios.get(`http://api.southparagliding.ro/index.php/data`);
         this.setState({allData:data})
     }
 
@@ -66,6 +68,10 @@ export default class Admin extends React.Component {
 
     resetInputs = () => {
         this.setState({titlu: "", description: "", status:0, email: "", phone: "", file:false});
+    }
+
+    setCaracterCount = (e) => {
+        this.setState({descriptionCaracterCount:e.target.value.length})
     }
 
     handleFormValidation = (eventName, eventValue) => {
@@ -199,7 +205,7 @@ export default class Admin extends React.Component {
                 break;
             }
             case "locatiidezbor" : {
-                if(titlu !== ""  && file ){
+                if(titlu !== "" && description !== "" && file ){
                     this.setState({
                         isButtonDisabled:false
                     })
@@ -248,7 +254,7 @@ export default class Admin extends React.Component {
                 break;
             } 
             case "locatiidezbor" : {
-                this.setState({showTitle: true, showFotos:true, showDescription:false, showPhone:false, showEmail:false, showVideos:false})
+                this.setState({showTitle: true, showFotos:true, showDescription:true, showPhone:false, showEmail:false, showVideos:false})
                 break;
             } 
             case "rezervaricontact" : {
@@ -341,10 +347,11 @@ export default class Admin extends React.Component {
                 break;
             }
             case "locatiidezbor" : {
-                const {type, titlu, file} = this.state;
+                const {type, titlu, description, file} = this.state;
                 formData.append('type', type);
                 formData.append('attachedFile', file);
                 formData.append('titlu', titlu);
+                formData.append('description', description);
                 formData.append('status', 1);
                 data = formData;
                 lastInsertedData = {
@@ -382,7 +389,7 @@ export default class Admin extends React.Component {
                 data = {};
                 break;
         };
-        const url = 'http://ms.homens.tricu.ro/data';
+        const url = 'http://api.southparagliding.ro/index.php/data';
         const headers = {
                     'Accept': '*/*',
                     "Content-Type": "multipart/form-data"
@@ -438,13 +445,14 @@ export default class Admin extends React.Component {
                         </Form.Control>
                          <br /><br />
                         {this.state.showTitle && <Form.Control required minLength={5} 
-                            pattern = "[A-Za-z0-9\s]+" type="text" value={this.state.titlu} name="titlu" 
+                            pattern = "[A-Za-z0-9\]+" type="text" value={this.state.titlu} name="titlu" 
                             placeholder="Titlu..."  onChange={this.handleChange}/>
                         }
                         <br />
                         {this.state.showDescription && <Form.Control required minLength={25} maxLength={90} type="textarea" 
                             value={this.state.description} name="description" pattern="[!-~\s]+"
-                             placeholder="Informatii..." onChange={this.handleChange}/>}
+                             placeholder="Informatii..." onChange={e => { this.handleChange(e); this.setCaracterCount(e)}}/>}
+                            {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/90 caractere folosite.</p> : null}
                         <br />
                         {this.state.showFotos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
                         <br />
@@ -452,12 +460,12 @@ export default class Admin extends React.Component {
                         <br />
                         {this.state.showEmail && <Form.Control required pattern="[A-Za-z0-9@._-]+" 
                             type="email" minLength={5} value ={this.state.email} name="email" 
-                            placeholder="Enter email" onChange={this.handleChange}/> 
+                            placeholder="Adresa email" onChange={this.handleChange}/> 
                         }
                         <br />
                         {this.state.showPhone && <Form.Control required type="tel" 
                             minLength={10} value ={this.state.phone} 
-                            name='phone' placeholder="Phone nr..."  pattern="[(-:]+"  
+                            name='phone' placeholder="Nr tel..."  pattern="[(-:]+"  
                             onChange={this.handleChange}/>
                         }
                     </Form.Group>

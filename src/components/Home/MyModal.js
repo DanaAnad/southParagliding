@@ -13,11 +13,11 @@ export default class MyModal extends Component {
                     <span className="closeModalIcon">&times;</span>
                 </a>
                     <Modal.Body className ="modalBody">
-                    <div className = "Modal-data-container">
-                        <div className = "Modal-data">
-                            {this.props.data} 
+                        <div className = "Modal-data-container">
+                            <div className = "Modal-data">
+                                {this.props.data} 
+                            </div>
                         </div>
-                    </div>
                     </Modal.Body>
                 </Modal>
             </div>

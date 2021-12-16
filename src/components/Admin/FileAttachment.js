@@ -105,7 +105,7 @@ export default class FileAttachment extends Component {
         return(
             <div>
             {console.log("errors;;",this.props.data.errors)}
-                Accepted file types: "jpeg", "jpg", "png" or "mp4". <br/><br/>
+                Tip de fisiere acceptate: "jpeg", "jpg", "png" sau "mp4". <br/><br/>
                 <input type="file" required accept="image/png, image/jpeg, video/mp4" ref = {this.imgRef} name="file" onChange = {this.getFiles} onSubmit={this.resetInput}/><br/>
                     
                     {this.state.inputFile  !== "" && (this.state.inputFile.type === "image/jpeg" || 

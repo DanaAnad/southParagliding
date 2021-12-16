@@ -23,7 +23,7 @@ export default class VideoCarousel extends Component {
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <title>Videos - SouthParagliding</title>
-      <meta name="description" content="Poze si filme de la zbor cu echipa South Paraglidig" />
+      <meta name="description" content="Poze si filme de la zbor cu echipa South Paraglidig Craiova" />
       {this.props.items.map((item, index)=>
           <meta key = {index} name = "video" content={item.fileName} />
               )} 
@@ -61,8 +61,8 @@ export default class VideoCarousel extends Component {
         >
             <Card.Body>
             <Card.Text>
-                <span> No news here. <br />
-                Admin please upload some data for the users.</span>
+              <span> Nothing here. <br /> 
+              Out team will soon upload some data for the users.</span>
             </Card.Text>
             </Card.Body>
         </Card> 

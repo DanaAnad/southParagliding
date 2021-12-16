@@ -6,57 +6,71 @@ import {Helmet} from "react-helmet";
 
 export default class PhotoCarousel extends Component {
 
-  componentDidMount() {
+
+  closeCustomModal = () => {
+    console.log("closingCustomModal")
+    this.setState({
+      customModal:{
+      show: false,
+      data:[]
+      }
+    });
+  };
+
+  componentDidMount() { 
     this.props.items.forEach((item) => {
       const img = new Image();
       img.src = item.fileName;
       console.log("image::", img); 
     });
-}
-
+  }
 
   render(){
-    console.log("propsFoto:i:", this.props.items);
+    console.log("allProps::", this.props);
     return(
       <div >
        <Helmet>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <title>Foto - SouthParagliding</title>
-          <meta name="description" content="Poze si filme de la zbor cu echipa South Paraglidig" />
+          <meta name="description" content="Poze si filme de la zbor cu echipa South Paraglidig Craiova" />
              {this.props.items.map((item, index) =>
           <meta key ={index} name = "image" content={item.fileName}/>
               )} 
           <meta name="keywords"
-            content="parapanta, locatii de zbor, parapantism, Craiova, south paragliding, paragliding, zbor cu parapanta"
+            content="parapanta, locatii de zbor, parapantism, Craiova, Romania, south paragliding, paragliding, zbor cu parapanta"
             />
         </Helmet>
       {this.props.items.length === 1 ? 
         <Carousel controls={false} interval={null} className="FotoCarousel">
           {this.props.items.reverse().map((item, index) => {
               return (
-                <Carousel.Item key={index}>
-                <div>
-                  {item.fileName && <img className ="pozaModal" src = {item.fileName} alt = {item.id} />}
-                </div>
+                <Carousel.Item key={index} onClick = {this.makeImgFullScrn}>
+                  <div>
+                    {item.fileName && <img className ="pozaModal" src = {item.fileName} alt = {item.id} 
+                      onClick = {(e) => this.props.showPhotosFullScreen(e)} onTouchEnd = {(e) => this.props.showPhotosFullScreen(e)}
+                    />}
+                  </div>
                 </Carousel.Item>    
               )
             })
           } 
-          </Carousel> : 
+        </Carousel> : 
           this.props.items.length > 1 ? 
-          <Carousel interval={null} className="FotoCarousel">
+        <Carousel interval={null} className="FotoCarousel">
           {this.props.items.reverse().map((item, index) => {
               return (
                 <Carousel.Item key={index}>
-                <div>
-                  {item.fileName && <img className ="pozaModal" src = {item.fileName} alt = {item.id} />}
-                </div>
+                  <div>
+                    {item.fileName && <img className ="pozaModal" src = {item.fileName} alt = {item.id} 
+                      onClick = {(e) => this.props.showPhotosFullScreen(e)} onTouchEnd = {(e) => this.props.showPhotosFullScreen(e)}
+                    />}
+                  </div>
                 </Carousel.Item>    
               )
             })
           } 
-          </Carousel> :
+        </Carousel> :
           <Card
             bg={"#fff"}
             text={ 'dark'}
@@ -64,8 +78,8 @@ export default class PhotoCarousel extends Component {
           >
           <Card.Body>
           <Card.Text>
-              <span> No news here. <br />
-              Admin please upload some data for the users.</span>
+              <span> Nothing here. <br />
+              Out team will soon upload some data for the users.</span>
           </Card.Text>
           </Card.Body>
         </Card>
