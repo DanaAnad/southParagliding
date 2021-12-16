@@ -484,6 +484,7 @@
     display:flex;
     align-items: center;
     overflow: hidden;
+    aspect-ratio: 16/9
   }
   
   .locationsCarousel .carousel-caption {

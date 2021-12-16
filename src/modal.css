@@ -1,7 +1,7 @@
 
 @media screen and (min-width:1400px) {
   .modal-open {
-    overflow:auto !important
+    overflow:auto !important;
   }
 
   .containerModal{
