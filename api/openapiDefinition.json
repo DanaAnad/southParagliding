@@ -31,8 +31,11 @@
                         "example": 1
                       },
                       "data": {
-                        "type": "string",
-                        "example": "{\"test\":1}"
+                        "type": "object",
+                        "example": {
+                          "fileName": "http://ms.homens.tricu.ro:80/upload/32224130561058e22ab316.jpg",
+                          "anyOtherKey:\"anyOtherValueWhichIsStringOrInterger\"": null
+                        }
                       },
                       "type": {
                         "type": "string",
@@ -54,27 +57,36 @@
         "summary": "Post new data row",
         "description": "Post new data row",
         "requestBody": {
-          "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "data": {
-                    "type": "string",
-                    "example": "{\"test\":1}"
+                  "attachedFile": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
                   },
                   "type": {
-                    "type": "string",
-                    "example": "1"
+                    "type": "string"
                   },
                   "status": {
-                    "type": "integer",
-                    "example": 1
+                    "type": "integer"
+                  },
+                  "anyOtherKey": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
                   }
                 },
                 "required": [
-                  "data",
                   "type"
                 ]
               }
@@ -82,19 +94,15 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "A JSON array of data",
+          "201": {
+            "description": "Data inserted",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "integer",
-                        "example": 1
-                      }
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
                     }
                   }
                 }
@@ -153,8 +161,11 @@
                       "example": 1
                     },
                     "data": {
-                      "type": "string",
-                      "example": "{\"test\":1}"
+                      "type": "object",
+                      "example": {
+                        "fileName": "http://ms.homens.tricu.ro:80/upload/32224130561058e22ab316.jpg",
+                        "anyOtherKey:\"anyOtherValueWhichIsStringOrInterger\"": null
+                      }
                     },
                     "type": {
                       "type": "string",
@@ -263,8 +274,11 @@
                         "example": 1
                       },
                       "data": {
-                        "type": "string",
-                        "example": "{\"test\":1}"
+                        "type": "object",
+                        "example": {
+                          "fileName": "http://ms.homens.tricu.ro:80/upload/32224130561058e22ab316.jpg",
+                          "anyOtherKey:\"anyOtherValueWhichIsStringOrInterger\"": null
+                        }
                       },
                       "type": {
                         "type": "string",
@@ -314,8 +328,11 @@
                         "example": 1
                       },
                       "data": {
-                        "type": "string",
-                        "example": "{\"test\":1}"
+                        "type": "object",
+                        "example": {
+                          "fileName": "http://ms.homens.tricu.ro:80/upload/32224130561058e22ab316.jpg",
+                          "anyOtherKey:\"anyOtherValueWhichIsStringOrInterger\"": null
+                        }
                       },
                       "type": {
                         "type": "string",

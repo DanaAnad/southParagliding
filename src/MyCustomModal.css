@@ -1,0 +1,161 @@
+@media screen and (min-width:1400px) {
+    .customModal {
+        position: absolute;
+        display:flex;
+        height:100%;
+        z-index:1061;
+        background:transparent;
+        overflow: auto;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .customModalCloseIcon {
+        position: absolute;
+        color:rgb(240, 35, 35);
+        text-align: center;
+        border: none;
+        height:60px;
+        font-size:60px;
+        cursor:pointer;
+    }
+    .customModalData  {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        margin: 0;
+        align-self: center;
+    }
+    .customModalData img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        overflow: hidden;
+        align-self: center;
+        border:1px solid white;
+        border-radius:3px;
+    }
+}
+@media screen and (min-width: 900px) and (max-width: 1399px )  {
+    .customModal {
+        position: absolute;
+        display:flex;
+        width:100%;
+        height:100%;
+        z-index:1061;
+        background:transparent;
+        overflow: auto;
+    }
+    .customModalCloseIcon {
+        position: absolute;
+        color:rgb(240, 35, 35);
+        text-align: center;
+        border: none;
+        height:45px;
+        font-size:45px;
+        cursor:pointer;
+    }
+    .customModalData {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .customModalData img {
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
+        border:1px solid white;
+        border-radius:3px;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 900px ) {
+    .customModal {
+        position: absolute;
+        /* object-fit:cover; */
+        display:flex;
+        width:100%;
+        z-index:1061;
+        background:transparent;
+        overflow:auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .customModalCloseIcon {
+        position: absolute;
+        color:rgb(240, 35, 35);
+        text-align: center;
+        border: none;
+        height:45px;
+        font-size:45px;
+        cursor:pointer;
+    }
+    .customModalData  {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        overflow: auto;
+        
+    }
+    .customModalData img {
+        /* width: 100%;
+        height: 100%;
+        object-fit:cover;
+        overflow: hidden;
+        border:1px solid white;
+        border-radius:3px; */
+
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        overflow: auto;
+        align-self: center;
+        border: 1px solid white;
+        border-radius: 3px;
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .customModal {
+        position: absolute;
+        display:flex;
+        width:100%;
+        height:100%;
+        z-index:1061;
+        background:transparent;
+    }
+
+    .customModalCloseIcon {
+        position: absolute;
+        color:rgb(240, 35, 35);
+        text-align: center;
+        border: none;
+        height:45px;
+        font-size:45px;
+        cursor:pointer;
+        padding-top:52%;
+    }
+    .customModalData  {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .customModalData img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        margin-top:54%;
+        border:1px solid white;
+        border-radius:3px;
+    }
+}
