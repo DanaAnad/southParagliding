@@ -9,8 +9,8 @@ class Database {
     $host = 'localhost';
     $port = 3306;
     $db   = 'socialCats';
-    $user = 'root';
-    $pass = 'ericsson';
+    $user = 'xxx';
+    $pass = 'xxx';
 
     try {
       $this->dbConnection = new \PDO(

@@ -1,49 +1,88 @@
-@media screen and (min-width:1025px) {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+@media screen and (min-width:1400px) {
 
   .FotoCarousel {
     display: flex;
-    flex-direction: row;
     width:100%;
     align-items: center;
     justify-content: center;
+    background-color:rgb(221, 221, 221);
   }
- 
+
+  .Locations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom:5px;
+    font-family: Montserrat;  
+  }
   .locationsCarousel {
     display: flex;
     flex-direction: row;
     margin: auto;
     align-items: center;
     justify-content: center;
+    background-color:rgb(221, 221, 221);
+  }
+  .videoCarousel {
+    display: flex;
+    width:100%;
+    height:100%;
+    align-items: center;
+    justify-content: center;
+    background-color:rgb(221, 221, 221);
   }
 
   .locationsItem{
-    margin-bottom: 7%;
+    margin-bottom: 11%;
+    align-items: flex-start;
   }
 
   .locationsCarousel .carousel-caption {
-    display:flex;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding-top:8px;
+    color:black;
     margin:auto;
     bottom:auto;
-    padding-top:20px;
-    color:black;
     text-align: center;
-    justify-content: center;
-    position:absolute;
   }
 
-  h5 {
+  .locationsCarousel .pozaModalLocations{
+    display:flex;
+    width:804px;
+    height: 425px;
+    object-fit: cover;
+    align-items: center;
+    overflow: hidden;
+    border-radius:5px;
+  }
+
+  .locationsCarousel .carousel-caption span {
     font-size:1rem;
+    color :rgb(0, 0, 0);
+    display: flex;
+    font-weight: bold;
+    font-family: 'Montserrat';
+  }
+  .locationsCarousel .carousel-caption p{
+    font-size:1rem;
+    color :rgb(0, 0, 0);
     display: inline-flex;
     font-family: 'Montserrat';
   }
 
-  .pozaModal {
-    max-width:100%;
-    max-height:100%;
+  .FotoCarousel .pozaModal {
+    width:804px;
+    height:425px;
     border-radius: 7px;
     object-fit: cover;
+    aspect-ratio: 16/9;
   }
 
   .carousel-indicators {
@@ -54,44 +93,345 @@
     width:25px;
     height:25px;
   }
-
+  .videoCarousel .carousel-item {
+    width: 805px;
+    height: 453px;
+    max-height: 453px;
+    aspect-ratio: 16/9;
+    justify-content: center;
+}
   .videoItem {
-    width:100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    width: 100%;
     height: 100%;
     border-radius: 5px;
     object-fit: cover;
+    align-items: center;
+    overflow: hidden;
   }
 
    .carousel-control-next ,.carousel-control-prev {
     height:50%;
     margin:auto;
   }
+
+  .bodyCard {
+    text-align:center;
+    border: none;
+    margin: auto;
+    background-color:rgb(221, 221, 221);
 }
 
-@media screen and (min-width: 481px) and (max-width: 1024px )  {
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+
+  .FotoCarousel{
+    display:flex;
+    flex-direction:row;
+    width:318px;
+    height:100%;
+    border:1px solid white;
+    max-width: fit-content;
+    overflow: hidden;
+    border-radius:5px;
+    background-color:rgb(221, 221, 221);
+    }
+  
+  .FotoCarousel .carousel-inner {
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+  .FotoCarousel .pozaModal {
+    display:flex;
+    height:186px;
+    width: 320px;
+    border-radius:5px;
+    object-fit: cover;
+    align-items: center;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+  }
+
+  .FotoCarousel .carousel-indicators {
+    margin:2px;
+  }
+  .carousel-indicators li{
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    border:1.5px solid white;
+    background-color:black;
+  }
+
+
+
+  .locationsCarousel{
+    display:flex;
+    flex-direction:row;
+    width:318px;
+    height:100%;
+    max-width: fit-content;
+    overflow: hidden;
+    border-radius:5px;
+    background-color:rgb(221, 221, 221);
+  }
+
+  .locationsCarousel .carousel-inner{
+    margin-bottom:5px;
+    overflow: hidden;
+  }
+  
+  .locationsCarousel .pozaModalLocations{
+    display:flex;
+    width:318px;
+    height:186px;
+    border-radius:5px;
+    object-fit: cover;
+    align-items: center;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+  }
+  .locationsCarousel .carousel-caption {
+    bottom:-145px;
+    padding-bottom: 1px;
+    color:black;
+    font-family: 'Montserrat';
+  }
+  .locationsCarousel .carousel-caption  span {
+    font-weight: bold;
+  }
+  .locationsItem {
+    margin-bottom:135px;
+  }
+
+  .locationsCarousel .carousel-indicators li{
+    margin-bottom:-12px;
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    border:1.5px solid white;
+    background-color:black;
+  }
+
+  .videoCarousel {
+    display:flex;
+    flex-direction:row;
+    width: 318px;
+    height:100%;
+    border:1px solid white;
+    max-width: fit-content;
+    overflow: hidden;
+    border-radius:5px;
+  }
+
+  .videoCarousel .carousel-inner {
+    overflow: hidden;
+  }
+  .videoCarousel .carousel-item {
+    height: 200px;  
+    width:320px;
+    aspect-ratio: 16/9;
+    justify-content: center;
+  }
+  .videoItem {
+    display:flex;
+    width:100%;
+    height:100%;
+    border-radius:5px;
+    object-fit: cover;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .videoCarousel .carousel-indicators {
+    margin: 5px;
+  }
+  .carousel-control-next, .carousel-control-prev {
+    height:9%;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 900px )  {
   
   .FotoCarousel{
     display:flex;
     flex-direction: row;
-    margin:auto;
-    max-width:490px;
+    width:450px;
     height:100%;
     overflow: hidden;
     border-radius:5px;
     max-width: fit-content;
     align-items: center;
-    justify-content: center;
+    padding-bottom: 3px; 
+    background-color:rgb(221, 221, 221);
+  }
+  .FotoCarousel .carousel-item {
+    width:450px;
+  }
+  .pozaModal {
+    width:100%; 
+    height:253px;
+    border-radius:5px;
+    object-fit: cover;
+    align-items: center;
+    aspect-ratio: 16/9;
+  }
+ 
+  .FotoCarousel .carousel-indicators {
+    padding-bottom: 2.5px;
   }
 
-  .pozaModal {
+ .FotoCarousel .carousel-inner{
+    margin-bottom: 15px;
+  }
+
+  .carousel-indicators li{
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    border:1.5px solid white;
+    background-color:black;
+  }
+
+  .carousel-control-next, .carousel-control-prev {
+    height: 50%;
+    margin: auto;
+    padding-bottom:inherit;
+  }
+  .Locations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-family: Montserrat;
+  }
+  .locationsCarousel {
     display:flex;
-    width:490px;
-    max-width: 500px;
-    max-height:300px;
+    flex-direction: row;
+    margin:auto;
+    max-width:450px;
+    height:100%;
+    overflow: hidden;
+    border-radius:5px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat';
+
+  }
+   .locationsItem {
+      margin-bottom: 13%;
+      padding-top: 4px;
+  }
+   .pozaModalLocations{
+    aspect-ratio: 16/9;
+    margin-left: 91px;
+    border-radius: 5px;
+    width:60%;
+  }
+  
+  .locationsCarousel .carousel-caption {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0px;
+    padding-bottom:0px;
+    color: black;
+    margin: auto;
+    bottom: auto;
+    text-align: center;
+  }
+
+  .locationsPozaContainer {
+    margin-bottom: 1%;
+    padding-top: 8px;
+  }
+
+  .locationsCarousel .carousel-indicators li {
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    border: 1.5px solid white;
+    background-color: black;
+  }
+
+  .locationsCarousel .carousel-inner{
+    font-family: 'Montserrat';
+    margin-bottom:16px;
+    overflow:hidden;
+    font-size:12px;
+  }
+  .locationsCarousel span {
+    color: black;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .locationsCarousel p {
+    margin-bottom: 1px;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+    display: inline-flex;
+    font-family: 'Montserrat';
+  }
+  .videoCarousel {
+    width: 450px;
+    height:100%;
+  }
+
+  .videoCarousel .carousel-item {
+    width:inherit;
+    aspect-ratio: 16/9;
+    justify-content: center; 
+  }
+  .videoItem {
+    display:flex;
+    width:100%;
+    height:100%;
     border-radius:5px;
     object-fit: cover;
     align-items: center;
     overflow: hidden;
+  }
+
+  .videoCarousel .carousel-indicators {
+    margin: 3px;
+  }
+
+  .videoCarousel .carousel-inner {
+    overflow: hidden;
+  }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1399px )  {
+  
+  .FotoCarousel{
+    display:flex;
+    flex-direction: row;
+    height:100%;
+    overflow: hidden;
+    border-radius:5px;
+    max-width: fit-content;
+    align-items: center;
+    background-color:rgb(221, 221, 221);
+  }
+  .FotoCarousel .carousel-item {
+    width:795px;
+  }
+  .pozaModal {
+    width:100%; 
+    height:490px;
+    border-radius:5px;
+    object-fit: cover;
+    align-items: center;
+    aspect-ratio: 16/9;
   }
  
   .carousel-indicators {
@@ -115,8 +455,11 @@
     padding-bottom:inherit;
   }
 
-
+  .locationsItem {
+    margin-bottom: 7%;
+}
   .locationsCarousel {
+    padding-top:10px;
     display:flex;
     flex-direction: row;
     margin:auto;
@@ -129,46 +472,70 @@
     justify-content: center;
     font-family: 'Montserrat';
   }
-
-  .locationsCarousel .pozaModal{
+  .locationsCarousel .carousel-item {
+    width: 795px;
+  }
+  .locationsCarousel .pozaModalLocations {
+    max-width:78%;
+    max-height:100%;
+    margin-top:11px;
+    margin-left:11%;
+    border-radius:7px;
     display:flex;
-    max-width:490px;
-    max-height:300px;
-    object-fit: cover;
     align-items: center;
     overflow: hidden;
-    border-radius:5px;
+    aspect-ratio: 16/9
   }
   
   .locationsCarousel .carousel-caption {
-    bottom:-43px;
-    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    margin: auto;
+    bottom: auto;
+    text-align: center;
   }
 
   .locationsItem{
-    margin-bottom:25px ;
+    margin-bottom:110px ;
   }
 
   .locationsCarousel .carousel-indicators {
-    display:none;
+    margin:auto;
   }
 
   .locationsCarousel .carousel-inner{
     margin-bottom:0px;
   }
   .locationsCarousel h5 {
-    font-size:15px;
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+    display: flex;
+    font-weight: bold;
     font-family: 'Montserrat';
-    color:black;
-    font-weight:normal;
   }
 
+  .locationsCarousel p {
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+    display: inline-flex;
+    font-family: 'Montserrat';
+  }
+  .videoCarousel .carousel-item {
+    width:795px;
+    height: 453px;
+    max-height: 453px;
+    aspect-ratio: 16/9;
+    justify-content: center;
+  }
   .videoItem {
     display:flex;
-    width:490px;
-    height:300px;
-    max-width: 500px;
-    max-height:300px;
+    width:100%;
+    height:100%;
     border-radius:5px;
     object-fit: cover;
     align-items: center;
@@ -179,113 +546,9 @@
     margin: -13px;
   }
 
+  .videoCarousel .carousel-inner {
+    overflow: hidden;
+  }
+
 }
-@media screen and (min-width: 320px) and (max-width: 480px) {
 
-  .FotoCarousel{
-    display:flex;
-    flex-direction:row;
-    max-width:360px;
-    height:100%;
-    border:1px solid white;
-    max-width: fit-content;
-    overflow: hidden;
-    border-radius:5px;
-    }
-
-  .pozaModal {
-    display:flex;
-    width:350px;
-    max-width: 360px;
-    max-height:400px;
-    border-radius:5px;
-    object-fit: cover;
-    align-items: center;
-    overflow: hidden;
-  }
-
-  .carousel-inner{
-    margin-bottom: 20px;
-  }
-  .carousel-indicators {
-    margin:5px;
-  }
-  .carousel-indicators li{
-    width: 7px;
-    height: 7px;
-    border-radius: 100%;
-    border:1.5px solid white;
-    background-color:black;
-  }
-
-  .locationsCarousel{
-    display:flex;
-    flex-direction:row;
-    max-width:350px;
-    height:100%;
-    max-width: fit-content;
-    overflow: hidden;
-    border-radius:5px;
-  }
-
-  .locationsCarousel .carousel-inner{
-    margin-bottom:0px
-  }
-  
-  .locationsCarousel .pozaModal{
-    display:flex;
-    max-width: 360px;
-    max-height:400px;
-    border-radius:5px;
-    object-fit: cover;
-    align-items: center;
-    overflow: hidden;
-  }
-  .locationsCarousel .carousel-caption {
-    bottom:-43px;
-    padding-bottom: 10px;
-  }
-  
-  .locationsItem {
-    margin-bottom:35px;
-  }
-
-  .locationsCarousel .carousel-indicators {
-    display:none;
-  }
-  .locationsCarousel h5 {
-    font-size:13px;
-    font-family: 'Montserrat';
-    color:black;
-    font-weight:normal;
-  }
-
-  .videoCarousel {
-    display:flex;
-    flex-direction:row;
-    max-width:360px;
-    height:100%;
-    border:1px solid white;
-    max-width: fit-content;
-    overflow: hidden;
-    border-radius:5px;
-  }
-  .videoItem {
-    display:flex;
-    width:350px;
-    max-width: 360px;
-    max-height:300px;
-    border-radius:5px;
-    object-fit: cover;
-    align-items: center;
-    overflow: hidden;
-  }
-
-  .videoCarousel .carousel-indicators {
-    margin: 3px;
-  }
-  .carousel-control-next, .carousel-control-prev {
-    height:9%;
-    margin: auto;
-  }
-}

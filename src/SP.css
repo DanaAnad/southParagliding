@@ -7,6 +7,7 @@
         flex-wrap: wrap;
         background-size: cover;
         height: 100vh;
+        width:100vw;
         overflow: hidden;
         align-items: center;
         justify-content: center;
