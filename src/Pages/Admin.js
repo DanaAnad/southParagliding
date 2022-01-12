@@ -36,7 +36,7 @@ export default class Admin extends React.Component {
       this.getAllData();
     }
     getAllData = async () => {
-        const {data} = await axios.get(`http://api.southparagliding.ro/index.php/data`);
+        const {data} = await axios.get(`http://ms.homens.tricu.ro/data/`);
         this.setState({allData:data})
     }
 
@@ -389,7 +389,7 @@ export default class Admin extends React.Component {
                 data = {};
                 break;
         };
-        const url = 'http://api.southparagliding.ro/index.php/data';
+        const url = 'http://ms.homens.tricu.ro/data/';
         const headers = {
                     'Accept': '*/*',
                     "Content-Type": "multipart/form-data"
