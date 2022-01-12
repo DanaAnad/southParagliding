@@ -35,26 +35,25 @@ export default function Login ({ setToken }) {
         textAlign: 'center',
     }
     let h3Style = {
+        alignItems: 'center',
         paddingTop:"100px",
         width: '30%' ,
         margin: 'auto',
         textAlign: 'center',
-    }
-    let butonStyle = {
-        marginTop:"30px"
     }
 
     return (
         <div>
             <h3 style = {h3Style}>Login</h3>
             <div className="loginForm" style = {formStyle}>
-                <Form onSubmit={handleSubmit} >
+                <Form  >
                     <Form.Group>
                     <Form.Control type="email" name="email" placeholder="Enter email" onChange={(e)=> setEmail(e.target.value)}></Form.Control>
                     <br />
                     <Form.Control type="password" name="password" placeholder=" Password" onChange={(e)=> setPassword(e.target.value)}></Form.Control>
                     </Form.Group>
-                    <Button style ={butonStyle} type="submit">Log in</Button>
+                    <br/><br />
+                    <Button type="submit" onClick = {handleSubmit} onTouchEnd={handleSubmit}>Log in</Button>
                 </Form>
             </div>
         </div>
