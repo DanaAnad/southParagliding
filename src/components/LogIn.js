@@ -7,27 +7,42 @@ export default function Login ({ setToken }) {
 
     const [email, setEmail]=useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("")
 
    const loginUser = async (credentials) => {
-        return fetch("http://localhost:8080/admin", {
-            method:"POST",
-            headers:{
-                "Content-type":"application/json",
-            },
-            body:JSON.stringify(credentials)
-        })
-        .then(data => data.json())
-        .catch(err => console.log(err));
-   }
+        if(
+            (email === "dana@gmail.com" && password === "dana") ||
+            (email === "mircea@gmail.com" && password === "mircea")
+        ) {
+            return fetch("http://localhost:8080/admin", {
+                method:"POST",
+                headers:{
+                    "Content-type":"application/json",
+                },
+                body:JSON.stringify(credentials)
+            })
+            .then(
+                data => data.json())
+            .catch(err => console.log(err))
+        } 
+    } 
 
    const handleSubmit = async (e) => {
        e.preventDefault();
        const token = await loginUser({
-           email,
-           password
-       });
-       setToken(token);
+        email,
+        password
+    });
+    token ? setToken(token) : setError("Datele introduse sunt gresite. Verifica te rog.")
    }
+    let errorStyle = {
+        textAlign:"center",
+        margin:"auto",
+        alignItems:"center",
+        width:"50%",
+        paddingTop: "100px",
+        color:"red"
+    }
 
     let formStyle = {
         paddingTop:"50px",
@@ -44,6 +59,8 @@ export default function Login ({ setToken }) {
     }
 
     return (
+    <div>
+       {error && (<h5 style = {errorStyle}>{error}</h5>)} 
         <div>
             <h3 style = {h3Style}>Login</h3>
             <div className="loginForm" style = {formStyle}>
@@ -54,10 +71,12 @@ export default function Login ({ setToken }) {
                     <Form.Control type="password" name="password" placeholder=" Password" onChange={(e)=> setPassword(e.target.value)}></Form.Control>
                     </Form.Group>
                     <br/><br />
-                    <Button type="submit" onClick = {handleSubmit} onTouchEnd={handleSubmit}>Log in</Button>
+                    <Button type="submit">Log in</Button>
                 </Form>
             </div>
         </div>
+
+    </div>
     )
 }
 
