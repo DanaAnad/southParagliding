@@ -2,14 +2,14 @@ import React from 'react';
 import {Accordion, Card, Button} from 'react-bootstrap';
 import axios from 'axios';
 import Loader from "react-loader-spinner";
-import "../../Accordion.css"
+import "../../Accordion.css";
 
 export default class ShowDataFromApi extends React.Component {
 
     deleteDataById = async (id) => {
         const dataId = { id };
         console.log("dataId::", dataId.id);
-        const url = "http://ms.homens.tricu.ro/data/" + dataId.id;
+        const url = "http://api.southparagliding.ro/index.php/data/" + dataId.id;
         const headers= {"Access-Control-Allow-Origin" : "*"};
         const resp = await axios.delete(url, headers);
         console.log("response::", resp);
@@ -24,6 +24,7 @@ export default class ShowDataFromApi extends React.Component {
     render() {
         console.log("propsShowDataApi::", this.props);
         const reversedAllData = this.props.data.allData.slice().reverse();
+        
         return(
             <div className="showDataContainer">
                 {this.props.data.allData.length ? 
@@ -85,7 +86,7 @@ export default class ShowDataFromApi extends React.Component {
                             radius={2}
                         />
                         </span>
-                } 
+                }
             </div>
         )
     }

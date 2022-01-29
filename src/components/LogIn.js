@@ -16,7 +16,8 @@ export default function Login ({ setToken }) {
             },
             body:JSON.stringify(credentials)
         })
-        .then(data => data.json());
+        .then(data => data.json())
+        .catch(err => console.log(err));
    }
 
    const handleSubmit = async (e) => {
@@ -46,7 +47,7 @@ export default function Login ({ setToken }) {
         <div>
             <h3 style = {h3Style}>Login</h3>
             <div className="loginForm" style = {formStyle}>
-                <Form  >
+                <Form onSubmit = {handleSubmit}>
                     <Form.Group>
                     <Form.Control type="email" name="email" placeholder="Enter email" onChange={(e)=> setEmail(e.target.value)}></Form.Control>
                     <br />

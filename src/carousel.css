@@ -164,9 +164,6 @@
     border:1.5px solid white;
     background-color:black;
   }
-
-
-
   .locationsCarousel{
     display:flex;
     flex-direction:row;
@@ -194,10 +191,11 @@
     aspect-ratio: 16/9;
   }
   .locationsCarousel .carousel-caption {
-    bottom:-145px;
+    bottom:-140px;
     padding-bottom: 1px;
     color:black;
     font-family: 'Montserrat';
+    padding-top:0px;
   }
   .locationsCarousel .carousel-caption  span {
     font-weight: bold;

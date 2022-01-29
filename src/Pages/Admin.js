@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 
+
 export default class Admin extends React.Component {
     constructor(props) {
         super(props);
@@ -36,7 +37,7 @@ export default class Admin extends React.Component {
       this.getAllData();
     }
     getAllData = async () => {
-        const {data} = await axios.get(`http://ms.homens.tricu.ro/data/`);
+        const {data} = await axios.get(`http://api.southparagliding.ro/index.php/data`);
         this.setState({allData:data})
     }
 
@@ -226,8 +227,6 @@ export default class Admin extends React.Component {
         this.handleFormValidation(e.target.name, e.target.value);
     }
    
-   
-
 
     setContent = (e) => {
         this.handleChange(e);
@@ -389,7 +388,7 @@ export default class Admin extends React.Component {
                 data = {};
                 break;
         };
-        const url = 'http://ms.homens.tricu.ro/data/';
+        const url = 'http://api.southparagliding.ro/index.php/data';
         const headers = {
                     'Accept': '*/*',
                     "Content-Type": "multipart/form-data"
@@ -412,6 +411,12 @@ export default class Admin extends React.Component {
                 throw new Error("Ceva este in neregula. Verifica toate campurile...")
             }; 
     };
+    getToken = () => {
+        sessionStorage.clear();
+        const token = sessionStorage.getItem("token");
+        console.log("Token:::", token);
+
+    }
 
     render () {
         console.log("stateAll::", this.state);
@@ -480,4 +485,5 @@ export default class Admin extends React.Component {
         )
     }
 }
+
 

@@ -11,13 +11,13 @@ import Login from "../src/components/LogIn.js";
 import {Helmet} from "react-helmet";
 import useToken from "./useToken.js";
 
+
 export default function App (props) {
 
     const {token, setToken} = useToken();
   
     return (
       <div>
-        {console.log("App.js props::", props)}
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
       <Router>

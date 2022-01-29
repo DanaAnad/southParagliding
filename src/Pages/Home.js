@@ -54,7 +54,6 @@ export default class Home extends React.Component {
     });
   };
   closeCustomModal =() => {
-    console.log("closingModal:::")
     this.setState({
       customModal:{
         show: false,
@@ -144,7 +143,7 @@ export default class Home extends React.Component {
 
   
   getData = async () => {
-    const {data} = await axios.get(`http://ms.homens.tricu.ro/data/`);
+    const {data} = await axios.get(`http://api.southparagliding.ro/index.php/data`);
     console.log("allData", data);
     let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
       this.setState({
@@ -152,6 +151,7 @@ export default class Home extends React.Component {
         newsTitle: titluStiri[titluStiri.length-1].data.titluStiri,
         isLoading: false
       });
+      console.log("thisstatealldata:getDataHome:", this.state.newsTitle);
   }
 
 
@@ -172,9 +172,6 @@ export default class Home extends React.Component {
               <img src = {src} className = "fullScreenPic" alt = "fullScreen-foto" key={index}  />
             ]
           },
-          // modal : {
-          //   show:false
-          // }
         })
       )
     });
