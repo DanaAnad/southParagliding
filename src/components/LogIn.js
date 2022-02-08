@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
@@ -7,7 +7,7 @@ export default function Login ({ setToken }) {
 
     const [email, setEmail]=useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("")
+    const [error, setError] = useState("");
 
    const loginUser = async (credentials) => {
         if(
@@ -26,6 +26,11 @@ export default function Login ({ setToken }) {
             .catch(err => console.log(err))
         } 
     } 
+    useEffect(() => {
+        const tokenAdmin = sessionStorage.getItem("token");
+        console.log("tokenAdmin::", tokenAdmin);
+    });
+    
 
    const handleSubmit = async (e) => {
        e.preventDefault();
@@ -33,7 +38,11 @@ export default function Login ({ setToken }) {
         email,
         password
     });
-    token ? setToken(token) : setError("Datele introduse sunt gresite. Verifica te rog.")
+    if(token){
+        setToken(token);
+    } else { 
+        setError("Datele introduse sunt gresite. Verifica te rog.");
+    };
    }
     let errorStyle = {
         textAlign:"center",
@@ -62,7 +71,7 @@ export default function Login ({ setToken }) {
     <div>
        {error && (<h5 style = {errorStyle}>{error}</h5>)} 
         <div>
-            <h3 style = {h3Style}>Login</h3>
+           <h3 style = {h3Style}>Login</h3> 
             <div className="loginForm" style = {formStyle}>
                 <Form onSubmit = {handleSubmit}>
                     <Form.Group>
@@ -75,11 +84,10 @@ export default function Login ({ setToken }) {
                 </Form>
             </div>
         </div>
-
     </div>
     )
 }
 
 Login.propTypes = {
-    setToken: PropTypes.func.isRequired
+    setToken: PropTypes.func.isRequired,
   }

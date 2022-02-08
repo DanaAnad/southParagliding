@@ -29,13 +29,31 @@ export default class Admin extends React.Component {
             status:1,
             file: false,
             descriptionCaracterCount:0,
-            titleCaracterCount:0
+            titleCaracterCount:0,
+            user:false
         }    
     }
 
     componentDidMount = async () =>  {
       this.getAllData();
+      let tokenAdmin = sessionStorage.getItem("token");
+      console.log("tokenAdmin::", tokenAdmin);
+      if(tokenAdmin) {
+          this.setState({
+              user:true
+          })
+      }
     }
+    
+    logOutUser = () => {
+        sessionStorage.clear();
+        const tokenAdmin = sessionStorage.getItem("token");
+        console.log("tokenAdmin:logout:", tokenAdmin);
+        !tokenAdmin && this.setState({
+            user:false
+        })
+    }
+
     getAllData = async () => {
         const {data} = await axios.get(`http://api.southparagliding.ro/index.php/data`);
         this.setState({allData:data})
@@ -411,12 +429,6 @@ export default class Admin extends React.Component {
                 throw new Error("Ceva este in neregula. Verifica toate campurile...")
             }; 
     };
-    getToken = () => {
-        sessionStorage.clear();
-        const token = sessionStorage.getItem("token");
-        console.log("Token:::", token);
-
-    }
 
     render () {
         console.log("stateAll::", this.state);
@@ -430,57 +442,60 @@ export default class Admin extends React.Component {
             color:"red",
             textDecoration: 'underline'
         }
-        return (
-            <div className="adminForm" style = {formStyle}>
-            <Helmet>
-                <title>South-Paragliding Admin</title>
-            </Helmet>
-                <Form onSubmit={this.onSubmit}>
-                    <Form.Group controlId="Admin Form" >
-                        <br />
-                        <Form.Control as="select" size="sm" name="type" onChange={(e)=>this.setContent(e)}> 
-                            <option value="ChoseSection">Alege sectiunea...</option>
-                            <option value='backgrounds'>Backgrounds</option>
-                            <option value="newsTitle">News Title</option>
-                            <option value="news">News</option>
-                            <option value='foto'>Foto</option>
-                            <option value="video">Video</option>
-                            <option value="locatiidezbor">Locatii zbor</option>
-                            <option value="rezervaricontact">Rezervari/Contact</option>
-                        </Form.Control>
-                         <br /><br />
-                        {this.state.showTitle && <Form.Control required minLength={5} 
-                            pattern = "[A-Za-z0-9\]+" type="text" value={this.state.titlu} name="titlu" 
-                            placeholder="Titlu..."  onChange={this.handleChange}/>
-                        }
-                        <br />
-                        {this.state.showDescription && <Form.Control required minLength={25} maxLength={90} type="textarea" 
-                            value={this.state.description} name="description" pattern="[!-~\s]+"
-                             placeholder="Informatii..." onChange={e => { this.handleChange(e); this.setCaracterCount(e)}}/>}
-                            {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/90 caractere folosite.</p> : null}
-                        <br />
-                        {this.state.showFotos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
-                        <br />
-                        {this.state.showVideos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
-                        <br />
-                        {this.state.showEmail && <Form.Control required pattern="[A-Za-z0-9@._-]+" 
-                            type="email" minLength={5} value ={this.state.email} name="email" 
-                            placeholder="Adresa email" onChange={this.handleChange}/> 
-                        }
-                        <br />
-                        {this.state.showPhone && <Form.Control required type="tel" 
-                            minLength={10} value ={this.state.phone} 
-                            name='phone' placeholder="Nr tel..."  pattern="[(-:]+"  
-                            onChange={this.handleChange}/>
-                        }
-                    </Form.Group>
-                    <Button type="submit" disabled={this.state.isButtonDisabled}>Submit form</Button>
-                </Form>
-                <br /><br />
-                {this.state.errors.length ? this.state.errors.map((errorObject, index) => {
-                     return <span style = {errorStyle} key = {index}>{errorObject.error}<br /></span>
-                 }) : null} <br />
-                 <ShowDataFromApi data = {this.state} />
+        return ( 
+            <div> 
+               { this.state.user ? <div className="adminForm" style = {formStyle}>
+                <Button type="submit" onClick ={this.logOutUser} style = {{float:'right', marginTop:15, marginBottom:30}}>LOG OUT</Button> 
+                <Helmet>
+                    <title>South-Paragliding Admin</title>
+                </Helmet>
+                    <Form onSubmit={this.onSubmit}>
+                        <Form.Group controlId="Admin Form" >
+                            <br />
+                            <Form.Control as="select" size="sm" name="type" onChange={(e)=>this.setContent(e)}> 
+                                <option value="ChoseSection">Alege sectiunea...</option>
+                                <option value='backgrounds'>Backgrounds</option>
+                                <option value="newsTitle">News Title</option>
+                                <option value="news">News</option>
+                                <option value='foto'>Foto</option>
+                                <option value="video">Video</option>
+                                <option value="locatiidezbor">Locatii zbor</option>
+                                <option value="rezervaricontact">Rezervari/Contact</option>
+                            </Form.Control>
+                            <br /><br />
+                            {this.state.showTitle && <Form.Control required minLength={5} 
+                                pattern = "[A-Za-z0-9\]+" type="text" value={this.state.titlu} name="titlu" 
+                                placeholder="Titlu..."  onChange={this.handleChange}/>
+                            }
+                            <br />
+                            {this.state.showDescription && <Form.Control required minLength={25} maxLength={90} type="textarea" 
+                                value={this.state.description} name="description" pattern="[!-~\s]+"
+                                placeholder="Informatii..." onChange={e => { this.handleChange(e); this.setCaracterCount(e)}}/>}
+                                {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/90 caractere folosite.</p> : null}
+                            <br />
+                            {this.state.showFotos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
+                            <br />
+                            {this.state.showVideos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
+                            <br />
+                            {this.state.showEmail && <Form.Control required pattern="[A-Za-z0-9@._-]+" 
+                                type="email" minLength={5} value ={this.state.email} name="email" 
+                                placeholder="Adresa email" onChange={this.handleChange}/> 
+                            }
+                            <br />
+                            {this.state.showPhone && <Form.Control required type="tel" 
+                                minLength={10} value ={this.state.phone} 
+                                name='phone' placeholder="Nr tel..."  pattern="[(-:]+"  
+                                onChange={this.handleChange}/>
+                            }
+                        </Form.Group>
+                        <Button type="submit" disabled={this.state.isButtonDisabled}>Submit form</Button>
+                    </Form>
+                    <br /><br />
+                    {this.state.errors.length ? this.state.errors.map((errorObject, index) => {
+                        return <span style = {errorStyle} key = {index}>{errorObject.error}<br /></span>
+                    }) : null} <br />
+                    <ShowDataFromApi data = {this.state} />
+                </div> : <h1 style={{textAlign: 'center', paddingTop:355}}>Good Bye!</h1>  }
             </div>
         )
     }

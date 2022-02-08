@@ -8,14 +8,13 @@ export default function useToken() {
       }
 
     const [token, setToken] = useState(getToken());
-    const [error, setError] = useState("");
 
     const saveToken = (userToken) => {
       sessionStorage.setItem('token', JSON.stringify(userToken));
       if(userToken.token === "You are logged in!") {
       setToken(userToken.token);
-      } else {
-        setError("Verifica credetiale!!")
+      } else if (!userToken.token) {
+        setToken(null);
       }
     }
     console.log("token::", token);
