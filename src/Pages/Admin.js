@@ -444,7 +444,8 @@ export default class Admin extends React.Component {
         }
         return ( 
             <div> 
-               { this.state.user ? <div className="adminForm" style = {formStyle}>
+            {this.state.user ?
+                <div className="adminForm" style = {formStyle}>
                 <Button type="submit" onClick ={this.logOutUser} style = {{float:'right', marginTop:15, marginBottom:30}}>LOG OUT</Button> 
                 <Helmet>
                     <title>South-Paragliding Admin</title>
@@ -495,7 +496,7 @@ export default class Admin extends React.Component {
                         return <span style = {errorStyle} key = {index}>{errorObject.error}<br /></span>
                     }) : null} <br />
                     <ShowDataFromApi data = {this.state} />
-                </div> : <h1 style={{textAlign: 'center', paddingTop:355}}>Good Bye!</h1>  }
+                </div> : <h1 style={{textAlign: 'center', paddingTop:355}}>Good Bye!</h1>}
             </div>
         )
     }
