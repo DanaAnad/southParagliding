@@ -13,6 +13,7 @@ import '../SP.css';
 import FbLogo from '../assets/SocialMedia/FbLogo.png';
 import axios from 'axios';
 import Loader from "react-loader-spinner";
+import UrlApi from "../apiUrlConfig.js";
 
 
 export default class Home extends React.Component {
@@ -143,7 +144,7 @@ export default class Home extends React.Component {
 
   
   getData = async () => {
-    const {data} = await axios.get(`http://api.southparagliding.ro/index.php/data`);
+    const {data} = await axios.get(UrlApi.Url);
     console.log("allData", data);
     let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
       this.setState({

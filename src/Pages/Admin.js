@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import UrlApi from "../apiUrlConfig";
 
 
 export default class Admin extends React.Component {
@@ -55,7 +56,7 @@ export default class Admin extends React.Component {
     }
 
     getAllData = async () => {
-        const {data} = await axios.get(`http://api.southparagliding.ro/index.php/data`);
+        const {data} = await axios.get(UrlApi.Url);
         this.setState({allData:data})
     }
 
@@ -406,7 +407,7 @@ export default class Admin extends React.Component {
                 data = {};
                 break;
         };
-        const url = 'http://api.southparagliding.ro/index.php/data';
+        const url = UrlApi.Url;
         const headers = {
                     'Accept': '*/*',
                     "Content-Type": "multipart/form-data"

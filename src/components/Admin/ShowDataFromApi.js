@@ -3,13 +3,15 @@ import {Accordion, Card, Button} from 'react-bootstrap';
 import axios from 'axios';
 import Loader from "react-loader-spinner";
 import "../../Accordion.css";
+import UrlApi from "../../apiUrlConfig";
 
 export default class ShowDataFromApi extends React.Component {
 
     deleteDataById = async (id) => {
         const dataId = { id };
         console.log("dataId::", dataId.id);
-        const url = "http://api.southparagliding.ro/index.php/data/" + dataId.id;
+        const url = UrlApi.Url + dataId.id;
+        console.log("urlApiDeleteAdmin::", url);
         const headers= {"Access-Control-Allow-Origin" : "*"};
         const resp = await axios.delete(url, headers);
         console.log("response::", resp);
