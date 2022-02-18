@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Home from "./Pages/Home.js";
 import Admin from "./Pages/Admin.js";
-import Login from "../src/components/LogIn.js";
+import Login from "./components/Login.js";
 import {Helmet} from "react-helmet";
 import useToken from "./useToken.js";
 
