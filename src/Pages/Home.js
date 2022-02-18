@@ -64,7 +64,7 @@ export default class Home extends React.Component {
   }
 
 
-  componentDidMount= async (e) => {
+  componentDidMount= async () => {
     await this.getData();
     this.state.alldata.forEach((item) => {
       const img = new Image();

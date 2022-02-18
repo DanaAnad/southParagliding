@@ -7,13 +7,12 @@ import {
 } from "react-router-dom";
 import Home from "./Pages/Home.js";
 import Admin from "./Pages/Admin.js";
-// import Authenticate from './Authentication/Authenticate';
 import Login from "../src/components/LogIn.js";
 import {Helmet} from "react-helmet";
 import useToken from "./useToken.js";
 
 
-export default function App (props) {
+export default function App () {
 
     const {token, setToken} = useToken();
   
@@ -44,8 +43,6 @@ export default function App (props) {
             </ul>
           </nav>
           <Switch>
-          
-            {/* <Authenticate /> */}
             {token ?<Route path="/admin" component={Admin} /> : <Route path="/admin" render={(props) => (<Login {...props} setToken={setToken}/>)}/>} 
             <Route path="/" component={Home}/>
           </Switch>

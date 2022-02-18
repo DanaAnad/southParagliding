@@ -45,7 +45,7 @@ export default class PhotoCarousel extends Component {
         <Carousel controls={false} interval={null} className="FotoCarousel">
           {this.props.items.reverse().map((item, index) => {
               return (
-                <Carousel.Item key={index} onClick = {this.makeImgFullScrn}>
+                <Carousel.Item key={index} >
                   <div>
                     {item.fileName && <img className ="pozaModal" src = {item.fileName} alt = {item.id} 
                       onClick = {(e) => this.props.showPhotosFullScreen(e)} onTouchEnd = {(e) => this.props.showPhotosFullScreen(e)}
