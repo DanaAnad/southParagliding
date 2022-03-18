@@ -45,7 +45,6 @@ if ($uri[1] !== 'data' && $uri[1] !== 'datas' && $uri[1] !== 'login') {
 // the post id is, of course, optional and must be a number; same with type
 $dataId = null;
 $type = null;
-$login = null;
 
 if ($uri[1] == 'datas' and isset($uri[2])) {
     $type = (string) $uri[2];
@@ -95,6 +94,4 @@ else if ($requestMethod == 'GET') {
   $controller = new Data($dbConnection, $requestMethod, $dataId, $type, $parsedUrl);  
 }
 
-
-// print_r($requestMethod);
 $controller->processRequest();

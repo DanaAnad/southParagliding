@@ -20,16 +20,12 @@ class Login {
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
         if (!$this->validateLogin($input)) {
             $response = $this->unprocessableEntityResponse();
-            // exit();
         }
         else {
             $response = $this->login($input);
         }
         
-
         $this->setResponse($response);
-
-
     }
 
     private function encrypt($someJson) {
@@ -73,7 +69,6 @@ class Login {
       ";
   
       try {
-        // response['body'] = json_encode(array('error' => 'Wrong credentials'));
         $response = $this->badRequestResponse( 'Wrong credentials');
 
         $statement = $this->db->prepare($query);
@@ -86,7 +81,6 @@ class Login {
         $result = $statement->fetch(\PDO::FETCH_ASSOC);
 
         if ($result['id']) {
-            // print_r($result);
             $encripted = $this->encrypt(array(
                 'email' => $result['email'], 
                 'password' => $result['password']
@@ -98,7 +92,6 @@ class Login {
                 't' => $encripted, 
                 'id' => $result['id']
             ));
-            // $response['body'] = $encripted;   
             $response = $this->OKResponse('token',$encripted);
 
 
