@@ -29,11 +29,9 @@ class Login {
     }
 
     private function encrypt($someJson) {
-        $someJson['strtotime'] = strtotime("now");
         $simple_string = JSON_encode($someJson);
         // Display the original string
         // echo "Original String: " . $simple_string;
-          
         // Use openssl_encrypt() function to encrypt the data
         $encryption = openssl_encrypt($simple_string, $this->ciphering,
                     $this->encryption_key, $this->options, $this->encryption_iv);
@@ -83,7 +81,8 @@ class Login {
         if ($result['id']) {
             $encripted = $this->encrypt(array(
                 'email' => $result['email'], 
-                'password' => $result['password']
+                'password' => $result['password'],
+                'strtotime' => strtotime("now")
             ));
 
             $query = "update users set token=:t, validUntil=now() where id=:id;";
@@ -116,8 +115,7 @@ class Login {
         return true;
     }
 
-    private function unprocessableEntityResponse()
-    {
+    private function unprocessableEntityResponse() {
 
       $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
       $response['body'] = json_encode([
@@ -126,15 +124,13 @@ class Login {
       return $response;
     }
   
-    private function notFoundResponse()
-    {
+    private function notFoundResponse() {
       $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
       $response['body'] = null;
       return $response;
     }
   
-    private function badRequestResponse($reason ='')
-    {
+    private function badRequestResponse($reason ='') {
       $response['status_code_header'] = 'HTTP/1.1 400 Bad Request';
       $response['body'] = json_encode(['error'=>$reason]);
       return $response;
@@ -146,11 +142,10 @@ class Login {
         return $response;        
     }
 
-    public function unauthorizedRequestResponse($reason ='')
-    {
-    $response['status_code_header'] = 'HTTP/1.1 401 Unauthorized';
-    $response['body'] = json_encode(['error'=>$reason]);
-    return $response;
+    public function unauthorizedRequestResponse($reason ='') {
+        $response['status_code_header'] = 'HTTP/1.1 401 Unauthorized';
+        $response['body'] = json_encode(['error'=>$reason]);
+        return $response;
     }  
 
     public function extendSession($user, $password, $token) {
