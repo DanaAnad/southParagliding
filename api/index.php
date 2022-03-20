@@ -2,11 +2,15 @@
 require "./database.php";
 require "./datas.php";
 
+
 header("Access-Control-Allow-Origin: *");
+// http://southparagliding.ro
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: OPTIONS,GET,POST,PUT,DELETE");
 header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Accept: *");
+header("Access-Control-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods, Content-Type, Accept, Authorization, X-Request-With");
+
 
 $parsedUrl =  $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/';
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -20,6 +24,7 @@ if ($uri[1] !== 'data') {
     header("HTTP/1.1 404 Not Found");
     exit();
   }
+  print_r($uri[1]);
 }
 
 // endpoints starting with `/datas` for GET by type results in a 404 Not Found

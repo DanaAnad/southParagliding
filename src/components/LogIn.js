@@ -1,70 +1,66 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import PropTypes from 'prop-types';
+import axios from 'axios';
 
-export default function Login ({ setToken }) {
+
+export default function Login () {
 
     const [email, setEmail]=useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    const [error] = useState("");
 
-   const loginUser = async (credentials) => {
-        if(
-            (email === "dana@gmail.com" && password === "dana") ||
-            (email === "mircea@gmail.com" && password === "mircea")
-        ) {
-            return fetch("http://localhost:8080/admin", {
-                method:"POST",
-                headers:{
-                    "Content-type":"application/json",
-                },
-                body:JSON.stringify(credentials)
-            })
-            .then(
-                data => data.json())
-            .catch(err => console.log(err))
-        } 
-    } 
-    useEffect(() => {
-        const tokenAdmin = sessionStorage.getItem("token");
-        console.log("tokenAdmin::", tokenAdmin);
-    });
-    
+
+const loginUser =  async () => {
+    console.log("email::::", email);
+    console.log("PASS:::", password); 
+        try{
+            const apiUrl = " http://api.southparagliding.ro/data/users";
+            const headers = {
+                'Content-Type' : 'application/json'
+            };
+            const data  = {
+                email:email, 
+                password:password
+            }
+            const response = await axios.post(apiUrl, headers, data)
+            console.log("response login api::", response);
+            console.log("EXECUTION CHECKK!!")
+        }
+        catch (error) {
+            console.log("errorPostLogin::", error);
+            throw new Error(error.message);
+        }
+    }
+ 
 
    const handleSubmit = async (e) => {
        e.preventDefault();
-       const token = await loginUser({
-        email,
-        password
-    });
-    if(token){
-        setToken(token);
-    } else { 
-        setError("Datele introduse sunt gresite. Verifica te rog.");
-    };
+       loginUser();
+       return false;
    }
+
     let errorStyle = {
-        textAlign:"center",
-        margin:"auto",
-        alignItems:"center",
-        width:"50%",
-        paddingTop: "100px",
-        color:"red"
+            textAlign:"center",
+            margin:"auto",
+            alignItems:"center",
+            width:"50%",
+            paddingTop: "100px",
+            color:"red"
     }
 
     let formStyle = {
-        paddingTop:"50px",
-        width: '30%' ,
-        margin: 'auto',
-        textAlign: 'center',
+            paddingTop:"50px",
+            width: '30%' ,
+            margin: 'auto',
+            textAlign: 'center',
     }
     let h3Style = {
-        alignItems: 'center',
-        paddingTop:"100px",
-        width: '30%' ,
-        margin: 'auto',
-        textAlign: 'center',
+            alignItems: 'center',
+            paddingTop:"100px",
+            width: '30%' ,
+            margin: 'auto',
+            textAlign: 'center',
     }
 
     return (
@@ -88,6 +84,6 @@ export default function Login ({ setToken }) {
     )
 }
 
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired,
-  }
+// Login.propTypes = {
+//     setToken: PropTypes.func.isRequired,
+//   }

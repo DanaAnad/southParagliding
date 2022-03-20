@@ -9,7 +9,7 @@ export default class NewsCarousel extends Component {
     componentDidMount() {
         this.props.items.forEach((item) => {
             const img = new Image();
-            img.src = item.fileName;
+            img.src = item.data.data.fileName;
             console.log("image::", img); 
         });
     }
@@ -23,13 +23,13 @@ export default class NewsCarousel extends Component {
                     <meta name="viewport" content="width=device-width, initial-scale=1"/>
                     <title>News - SouthParagliding</title>
                     {this.props.items.map((item, index)=> <meta key= {index} name="title" 
-                        content={item.titlu}
+                        content={item.data.data.titlu}
                     /> 
                     )}
                     {this.props.items.map((item, index) => <meta key={index} name="description" 
-                        content={item.description}
+                        content={item.data.data.description}
                     /> )}
-                    {this.props.items.map((item, index) => <meta key= {index} name = "image" content = {item.fileName} />
+                    {this.props.items.map((item, index) => <meta key= {index} name = "image" content = {item.data.data.fileName} />
                     )}
                     <meta name="keywords"
                         content="informatii noi despre zbor cu parapanta, parapanta, parapantism, Craiova, south paragliding, paragliding, zbor cu parapanta, parapanta Craiova, south paragliding Craiova, zbor cu parapanta Craiova
@@ -46,16 +46,16 @@ export default class NewsCarousel extends Component {
                     {this.props.items.reverse().map((item, index) => {
                             return (
                                 <Carousel.Item className="newsItem" key={index}>
-                                {item.fileName ? <a href ="https://www.facebook.com/zborcuparapantaranca">
+                                {item.data.data.fileName ? <a href ="https://www.facebook.com/zborcuparapantaranca">
                                     <img 
                                     className="pozaModalNews"
-                                    src={item.fileName}
+                                    src={item.data.data.fileName}
                                     alt="slide"
                                     /> 
                                 </a>  : null}
                                     <Carousel.Caption className="newsText">
-                                    <span>{item.titlu}</span>
-                                    <p>{item.description}</p>
+                                    <span>{item.data.data.titlu}</span>
+                                    <p>{item.data.data.description}</p>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                             )
@@ -68,16 +68,16 @@ export default class NewsCarousel extends Component {
                     {this.props.items.reverse().map((item, index) => {
                             return (
                                 <Carousel.Item className="newsItem" key={index}>
-                                {item.fileName ? 
+                                {item.data.data.fileName ? 
                                     <img 
                                     className="pozaModalNews"
-                                    src={item.fileName}
+                                    src={item.data.data.fileName}
                                     alt="slide"
                                     /> 
                                   : null}
                                     <Carousel.Caption className="newsText">
-                                    <span>{item.titlu}</span>
-                                    <p>{item.description}</p>
+                                    <span>{item.data.data.titlu}</span>
+                                    <p>{item.data.data.description}</p>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                             )

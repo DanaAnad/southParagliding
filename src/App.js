@@ -33,17 +33,16 @@ export default function App () {
         </Helmet>
           <nav className="routes">
             <ul>
-
-            <li key = 'SP-homepage' >
-                <Link to='/'>South-Paragliding</Link>
-              </li>
-              <li key = 'admin' >
-                <Link to='/admin'>South-Para-Admin</Link>
-              </li>
+              <li key = 'SP-homepage' >
+                  <Link to='/'>South-Paragliding</Link>
+                </li>
+                <li key = 'admin' >
+                  <Link to='/admin'>South-Para-Admin</Link>
+                </li>
             </ul>
           </nav>
           <Switch>
-            {token ?<Route path="/admin" component={Admin} /> : <Route path="/admin" render={(props) => (<Login {...props} setToken={setToken}/>)}/>} 
+            {token ?<Route path="/admin" component={Admin} /> : <Route path="/admin" render={(props) =>(<Login {...props} setToken={setToken}/>)}/>} 
             <Route path="/" component={Home}/>
           </Switch>
         </div>

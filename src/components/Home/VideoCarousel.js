@@ -10,7 +10,7 @@ export default class VideoCarousel extends Component {
   componentDidMount() {
     this.props.items.forEach((item) => {
       const img = new Image();
-      img.src = item.fileName;
+      img.src = item.data.data.fileName;
       console.log("image::", img); 
   });
 }
@@ -25,7 +25,7 @@ export default class VideoCarousel extends Component {
       <title>Videos - SouthParagliding</title>
       <meta name="description" content="Poze si filme de la zbor cu echipa South Paraglidig Craiova" />
       {this.props.items.map((item, index)=>
-          <meta key = {index} name = "video" content={item.fileName} />
+          <meta key = {index} name = "video" content={item.data.data.fileName} />
               )} 
       </Helmet>
       {this.props.items.length === 1 ? 
@@ -34,7 +34,7 @@ export default class VideoCarousel extends Component {
             return (
               <Carousel.Item key={index}>
                 <video className="videoItem" controls="controls">
-                    {item.fileName && <source className="img-fluid" src={item.fileName} type="video/mp4"/> }
+                    {item.data.data.fileName && <source className="img-fluid" src={item.data.data.fileName} type="video/mp4"/> }
                 </video>
               </Carousel.Item>
             )
@@ -47,7 +47,7 @@ export default class VideoCarousel extends Component {
             return (
               <Carousel.Item key={index}>
                 <video className="videoItem" controls="controls">
-                    {item.fileName && <source className="img-fluid" src={item.fileName} type="video/mp4"/> }
+                    {item.data.data.fileName && <source className="img-fluid" src={item.data.data.fileName} type="video/mp4"/> }
                 </video>
               </Carousel.Item>
             )

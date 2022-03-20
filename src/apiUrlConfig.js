@@ -1,6 +1,6 @@
 
 const UrlApi = {
-  Url  : "http://dana:dana@api.southparagliding.ro/index.php/data"
+  Url  : "http://api.southparagliding.ro/data" 
 }
 
 export default UrlApi;

@@ -83,6 +83,7 @@
     border-radius: 7px;
     object-fit: cover;
     aspect-ratio: 16/9;
+    cursor: pointer;
   }
 
   .carousel-indicators {
@@ -152,6 +153,7 @@
     align-items: center;
     overflow: hidden;
     aspect-ratio: 16/9;
+    cursor: pointer;
   }
 
   .FotoCarousel .carousel-indicators {
@@ -276,6 +278,7 @@
     object-fit: cover;
     align-items: center;
     aspect-ratio: 16/9;
+    cursor: pointer;
   }
  
   .FotoCarousel .carousel-indicators {
@@ -430,6 +433,7 @@
     object-fit: cover;
     align-items: center;
     aspect-ratio: 16/9;
+    cursor: pointer;
   }
  
   .carousel-indicators {

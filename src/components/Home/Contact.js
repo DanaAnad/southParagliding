@@ -1,11 +1,15 @@
 import React from 'react';
+import "../../Contact.css";
 import contactLogo from "../../assets/icons/contactIcon.png";
 import  FollowUs from "../../assets/SocialMedia/FollowUs.png";
-import "../../Contact.css";
 import {Helmet} from "react-helmet";
 
 export default class Contact extends React.Component {
-
+    componentDidMount() {
+        const img= new Image();
+        img.src = FollowUs;
+        console.log("Contact:IMG:",img);
+    }
     render() {
         console.log("propsContact::", this.props);
         return(
@@ -32,15 +36,15 @@ export default class Contact extends React.Component {
                                     return (
                                         <div className="" key = {index}>
                                             <div className="contactText" >
-                                                <span key="title">{row.titlu}</span> <br /><br />
-                                                <span className = "contactDescription" key="text">{row.description}</span><br /> <br />
+                                                <span key="title">{row.data.data.titlu}</span> <br /><br />
+                                                <span className = "contactDescription" key="text">{row.data.data.description}</span><br /> <br />
                                             </div>
                                             <div className="contact" >
-                                                <a href ={`tel:${row.phone}`}>{row.phone}</a><br />
-                                                <a href = {`mailto:${row.email}`}>{row.email}</a><br /><br />
+                                                <a href ={`tel:${row.data.data.phone}`}>{row.data.data.phone}</a><br />
+                                                <a href = {`mailto:${row.data.data.email}`}>{row.data.data.email}</a><br /><br />
                                             </div>
                                             <div className="socialMediaContact" >
-                                            <a href="https://www.facebook.com/zborcuparapantaranca"><img src ={FollowUs} alt="fb"/></a>
+                                            <a href="https://www.facebook.com/zborcuparapantaranca"><img src ={FollowUs} alt="fbFollowUs"/></a>
                                             </div>
                                         </div>
                                     )
