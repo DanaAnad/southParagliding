@@ -13,6 +13,7 @@ import '../SP.css';
 import FbLogo from '../assets/SocialMedia/FbLogo.png';
 import axios from 'axios';
 import Loader from "react-loader-spinner";
+import UrlApi from "../apiUrlConfig.js";
 
 
 export default class Home extends React.Component {
@@ -54,7 +55,6 @@ export default class Home extends React.Component {
     });
   };
   closeCustomModal =() => {
-    console.log("closingModal:::")
     this.setState({
       customModal:{
         show: false,
@@ -64,42 +64,52 @@ export default class Home extends React.Component {
   }
 
 
-  componentDidMount= async (e) => {
+
+  componentDidMount= async () => {
     await this.getData();
     this.state.alldata.forEach((item) => {
-      const img = new Image();
-      img.src = item.data.fileName;
+      // console.log("itemPreloadImg::", item)
+      if(item.data.fileName) {
+        const img = new Image();
+        img.src = item.data.fileName;
+      }
     });
       let background = this.state.alldata.filter(item => item.type === "backgrounds")
+      console.log("BACKGROUND::", background);
         const img = new Image();
         img.src = background[background.length-1].data.fileName;
+        console.log("imgSRC::", img.src);
         this.setState({
           backgroundImg: img.src,
         });
-      
-        window.addEventListener("resize", this.resizePicture, console.log("Mounting component:::"));
+        const imgLogo = new Image();
+        imgLogo.src = FbLogo;
+
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>;
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
 }
  
   setContentByType = (type) =>  {
     let items = this.state.alldata.filter(row => row.type === type);
-    items =  items.map(row => row.data);
+    console.log("itemsTypeHomeIDCheck::", items);
+    const itemsData =  items.map(row => {return{data:row}});
+    console.log("itemsDataRow:::", itemsData);
+
     switch(type) {
       case 'news' : {
-        return  <NewsCarousel title = {this.state.newsTitle} items = {items} />
+        return  <NewsCarousel title = {this.state.newsTitle} items = {itemsData} />
       }
       case 'foto': {
-        return <PhotoCarousel items = {items} showPhotosFullScreen = {this.setContentForFullScreenCustomModal} />
+        return <PhotoCarousel items = {itemsData}  showPhotosFullScreen = {this.setContentForFullScreenCustomModal} />
       }
       case 'locatiidezbor': {
-        return <LocationsCarousel items = {items} />
+        return <LocationsCarousel items = {itemsData} />
       }
       case 'video': {
-        return <VideoCarousel items = {items} />
+        return <VideoCarousel items = {itemsData} />
       }
       case 'rezervaricontact': {
-        return <Contact items = {items} />
+        return <Contact items = {itemsData} />
       }
       default: 
         break;
@@ -144,7 +154,9 @@ export default class Home extends React.Component {
 
   
   getData = async () => {
-    const {data} = await axios.get(`http://api.southparagliding.ro/index.php/data`);
+
+    try {
+    const {data} = await axios.get(UrlApi.Url);
     console.log("allData", data);
     let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
       this.setState({
@@ -152,8 +164,22 @@ export default class Home extends React.Component {
         newsTitle: titluStiri[titluStiri.length-1].data.titluStiri,
         isLoading: false
       });
+      console.log("thisStateAllData:getDataHome:", this.state.alldata);
+    }
+    catch (e) {
+      throw new Error(e.message);
+    }
   }
 
+  toggleFullScreenPhoto = () => {
+    const FullScreenState = this.state.customModal.show;
+    console.log("fullScreenPhoto::", FullScreenState);
+    this.setState({
+      customModal : {
+        show:!FullScreenState
+      }
+    })
+  }
 
   setContentForFullScreenCustomModal = (e) => {
     const fullScreenImg = {
@@ -169,19 +195,17 @@ export default class Home extends React.Component {
           customModal : {
             show: true, 
             data:[
-              <img src = {src} className = "fullScreenPic" alt = "fullScreen-foto" key={index}  />
+              <img src = {src} onClick={this.toggleFullScreenPhoto} onTouchEnd= {this.toggleFullScreenPhoto}
+               className = "fullScreenPic" alt = "fullScreen-foto" key={index}  />
             ]
           },
-          // modal : {
-          //   show:false
-          // }
         })
       )
     });
   }
 
   
-  render(){
+  render(e){
       console.log("alldata::", this.state.alldata);
       const background = {
         backgroundImage:`url(${this.state.backgroundImg})`
@@ -207,6 +231,9 @@ export default class Home extends React.Component {
     } else {
       return (
         <div>
+         {e ? 
+          <p>{e.message}</p> : 
+        <div>
           <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
         <div className="Home" style= {background}>
@@ -230,10 +257,12 @@ export default class Home extends React.Component {
           </div>     
           <div className="footer">
             <div className="socialMedia">
-              <a href = "https://www.facebook.com/zborcuparapantaranca"><img className ="socialMedia" src = {FbLogo} alt = "followUs"/></a>
+              <a href = "https://www.facebook.com/zborcuparapantaranca"><img className ="socialMedia" src = {FbLogo} alt = "fbLogo"/></a>
             </div>
           </div>
         </div>
+        </div>
+      }
         </div>
       );
     }

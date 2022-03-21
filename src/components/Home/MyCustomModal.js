@@ -8,9 +8,6 @@ export default class MyCustomModal extends React.Component {
       <div className ="customModal" show={this.props.show}>
           <div className="customModalDialog" >
             <div className="customModalHeader">
-              <a href='true' className="MyCustomModalCloseBtn" onClick={(e) => {e.preventDefault(); this.props.onHide()}}>
-                  <span className="customModalCloseIcon">&times;</span>
-              </a>
             </div>
               <div className="customModalBody">
                 <div className="customModalData">

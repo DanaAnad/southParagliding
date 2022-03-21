@@ -19,14 +19,15 @@ export default class PhotoCarousel extends Component {
 
   componentDidMount() { 
     this.props.items.forEach((item) => {
+      console.log("itemPhotoCarouselID::", item);
       const img = new Image();
-      img.src = item.fileName;
+      img.src = item.data.data.fileName;
       console.log("image::", img); 
     });
   }
 
   render(){
-    console.log("allProps::", this.props);
+    console.log("allProps:Photo:", this.props);
     return(
       <div >
        <Helmet>
@@ -35,7 +36,7 @@ export default class PhotoCarousel extends Component {
           <title>Foto - SouthParagliding</title>
           <meta name="description" content="Poze si filme de la zbor cu echipa South Paraglidig Craiova" />
              {this.props.items.map((item, index) =>
-          <meta key ={index} name = "image" content={item.fileName}/>
+          <meta key ={index} name = "image" content={item.data.data.fileName}/>
               )} 
           <meta name="keywords"
             content="parapanta, locatii de zbor, parapantism, Craiova, Romania, south paragliding, paragliding, zbor cu parapanta"
@@ -45,9 +46,9 @@ export default class PhotoCarousel extends Component {
         <Carousel controls={false} interval={null} className="FotoCarousel">
           {this.props.items.reverse().map((item, index) => {
               return (
-                <Carousel.Item key={index} onClick = {this.makeImgFullScrn}>
+                <Carousel.Item key={index} >
                   <div>
-                    {item.fileName && <img className ="pozaModal" src = {item.fileName} alt = {item.id} 
+                    {item.data.data.fileName && <img className ="pozaModal" src = {item.data.data.fileName} alt = {item.id} 
                       onClick = {(e) => this.props.showPhotosFullScreen(e)} onTouchEnd = {(e) => this.props.showPhotosFullScreen(e)}
                     />}
                   </div>
@@ -59,10 +60,11 @@ export default class PhotoCarousel extends Component {
           this.props.items.length > 1 ? 
         <Carousel interval={null} className="FotoCarousel">
           {this.props.items.reverse().map((item, index) => {
+            console.log("ITEMMMM::", item);
               return (
                 <Carousel.Item key={index}>
                   <div>
-                    {item.fileName && <img className ="pozaModal" src = {item.fileName} alt = {item.id} 
+                    {item.data.data.fileName && <img className ="pozaModal" src = {item.data.data.fileName} alt = {item.id} 
                       onClick = {(e) => this.props.showPhotosFullScreen(e)} onTouchEnd = {(e) => this.props.showPhotosFullScreen(e)}
                     />}
                   </div>
