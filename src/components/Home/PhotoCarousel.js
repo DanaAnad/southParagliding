@@ -18,10 +18,8 @@ export default class PhotoCarousel extends Component {
   };
 
   componentDidMount() { 
-    // console.log("propsId::", this.props.id);
-    this.props.items.forEach((item, id) => {
+    this.props.items.forEach((item) => {
       console.log("itemPhotoCarouselID::", item);
-      // console.log("idPhotoCarouselID::", id);
       const img = new Image();
       img.src = item.data.data.fileName;
       console.log("image::", img); 
