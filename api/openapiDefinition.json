@@ -31,11 +31,8 @@
                         "example": 1
                       },
                       "data": {
-                        "type": "object",
-                        "example": {
-                          "fileName": "http://ms.homens.tricu.ro:80/upload/32224130561058e22ab316.jpg",
-                          "anyOtherKey:\"anyOtherValueWhichIsStringOrInterger\"": null
-                        }
+                        "type": "string",
+                        "example": "{\"test\":1}"
                       },
                       "type": {
                         "type": "string",
@@ -56,37 +53,39 @@
       "post": {
         "summary": "Post new data row",
         "description": "Post new data row",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "attachedFile": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "binary"
-                    }
+                  "data": {
+                    "type": "string",
+                    "example": "{\"test\":1}"
                   },
                   "type": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "1"
                   },
                   "status": {
-                    "type": "integer"
-                  },
-                  "anyOtherKey": {
-                    "oneOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "integer"
-                      }
-                    ]
+                    "type": "integer",
+                    "example": 1
                   }
                 },
                 "required": [
+                  "data",
                   "type"
                 ]
               }
@@ -94,15 +93,19 @@
           }
         },
         "responses": {
-          "201": {
-            "description": "Data inserted",
+          "200": {
+            "description": "A JSON array of data",
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "example": 1
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      }
                     }
                   }
                 }
@@ -161,11 +164,8 @@
                       "example": 1
                     },
                     "data": {
-                      "type": "object",
-                      "example": {
-                        "fileName": "http://ms.homens.tricu.ro:80/upload/32224130561058e22ab316.jpg",
-                        "anyOtherKey:\"anyOtherValueWhichIsStringOrInterger\"": null
-                      }
+                      "type": "string",
+                      "example": "{\"test\":1}"
                     },
                     "type": {
                       "type": "string",
@@ -199,6 +199,15 @@
               "format": "int64",
               "minimum": 1
             }
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "token",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -223,6 +232,15 @@
               "type": "integer",
               "format": "int64",
               "minimum": 1
+            }
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "token",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -274,11 +292,8 @@
                         "example": 1
                       },
                       "data": {
-                        "type": "object",
-                        "example": {
-                          "fileName": "http://ms.homens.tricu.ro:80/upload/32224130561058e22ab316.jpg",
-                          "anyOtherKey:\"anyOtherValueWhichIsStringOrInterger\"": null
-                        }
+                        "type": "string",
+                        "example": "{\"test\":1}"
                       },
                       "type": {
                         "type": "string",
@@ -328,11 +343,8 @@
                         "example": 1
                       },
                       "data": {
-                        "type": "object",
-                        "example": {
-                          "fileName": "http://ms.homens.tricu.ro:80/upload/32224130561058e22ab316.jpg",
-                          "anyOtherKey:\"anyOtherValueWhichIsStringOrInterger\"": null
-                        }
+                        "type": "string",
+                        "example": "{\"test\":1}"
                       },
                       "type": {
                         "type": "string",
@@ -350,6 +362,114 @@
           },
           "404": {
             "description": "Data not found"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "login",
+        "description": "Login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "u": {
+                    "type": "string",
+                    "example": "user"
+                  },
+                  "p": {
+                    "type": "string",
+                    "example": "passwd"
+                  }
+                },
+                "required": [
+                  "u",
+                  "p"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A JSON array of data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "token": {
+                        "type": "integer",
+                        "example": "asldkjlop48r98sdf"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string",
+                        "example": "Wrong credentials"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string",
+                        "example": "Unauthorized"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string",
+                        "example": "Invalid input"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
