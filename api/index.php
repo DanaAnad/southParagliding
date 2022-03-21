@@ -4,6 +4,10 @@ require "./datas.php";
 
 
 header("Access-Control-Allow-Origin: *");
+<<<<<<< Updated upstream
+=======
+header("Access-Control-Allow-Headers: Origin");
+>>>>>>> Stashed changes
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: OPTIONS,GET,POST,PUT,DELETE");
 header("Access-Control-Max-Age: 3600");
