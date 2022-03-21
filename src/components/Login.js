@@ -86,4 +86,8 @@ const loginUser =  async () => {
 
 // Login.propTypes = {
 //     setToken: PropTypes.func.isRequired,
+<<<<<<< HEAD
 //   }
+=======
+//   }
+>>>>>>> f865f06c1c2d384fb811da47e04501b0c8ffb3a5
