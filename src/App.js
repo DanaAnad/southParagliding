@@ -9,12 +9,9 @@ import Home from "./Pages/Home.js";
 import Admin from "./Pages/Admin.js";
 import Login from "./components/Login.js";
 import {Helmet} from "react-helmet";
-// import useToken from "./useToken.js";
 
 
 export default function App () {
-
-    const {token, setToken} = useToken();
   
     return (
       <div>
@@ -42,8 +39,9 @@ export default function App () {
             </ul>
           </nav>
           <Switch>
-            {token ?<Route path="/admin" component={Admin} /> : <Route path="/admin" render={(props) =>(<Login {...props} setToken={setToken}/>)}/>} 
-            <Route path="/" component={Home}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/admin" component={Admin} />  
+          <Route path="/" component={Home}/>
           </Switch>
         </div>
       </Router> 

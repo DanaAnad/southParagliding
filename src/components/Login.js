@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useHistory } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -6,30 +7,40 @@ import axios from 'axios';
 
 export default function Login () {
 
+    const history = useHistory();
+
     const [email, setEmail]=useState("");
     const [password, setPassword] = useState("");
-    const [error] = useState("");
+    const [token, setToken] = useState("");
+    const [error, setError] = useState(false);
 
 
 const loginUser =  async () => {
-    console.log("email::::", email);
-    console.log("PASS:::", password); 
+    let data;
+        const apiUrl = "http://ms.homens.tricu.ro/login";
+        const headers = {
+            "Content-Type": "application/json"
+        };
+        data = JSON.stringify({"u":email, "p":password});
+        console.log("stringgg::", data)
         try{
-            const apiUrl = " http://api.southparagliding.ro/data/users";
-            const headers = {
-                'Content-Type' : 'application/json'
-            };
-            const data  = {
-                email:email, 
-                password:password
+            const response = await axios({
+                method:"POST",
+                url:apiUrl,
+                headers:headers,
+                data
+            })
+            console.log("response::", response.data.token);
+            if(response.status === 200){
+                setToken(response.data.token)
+                console.log("tokenLogin::", token);
+                history.push('/admin', {token:response.data.token});
             }
-            const response = await axios.post(apiUrl, headers, data)
-            console.log("response login api::", response);
-            console.log("EXECUTION CHECKK!!")
         }
         catch (error) {
             console.log("errorPostLogin::", error);
-            throw new Error(error.message);
+            setError(true);
+
         }
     }
  
@@ -37,7 +48,6 @@ const loginUser =  async () => {
    const handleSubmit = async (e) => {
        e.preventDefault();
        loginUser();
-       return false;
    }
 
     let errorStyle = {
@@ -65,7 +75,7 @@ const loginUser =  async () => {
 
     return (
     <div>
-       {error && (<h5 style = {errorStyle}>{error}</h5>)} 
+        {error && (<h5 style = {errorStyle}>Log in failed. Check you credentials.</h5>)} 
         <div>
            <h3 style = {h3Style}>Login</h3> 
             <div className="loginForm" style = {formStyle}>
@@ -83,6 +93,3 @@ const loginUser =  async () => {
     </div>
     )
 }
-// Login.propTypes = {
-//     setToken: PropTypes.func.isRequired,
-//   }

@@ -8,12 +8,17 @@ import UrlApi from "../../apiUrlConfig";
 export default class ShowDataFromApi extends React.Component {
 
     deleteDataById = async (id) => {
+        const token = this.props.data.loginToken;
+        console.log("tokenShowDataApi::", token);
         const dataId = { id };
         console.log("dataId::", dataId.id);
-        const url = UrlApi.Url + "/" + dataId.id;
+        const url = "http://ms.homens.tricu.ro/data/"+dataId.id;
         console.log("urlApiDeleteAdmin::", url);
-        const headers= {"Access-Control-Allow-Origin" : "*"};
-        const resp = await axios.delete(url, headers);
+        const options = {
+            headers:{
+                "Token":token}
+        };
+        const resp = await axios.delete(url, options);
         console.log("response::", resp);
         const index = this.props.data.allData.findIndex(x => x.id === dataId.id);
         console.log("indexxx::", index); 
@@ -24,7 +29,7 @@ export default class ShowDataFromApi extends React.Component {
     }
 
     render() {
-        console.log("propsShowDataApi::", this.props);
+        console.log("propsShowDataApi::", this.props.data.loginToken);
         const reversedAllData = this.props.data.allData.slice().reverse();
         
         return(

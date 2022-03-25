@@ -154,9 +154,8 @@ export default class Home extends React.Component {
 
   
   getData = async () => {
-
     try {
-    const {data} = await axios.get(UrlApi.Url);
+    const {data} = await axios.get("http://ms.homens.tricu.ro/data");
     console.log("allData", data);
     let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
       this.setState({
