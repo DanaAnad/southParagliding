@@ -13,6 +13,7 @@ export default class Admin extends React.Component {
         super(props);
 
         this.state = {
+            loginToken:"",
             allData:[],
             isButtonDisabled:true,
             showTitle:false,
@@ -31,32 +32,29 @@ export default class Admin extends React.Component {
             file: false,
             descriptionCaracterCount:0,
             titleCaracterCount:0,
-            user:false
+            tokenErr:false,
+            submitErr:false
         }    
     }
 
     componentDidMount = async () =>  {
       this.getAllData();
-      let tokenAdmin = sessionStorage.getItem("token");
-      console.log("tokenAdmin::", tokenAdmin);
-      if(tokenAdmin) {
-          this.setState({
-              user:true
-          })
+      try{
+        if(this.props.history.location.state.token) {
+            this.setState({
+                loginToken:this.props.history.location.state.token,
+            }) 
+          }
       }
+      catch(e){
+          this.setState({noToken:true})
+          console.log("eroarereee::",e.message)
+      }
+     
     }
     
-    logOutUser = () => {
-        sessionStorage.clear();
-        const tokenAdmin = sessionStorage.getItem("token");
-        console.log("tokenAdmin:logout:", tokenAdmin);
-        !tokenAdmin && this.setState({
-            user:false
-        })
-    }
-
     getAllData = async () => {
-        const {data} = await axios.get(UrlApi.Url);
+        const {data} = await axios.get("http://ms.homens.tricu.ro/data");
         this.setState({allData:data})
     }
 
@@ -408,12 +406,16 @@ export default class Admin extends React.Component {
                 break;
         };
         const url = UrlApi.Url;
-        const headers = {
-                    'Accept': '*/*',
-                    "Content-Type": "multipart/form-data"
+        const token = this.props.history.location.state.token;
+        const options = {
+             headers : {
+                'Accept': '*/*',
+                "Content-Type": "multipart/form-data",
+                "Token": token,
+             }
                 };
             try {
-                const response = await axios.post(url, data, headers);
+                const response = await axios.post("http://ms.homens.tricu.ro/data", data, options);
                 console.log("response::", response);
                 response.status === 201 && (lastInsertedData.id = response.data.id);
                 console.log("lastInsertedData::", lastInsertedData);
@@ -427,27 +429,31 @@ export default class Admin extends React.Component {
                 this.resetInputs();
             } 
             catch (err) {console.log("error::", err.response);
-                throw new Error("Ceva este in neregula. Verifica toate campurile...")
+            this.setState({submitErr:true})
+                // throw new Error("Error::", err.message)
             }; 
     };
 
-    render () {
-        console.log("stateAll::", this.state);
+    render () {        
         let formStyle = {
             width: '50%' ,
             margin: 'auto',
             textAlign: 'center',
         }
         let errorStyle = {
+            paddingTop:"250px",
+            width: '50%' ,
+            margin: 'auto',
             fontSize:"25px",
             color:"red",
-            textDecoration: 'underline'
+            textAlign: 'center',
+            // textDecoration: 'underline'
         }
         return ( 
             <div> 
-            {this.state.user ?
+                {(this.state.noToken || this.state.submitErr) ? 
+                 <p style = {errorStyle}>Something went wrong.<br/>Please login or try again.</p> :
                 <div className="adminForm" style = {formStyle}>
-                <Button type="submit" onClick ={this.logOutUser} style = {{float:'right', marginTop:15, marginBottom:30}}>LOG OUT</Button> 
                 <Helmet>
                     <title>South-Paragliding Admin</title>
                 </Helmet>
@@ -466,7 +472,7 @@ export default class Admin extends React.Component {
                             </Form.Control>
                             <br /><br />
                             {this.state.showTitle && <Form.Control required minLength={5} 
-                                pattern = "[A-Za-z0-9\]+" type="text" value={this.state.titlu} name="titlu" 
+                                pattern = ".*[^a-zA-Z0-9_].*" type="text" value={this.state.titlu} name="titlu" 
                                 placeholder="Titlu..."  onChange={this.handleChange}/>
                             }
                             <br />
@@ -497,7 +503,8 @@ export default class Admin extends React.Component {
                         return <span style = {errorStyle} key = {index}>{errorObject.error}<br /></span>
                     }) : null} <br />
                     <ShowDataFromApi data = {this.state} />
-                </div> : <h1 style={{textAlign: 'center', paddingTop:355}}>Good Bye!</h1>}
+                </div> 
+                }
             </div>
         )
     }

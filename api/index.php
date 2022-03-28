@@ -6,10 +6,12 @@ require "./login.php";
 
 
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Origin");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: OPTIONS,GET,POST,PUT,DELETE");
 header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods, Content-Type, Authorization, X-Request-With");
+header('Access-Control-Allow-Headers: Authorization, Access-Control-Allow-Headers, Content-Type, Accept, X-Request-With');
+header('Accept: */*');
 
 
 if (!function_exists('getallheaders')) 
