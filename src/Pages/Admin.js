@@ -33,18 +33,24 @@ export default class Admin extends React.Component {
             descriptionCaracterCount:0,
             titleCaracterCount:0,
             tokenErr:false,
+            submitErr:false
         }    
     }
 
     componentDidMount = async () =>  {
       this.getAllData();
-      let tokenAdmin = this.props.history.location.state.token
-      console.log("tokenAdmin::", tokenAdmin);
-      if(tokenAdmin) {
-          this.setState({
-              loginToken:tokenAdmin,
-          })
+      try{
+        if(this.props.history.location.state.token) {
+            this.setState({
+                loginToken:this.props.history.location.state.token,
+            }) 
+          }
       }
+      catch(e){
+          this.setState({noToken:true})
+          console.log("eroarereee::",e.message)
+      }
+     
     }
     
     getAllData = async () => {
@@ -279,7 +285,7 @@ export default class Admin extends React.Component {
 
     onSubmit = async (e) => {
         e.preventDefault(); 
-        let data = {};
+        let data = [];
         let lastInsertedData = {};
         const formData = new FormData();
         const type =this.state.type;
@@ -403,6 +409,7 @@ export default class Admin extends React.Component {
         const token = this.props.history.location.state.token;
         const options = {
              headers : {
+                'Accept': '*/*',
                 "Content-Type": "multipart/form-data",
                 "Token": token,
              }
@@ -422,7 +429,8 @@ export default class Admin extends React.Component {
                 this.resetInputs();
             } 
             catch (err) {console.log("error::", err.response);
-                throw new Error("Error::", err.message)
+            this.setState({submitErr:true})
+                // throw new Error("Error::", err.message)
             }; 
     };
 
@@ -433,13 +441,18 @@ export default class Admin extends React.Component {
             textAlign: 'center',
         }
         let errorStyle = {
+            paddingTop:"250px",
+            width: '50%' ,
+            margin: 'auto',
             fontSize:"25px",
             color:"red",
-            textDecoration: 'underline'
+            textAlign: 'center',
+            // textDecoration: 'underline'
         }
         return ( 
             <div> 
-                {this.state.loginToken ?
+                {(this.state.noToken || this.state.submitErr) ? 
+                 <p style = {errorStyle}>Something went wrong.<br/>Please login or try again.</p> :
                 <div className="adminForm" style = {formStyle}>
                 <Helmet>
                     <title>South-Paragliding Admin</title>
@@ -490,7 +503,7 @@ export default class Admin extends React.Component {
                         return <span style = {errorStyle} key = {index}>{errorObject.error}<br /></span>
                     }) : null} <br />
                     <ShowDataFromApi data = {this.state} />
-                </div> : <p>There is nothing for you here!</p>
+                </div> 
                 }
             </div>
         )

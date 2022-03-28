@@ -32,67 +32,80 @@ export default class ShowDataFromApi extends React.Component {
         console.log("propsShowDataApi::", this.props.data.loginToken);
         const reversedAllData = this.props.data.allData.slice().reverse();
         
+        let errorStyle = {
+            paddingTop:"250px",
+            width: '50%' ,
+            margin: 'auto',
+            fontSize:"25px",
+            color:"red",
+            textAlign: 'center',
+        }
+
         return(
             <div className="showDataContainer">
-                {this.props.data.allData.length ? 
-                    reversedAllData.map((rowData, index) => {
-                        if(rowData.type === this.props.data.type) {
-                            return (
-                                <ul key = {index}>
-                                    {rowData.type === "video" ?  
-                                    <li key ={index}>
-                                        <Accordion>
-                                            <Card>
-                                                <Accordion.Toggle as={Card.Header} eventKey="0">
-                                                <Button className="btn-danger" onClick ={() => this.deleteDataById(rowData.id)}>Sterge</Button>
-                                                    Sectiunea: {rowData.type} 
-                                                </Accordion.Toggle>
-                                                <Accordion.Collapse eventKey="0">
-                                                    <Card.Body>
-                                                    Id: {rowData.id}<br />
-                                                    {rowData.data.fileName && <video width="400" controls>
-                                                        <source src={rowData.data.fileName} /> 
-                                                    </video>  }
-                                                    </Card.Body>
-                                                </Accordion.Collapse>
-                                            </Card>
-                                        </Accordion>
-                                    </li> 
-                                    :  
-                                    <li key ={index}>
-                                        <Accordion>
-                                            <Card>
-                                                <Accordion.Toggle as={Card.Header} eventKey="0">
-                                                Sectiunea: {rowData.type}
-                                                <Button className="btn-danger" onClick ={() => this.deleteDataById(rowData.id)}>Sterge</Button>
-                                                </Accordion.Toggle>
-                                                <Accordion.Collapse eventKey="0">
-                                                    <Card.Body>
-                                                    Id: {rowData.id}<br />
-                                                    {rowData.data.titluStiri}<br />
-                                                    {rowData.data.titlu}<br />
-                                                    {rowData.data.description}<br />
-                                                    {rowData.data.email}<br />
-                                                    {rowData.data.phone}
-                                                    {rowData.data.fileName && <Card.Img variant="bottom" src={rowData.data.fileName}/> }</Card.Body>
-                                                </Accordion.Collapse> 
-                                            </Card>
-                                        </Accordion>
-                                    </li> 
-                                    }
-                                </ul>
-                            ) 
-                        } else {return null};
-                    }) : <span> 
-                        <Loader
-                            type="TailSpin"
-                            color="Black"
-                            height={65}
-                            width={65}
-                            timeout={10000}
-                            radius={2}
-                        />
-                        </span>
+                {!this.props.data.loginToken ?  <p style = {errorStyle}>Something went wrong.<br/>Please login or try again.</p> : 
+                    <div>
+                        {this.props.data.allData.length ? 
+                            reversedAllData.map((rowData, index) => {
+                                if(rowData.type === this.props.data.type) {
+                                    return (
+                                        <ul key = {index}>
+                                            {rowData.type === "video" ?  
+                                            <li key ={index}>
+                                                <Accordion>
+                                                    <Card>
+                                                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                                                        <Button className="btn-danger" onClick ={() => this.deleteDataById(rowData.id)}>Sterge</Button>
+                                                            Sectiunea: {rowData.type} 
+                                                        </Accordion.Toggle>
+                                                        <Accordion.Collapse eventKey="0">
+                                                            <Card.Body>
+                                                            Id: {rowData.id}<br />
+                                                            {rowData.data.fileName && <video width="400" controls>
+                                                                <source src={rowData.data.fileName} /> 
+                                                            </video>  }
+                                                            </Card.Body>
+                                                        </Accordion.Collapse>
+                                                    </Card>
+                                                </Accordion>
+                                            </li> 
+                                            :  
+                                            <li key ={index}>
+                                                <Accordion>
+                                                    <Card>
+                                                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                                                        Sectiunea: {rowData.type}
+                                                        <Button className="btn-danger" onClick ={() => this.deleteDataById(rowData.id)}>Sterge</Button>
+                                                        </Accordion.Toggle>
+                                                        <Accordion.Collapse eventKey="0">
+                                                            <Card.Body>
+                                                            Id: {rowData.id}<br />
+                                                            {rowData.data.titluStiri}<br />
+                                                            {rowData.data.titlu}<br />
+                                                            {rowData.data.description}<br />
+                                                            {rowData.data.email}<br />
+                                                            {rowData.data.phone}
+                                                            {rowData.data.fileName && <Card.Img variant="bottom" src={rowData.data.fileName}/> }</Card.Body>
+                                                        </Accordion.Collapse> 
+                                                    </Card>
+                                                </Accordion>
+                                            </li> 
+                                            }
+                                        </ul>
+                                    ) 
+                                } else {return null};
+                            }) : <span> 
+                                    <Loader
+                                        type="TailSpin"
+                                        color="Black"
+                                        height={65}
+                                        width={65}
+                                        timeout={10000}
+                                        radius={2}
+                                    />
+                                </span>
+                        }
+                    </div>
                 }
             </div>
         )
