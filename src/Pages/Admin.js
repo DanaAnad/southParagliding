@@ -54,7 +54,7 @@ export default class Admin extends React.Component {
     }
     
     getAllData = async () => {
-        const {data} = await axios.get("http://ms.homens.tricu.ro/data");
+        const {data} = await axios.get(UrlApi.Url);
         this.setState({allData:data})
     }
 
@@ -405,7 +405,7 @@ export default class Admin extends React.Component {
                 data = {};
                 break;
         };
-        const url = UrlApi.Url;
+        // const url = UrlApi.Url;
         const token = this.props.history.location.state.token;
         const options = {
              headers : {
@@ -415,7 +415,7 @@ export default class Admin extends React.Component {
              }
                 };
             try {
-                const response = await axios.post("http://ms.homens.tricu.ro/data", data, options);
+                const response = await axios.post(UrlApi.Url, data, options);
                 console.log("response::", response);
                 response.status === 201 && (lastInsertedData.id = response.data.id);
                 console.log("lastInsertedData::", lastInsertedData);

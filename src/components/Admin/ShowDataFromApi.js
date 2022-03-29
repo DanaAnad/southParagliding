@@ -3,7 +3,7 @@ import {Accordion, Card, Button} from 'react-bootstrap';
 import axios from 'axios';
 import Loader from "react-loader-spinner";
 import "../../Accordion.css";
-import UrlApi from "../../apiUrlConfig";
+// import UrlApi from "../../apiUrlConfig";
 
 export default class ShowDataFromApi extends React.Component {
 
