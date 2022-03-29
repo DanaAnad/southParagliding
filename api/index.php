@@ -13,6 +13,7 @@ header("Access-Control-Max-Age: 3600");
 header('Access-Control-Allow-Headers: Authorization, Access-Control-Allow-Headers, Content-Type, Accept, X-Request-With');
 header('Accept: */*');
 
+
 if (!function_exists('getallheaders')) 
 { 
     function getallheaders() 
@@ -34,7 +35,6 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $uri = explode( '/', $uri );
 // print_r($uri);
-
 
 if ($uri[1] !== 'data' && $uri[1] !== 'datas' && $uri[1] !== 'login') {
   header("HTTP/1.1 404 Not Found");

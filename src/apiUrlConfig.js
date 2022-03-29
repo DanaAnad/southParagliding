@@ -1,6 +1,6 @@
 
 const UrlApi = {
-  Url  : "http://api.southparagliding.ro/data" 
+  Url  : "http://api.southparagliding.ro/data/" 
 }
 
 export default UrlApi;
