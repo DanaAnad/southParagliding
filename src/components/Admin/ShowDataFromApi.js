@@ -9,19 +9,14 @@ export default class ShowDataFromApi extends React.Component {
 
     deleteDataById = async (id) => {
         const token = this.props.data.Token;
-        console.log("tokenShowDataApi::", token);
         const dataId = { id };
-        console.log("dataId::", dataId.id);
         const url = UrlApi.data+dataId.id;
-        console.log("urlApiDeleteAdmin::", url);
         const options = {
             headers:{
                 "Token":token}
         };
         const resp = await axios.delete(url, options);
-        console.log("response::", resp);
         const index = this.props.data.allData.findIndex(x => x.id === dataId.id);
-        console.log("indexxx::", index); 
         resp.status === 200 && this.setState( () => {
             this.props.data.allData.splice(index, 1);
                 return {allData: this.props.data.allData}
@@ -29,18 +24,8 @@ export default class ShowDataFromApi extends React.Component {
     }
 
     render() {
-        console.log("propsShowDataApi::", this.props);
         const reversedAllData = this.props.data.allData.slice().reverse();
         
-        // let errorStyle = {
-        //     paddingTop:"250px",
-        //     width: '50%' ,
-        //     margin: 'auto',
-        //     fontSize:"25px",
-        //     color:"red",
-        //     textAlign: 'center',
-        // }
-
         return(
             <div className="showDataContainer">
                     <div>
@@ -51,7 +36,6 @@ export default class ShowDataFromApi extends React.Component {
                                         <ul key = {index}>
                                             {rowData.type === "video" ? 
                                             <div> 
-                                            {console.log("rowDataTypeAdminShowdatas::", rowData)}
                                             <li key ={index}>
                                                 <Accordion>
                                                     <Card>

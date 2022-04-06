@@ -468,10 +468,7 @@ export default class Admin extends React.Component {
             float:"right"
         }
       
-        console.log("thisStateAll:~Adminnn:", this.state);
-        console.log("adminProps::", this.props)
         const loggedIn = this.state.loginStatus;
-        console.log("loggedInYEs/No::", loggedIn);
             return ( 
                  loggedIn  ? 
                 <div> 

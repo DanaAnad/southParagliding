@@ -29,7 +29,6 @@ const loginUser =  async () => {
                 headers:headers,
                 data
             })
-            console.log("response:token:", response);
             if(response.status === 200){
                 sessionStorage.setItem('token', response.data.token);
                 history.push("/admin", {token:response.data.token})
@@ -90,7 +89,3 @@ const loginUser =  async () => {
     </div>
     )
 }
-
-// Login.propTypes = {
-//      setToken: PropTypes.func.isRequired
-//    }

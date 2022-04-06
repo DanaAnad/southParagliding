@@ -91,10 +91,7 @@ export default class Home extends React.Component {
  
   setContentByType = (type) =>  {
     let items = this.state.alldata.filter(row => row.type === type);
-    console.log("itemsTypeHomeIDCheck::", items);
     const itemsData =  items.map(row => {return{data:row}});
-    console.log("itemsDataRow:::", itemsData);
-
     switch(type) {
       case 'news' : {
         return  <NewsCarousel title = {this.state.newsTitle} items = {itemsData} />
@@ -163,7 +160,6 @@ export default class Home extends React.Component {
         newsTitle: titluStiri[titluStiri.length-1].data.titluStiri,
         isLoading: false
       });
-      console.log("thisStateAllData:getDataHome:", this.state.alldata);
     }
     catch (e) {
       throw new Error(e.message);
@@ -172,7 +168,6 @@ export default class Home extends React.Component {
 
   toggleFullScreenPhoto = () => {
     const FullScreenState = this.state.customModal.show;
-    console.log("fullScreenPhoto::", FullScreenState);
     this.setState({
       customModal : {
         show:!FullScreenState
@@ -185,9 +180,7 @@ export default class Home extends React.Component {
       height:this.state.fullScreenPic.height,
       width:this.state.fullScreenPic.width
     } 
-    console.log("styleFullScreenObj::", fullScreenImg);
     const imgSource = [e.target.src];
-    console.log("imgSources::",imgSource);
     imgSource.map((src, index) =>{
       return (
         this.setState({
@@ -205,7 +198,6 @@ export default class Home extends React.Component {
 
   
   render(e){
-      console.log("alldata::", this.state.alldata);
       const background = {
         backgroundImage:`url(${this.state.backgroundImg})`
       }
