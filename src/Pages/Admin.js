@@ -39,14 +39,20 @@ export default class Admin extends React.Component {
     }
 
     componentWillMount= () => {
-        if(this.props.location.state.token){
-            this.setState({
-                    loginStatus:true,
-                    Token:this.props.location.state.token, 
-                    user:true
-                }) 
-        } else {<Redirect to={"/login"} />}
+        try {
+            if(!this.props.location.state.token)
+            {<Redirect to={"/login"} />} else {
+                this.setState({
+                        loginStatus:true,
+                        Token:this.props.location.state.token, 
+                        user:true
+                    }) 
+            }
+    } catch (e) {
+        console.log("errorNoua::", e)
     }
+    }
+
 
     componentDidMount = async () =>  {
       this.getAllData();
