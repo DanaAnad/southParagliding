@@ -8,9 +8,15 @@ class Database {
   {
     $host = 'localhost';
     $port = 3306;
-    $db   = 'socialCats';
-    $user = 'xxx';
-    $pass = 'xxx';
+    $db   = 'r94573sout_southParagliding';
+    $user = 'r94573sout';
+    $pass = '?7I;?6I7y7v0';
+
+    // $host = 'localhost';
+    // $port = 3306;
+    // $db   = 'socialCats';
+    // $user = 'xxx';
+    // $pass = 'xxx';
 
     try {
       $this->dbConnection = new \PDO(

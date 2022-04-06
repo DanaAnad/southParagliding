@@ -53,7 +53,6 @@ if ($uri[1] == 'data' and isset($uri[2])) {
     $dataId = (int) $uri[2];
 }
 
-
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 $dbConnection = (new Database())->connect();
 

@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import UrlApi from "../apiUrlConfig.js";
 
 
 export default function Login () {
@@ -11,13 +12,11 @@ export default function Login () {
 
     const [email, setEmail]=useState("");
     const [password, setPassword] = useState("");
-    const [token, setToken] = useState("");
-    const [error, setError] = useState(false);
+    const [error, setError] = useState("");
 
 
 const loginUser =  async () => {
     let data;
-        const apiUrl = "http://ms.homens.tricu.ro/login";
         const headers = {
             "Content-Type": "application/json"
         };
@@ -26,21 +25,19 @@ const loginUser =  async () => {
         try{
             const response = await axios({
                 method:"POST",
-                url:apiUrl,
+                url:UrlApi.login,
                 headers:headers,
                 data
             })
-            console.log("response::", response.data.token);
+            console.log("response:token:", response);
             if(response.status === 200){
-                setToken(response.data.token)
-                console.log("tokenLogin::", token);
-                history.push('/admin', {token:response.data.token});
+                sessionStorage.setItem('token', response.data.token);
+                history.push("/admin", {token:response.data.token})
             }
         }
         catch (error) {
             console.log("errorPostLogin::", error);
-            setError(true);
-
+            setError(error)
         }
     }
  
@@ -48,7 +45,7 @@ const loginUser =  async () => {
    const handleSubmit = async (e) => {
        e.preventDefault();
        loginUser();
-   }
+       }
 
     let errorStyle = {
             textAlign:"center",
@@ -93,3 +90,7 @@ const loginUser =  async () => {
     </div>
     )
 }
+
+// Login.propTypes = {
+//      setToken: PropTypes.func.isRequired
+//    }

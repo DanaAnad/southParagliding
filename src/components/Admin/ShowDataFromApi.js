@@ -8,11 +8,11 @@ import UrlApi from "../../apiUrlConfig";
 export default class ShowDataFromApi extends React.Component {
 
     deleteDataById = async (id) => {
-        const token = this.props.data.loginToken;
+        const token = this.props.data.Token;
         console.log("tokenShowDataApi::", token);
         const dataId = { id };
         console.log("dataId::", dataId.id);
-        const url = UrlApi.Url+dataId.id;
+        const url = UrlApi.data+dataId.id;
         console.log("urlApiDeleteAdmin::", url);
         const options = {
             headers:{
@@ -29,28 +29,29 @@ export default class ShowDataFromApi extends React.Component {
     }
 
     render() {
-        console.log("propsShowDataApi::", this.props.data.loginToken);
+        console.log("propsShowDataApi::", this.props);
         const reversedAllData = this.props.data.allData.slice().reverse();
         
-        let errorStyle = {
-            paddingTop:"250px",
-            width: '50%' ,
-            margin: 'auto',
-            fontSize:"25px",
-            color:"red",
-            textAlign: 'center',
-        }
+        // let errorStyle = {
+        //     paddingTop:"250px",
+        //     width: '50%' ,
+        //     margin: 'auto',
+        //     fontSize:"25px",
+        //     color:"red",
+        //     textAlign: 'center',
+        // }
 
         return(
             <div className="showDataContainer">
-                {!this.props.data.loginToken ?  <p style = {errorStyle}>Something went wrong.<br/>Please login or try again.</p> : 
                     <div>
                         {this.props.data.allData.length ? 
                             reversedAllData.map((rowData, index) => {
                                 if(rowData.type === this.props.data.type) {
                                     return (
                                         <ul key = {index}>
-                                            {rowData.type === "video" ?  
+                                            {rowData.type === "video" ? 
+                                            <div> 
+                                            {console.log("rowDataTypeAdminShowdatas::", rowData)}
                                             <li key ={index}>
                                                 <Accordion>
                                                     <Card>
@@ -69,7 +70,10 @@ export default class ShowDataFromApi extends React.Component {
                                                     </Card>
                                                 </Accordion>
                                             </li> 
+                                            </div>
                                             :  
+                                            <div>
+                                            {console.log("rowDataAdminShowApiData::", rowData)}
                                             <li key ={index}>
                                                 <Accordion>
                                                     <Card>
@@ -90,6 +94,7 @@ export default class ShowDataFromApi extends React.Component {
                                                     </Card>
                                                 </Accordion>
                                             </li> 
+                                            </div>
                                             }
                                         </ul>
                                     ) 
@@ -106,7 +111,7 @@ export default class ShowDataFromApi extends React.Component {
                                 </span>
                         }
                     </div>
-                }
+                {/* } */}
             </div>
         )
     }

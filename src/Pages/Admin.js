@@ -4,6 +4,7 @@ import FileAttachment from "../components/Admin/FileAttachment.js";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { Redirect } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 import UrlApi from "../apiUrlConfig";
 
@@ -13,7 +14,9 @@ export default class Admin extends React.Component {
         super(props);
 
         this.state = {
-            loginToken:"",
+            Token:'',
+            loginStatus:false,
+            user:false,
             allData:[],
             isButtonDisabled:true,
             showTitle:false,
@@ -31,31 +34,39 @@ export default class Admin extends React.Component {
             status:1,
             file: false,
             descriptionCaracterCount:0,
-            titleCaracterCount:0,
-            tokenErr:false,
-            submitErr:false
-        }    
+
+        }   
+    }
+
+    componentWillMount= () => {
+        if(this.props.location.state.token){
+            this.setState({
+                    loginStatus:true,
+                    Token:this.props.location.state.token, 
+                    user:true
+                }) 
+        } else {<Redirect to={"/login"} />}
     }
 
     componentDidMount = async () =>  {
       this.getAllData();
-      try{
-        if(this.props.history.location.state.token) {
-            this.setState({
-                loginToken:this.props.history.location.state.token,
-            }) 
-          }
-      }
-      catch(e){
-          this.setState({noToken:true})
-          console.log("eroarereee::",e.message)
-      }
-     
+      console.log("userStatusL::", this.state.loginStatus);   
     }
+
+    logOut = (e) => {
+        e.preventDefault();
+        sessionStorage.clear('token');
+        this.setState({
+            loginStatus:false,
+            Token:""
+        })
+    }    
     
     getAllData = async () => {
-        const {data} = await axios.get(UrlApi.Url);
-        this.setState({allData:data})
+        const {data} = await axios.get(UrlApi.data);
+        this.setState({allData:data,
+        })
+
     }
 
     setFileUpload = (file) => {
@@ -405,17 +416,14 @@ export default class Admin extends React.Component {
                 data = {};
                 break;
         };
-        // const url = UrlApi.Url;
-        const token = this.props.history.location.state.token;
         const options = {
              headers : {
-                'Accept': '*/*',
                 "Content-Type": "multipart/form-data",
-                "Token": token,
+                "Token": this.state.Token,
              }
                 };
             try {
-                const response = await axios.post(UrlApi.Url, data, options);
+                const response = await axios.post(UrlApi.data, data, options);
                 console.log("response::", response);
                 response.status === 201 && (lastInsertedData.id = response.data.id);
                 console.log("lastInsertedData::", lastInsertedData);
@@ -428,9 +436,8 @@ export default class Admin extends React.Component {
                 console.log("thisallData::", this.state);
                 this.resetInputs();
             } 
-            catch (err) {console.log("error::", err.response);
+            catch (err) {console.log("error:sybmit:", err.response);
             this.setState({submitErr:true})
-                // throw new Error("Error::", err.message)
             }; 
     };
 
@@ -447,67 +454,76 @@ export default class Admin extends React.Component {
             fontSize:"25px",
             color:"red",
             textAlign: 'center',
-            // textDecoration: 'underline'
         }
-        return ( 
-            <div> 
-                {(this.state.noToken || this.state.submitErr) ? 
-                 <p style = {errorStyle}>Something went wrong.<br/>Please login or try again.</p> :
-                <div className="adminForm" style = {formStyle}>
-                <Helmet>
-                    <title>South-Paragliding Admin</title>
-                </Helmet>
-                    <Form onSubmit={this.onSubmit}>
-                        <Form.Group controlId="Admin Form" >
-                            <br />
-                            <Form.Control as="select" size="sm" name="type" onChange={(e)=>this.setContent(e)}> 
-                                <option value="ChoseSection">Alege sectiunea...</option>
-                                <option value='backgrounds'>Backgrounds</option>
-                                <option value="newsTitle">News Title</option>
-                                <option value="news">News</option>
-                                <option value='foto'>Foto</option>
-                                <option value="video">Video</option>
-                                <option value="locatiidezbor">Locatii zbor</option>
-                                <option value="rezervaricontact">Rezervari/Contact</option>
-                            </Form.Control>
-                            <br /><br />
-                            {this.state.showTitle && <Form.Control required minLength={5} 
-                                pattern = ".*[^a-zA-Z0-9_].*" type="text" value={this.state.titlu} name="titlu" 
-                                placeholder="Titlu..."  onChange={this.handleChange}/>
-                            }
-                            <br />
-                            {this.state.showDescription && <Form.Control required minLength={25} maxLength={90} type="textarea" 
-                                value={this.state.description} name="description" pattern="[!-~\s]+"
-                                placeholder="Informatii..." onChange={e => { this.handleChange(e); this.setCaracterCount(e)}}/>}
-                                {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/90 caractere folosite.</p> : null}
-                            <br />
-                            {this.state.showFotos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
-                            <br />
-                            {this.state.showVideos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
-                            <br />
-                            {this.state.showEmail && <Form.Control required pattern="[A-Za-z0-9@._-]+" 
-                                type="email" minLength={5} value ={this.state.email} name="email" 
-                                placeholder="Adresa email" onChange={this.handleChange}/> 
-                            }
-                            <br />
-                            {this.state.showPhone && <Form.Control required type="tel" 
-                                minLength={10} value ={this.state.phone} 
-                                name='phone' placeholder="Nr tel..."  pattern="[(-:]+"  
-                                onChange={this.handleChange}/>
-                            }
-                        </Form.Group>
-                        <Button type="submit" disabled={this.state.isButtonDisabled}>Submit form</Button>
-                    </Form>
-                    <br /><br />
-                    {this.state.errors.length ? this.state.errors.map((errorObject, index) => {
-                        return <span style = {errorStyle} key = {index}>{errorObject.error}<br /></span>
-                    }) : null} <br />
-                    <ShowDataFromApi data = {this.state} />
-                </div> 
-                }
-            </div>
-        )
-    }
+        let logoutBtn = {
+            margin:"auto",
+            marginTop:"5px",
+            marginBottom:"15px",
+            float:"right"
+        }
+      
+        console.log("thisStateAll:~Adminnn:", this.state);
+        console.log("adminProps::", this.props)
+        const loggedIn = this.state.loginStatus;
+        console.log("loggedInYEs/No::", loggedIn);
+            return ( 
+                 loggedIn  ? 
+                <div> 
+                    <div className="adminForm" style = {formStyle}>
+                    <Helmet>
+                        <title>South-Paragliding Admin</title>
+                    </Helmet>
+                        <Form onSubmit={this.onSubmit}>
+                        <Button type="reset" style = {logoutBtn} onClick={this.logOut}>Log Out</Button>
+                            <Form.Group controlId="Admin Form" >
+                                <br />
+                                <Form.Control as="select" size="sm" name="type" onChange={(e)=>this.setContent(e)}> 
+                                    <option value="ChoseSection">Alege sectiunea...</option>
+                                    <option value='backgrounds'>Backgrounds</option>
+                                    <option value="newsTitle">News Title</option>
+                                    <option value="news">News</option>
+                                    <option value='foto'>Foto</option>
+                                    <option value="video">Video</option>
+                                    <option value="locatiidezbor">Locatii zbor</option>
+                                    <option value="rezervaricontact">Rezervari/Contact</option>
+                                </Form.Control>
+                                <br /><br />
+                                {this.state.showTitle && <Form.Control required minLength={5} 
+                                    pattern="[a-zA-Z0-9\s.]+" type="text" value={this.state.titlu} name="titlu" 
+                                    placeholder="Titlu..."  onChange={this.handleChange} title={"whaterever"}/>
+                                }
+                                <br />
+                                {this.state.showDescription && <Form.Control required minLength={25} maxLength={90} type="textarea" 
+                                    value={this.state.description} name="description" pattern="[!-~\s]+"
+                                    placeholder="Informatii..." onChange={e => { this.handleChange(e); this.setCaracterCount(e)}}/>}
+                                    {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/90 caractere folosite.</p> : null}
+                                <br />
+                                {this.state.showFotos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
+                                <br />
+                                {this.state.showVideos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
+                                <br />
+                                {this.state.showEmail && <Form.Control required pattern="[A-Za-z0-9@._-]+" 
+                                    type="email" minLength={5} value ={this.state.email} name="email" 
+                                    placeholder="Adresa email" onChange={this.handleChange}/> 
+                                }
+                                <br />
+                                {this.state.showPhone && <Form.Control required type="tel" 
+                                    minLength={10} value ={this.state.phone} 
+                                    name='phone' placeholder="Nr tel..."  pattern="[(-:]+"  
+                                    onChange={this.handleChange}/>
+                                }
+                            </Form.Group>
+                            <Button type="submit" disabled={this.state.isButtonDisabled}>Submit form</Button>
+                        </Form>
+                        <br /><br />
+                        {this.state.errors.length ? this.state.errors.map((errorObject, index) => {
+                            return <span style = {errorStyle} key = {index}>{errorObject.error}<br /></span>
+                        }) : null} <br />
+                        <ShowDataFromApi data = {this.state} />
+                    </div> 
+                </div> : <Redirect to={"/login"} /> 
+            )
+    }  
 }
 
 

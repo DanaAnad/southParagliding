@@ -68,7 +68,7 @@ export default class Home extends React.Component {
   componentDidMount= async () => {
     await this.getData();
     this.state.alldata.forEach((item) => {
-      // console.log("itemPreloadImg::", item)
+      console.log("itemPreloadImg::", item.data.fileName)
       if(item.data.fileName) {
         const img = new Image();
         img.src = item.data.fileName;
@@ -155,7 +155,7 @@ export default class Home extends React.Component {
   
   getData = async () => {
     try {
-    const {data} = await axios.get(UrlApi.Url);
+    const {data} = await axios.get(UrlApi.data);
     console.log("allData", data);
     let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
       this.setState({

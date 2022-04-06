@@ -12,7 +12,7 @@ import {Helmet} from "react-helmet";
 
 
 export default function App () {
-  
+
     return (
       <div>
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>
@@ -39,9 +39,9 @@ export default function App () {
             </ul>
           </nav>
           <Switch>
-          <Route path="/login" component={Login}/>
-          <Route path="/admin" component={Admin} />  
-          <Route path="/" component={Home}/>
+            <Route path = "/login"  component={Login} />
+              <Route path="/admin" component={Admin} /> 
+              <Route exact path="/" component={Home}/>
           </Switch>
         </div>
       </Router> 
