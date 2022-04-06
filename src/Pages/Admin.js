@@ -495,7 +495,7 @@ export default class Admin extends React.Component {
                                 </Form.Control>
                                 <br /><br />
                                 {this.state.showTitle && <Form.Control required minLength={5} 
-                                    pattern="[a-zA-Z0-9\s.]+" type="text" value={this.state.titlu} name="titlu" 
+                                    pattern="[a-zA-Z0-9\s.!]+" type="text" value={this.state.titlu} name="titlu" 
                                     placeholder="Titlu..."  onChange={this.handleChange} title={"whaterever"}/>
                                 }
                                 <br />
