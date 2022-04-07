@@ -8,7 +8,7 @@ import UrlApi from "../../apiUrlConfig";
 export default class ShowDataFromApi extends React.Component {
 
     deleteDataById = async (id) => {
-        const token = this.props.data.Token;
+        const token = this.props.token;
         const dataId = { id };
         const url = UrlApi.data+dataId.id;
         const options = {
@@ -95,7 +95,6 @@ export default class ShowDataFromApi extends React.Component {
                                 </span>
                         }
                     </div>
-                {/* } */}
             </div>
         )
     }

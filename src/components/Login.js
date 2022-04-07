@@ -21,7 +21,6 @@ const loginUser =  async () => {
             "Content-Type": "application/json"
         };
         data = JSON.stringify({"u":email, "p":password});
-        console.log("stringgg::", data)
         try{
             const response = await axios({
                 method:"POST",

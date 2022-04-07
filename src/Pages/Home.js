@@ -176,10 +176,10 @@ export default class Home extends React.Component {
   }
 
   setContentForFullScreenCustomModal = (e) => {
-    const fullScreenImg = {
-      height:this.state.fullScreenPic.height,
-      width:this.state.fullScreenPic.width
-    } 
+    // const fullScreenImg = {
+    //   height:this.state.fullScreenPic.height,
+    //   width:this.state.fullScreenPic.width
+    // } 
     const imgSource = [e.target.src];
     imgSource.map((src, index) =>{
       return (

@@ -14,9 +14,7 @@ export default class Admin extends React.Component {
         super(props);
 
         this.state = {
-            Token:'',
             loginStatus:false,
-            user:false,
             allData:[],
             isButtonDisabled:true,
             showTitle:false,
@@ -38,19 +36,18 @@ export default class Admin extends React.Component {
         }   
     }
 
-    componentWillMount= () => {
+    UNSAFE_componentWillMount= () => {
         try {
-            if(!this.props.location.state.token)
+            if(!sessionStorage.getItem('token'))
             {<Redirect to={"/login"} />} else {
                 this.setState({
-                        loginStatus:true,
-                        Token:this.props.location.state.token, 
-                        user:true
+                        loginStatus:true, 
                     }) 
             }
-    } catch (e) {
-        console.log("errorNoua::", e)
-    }
+        } 
+        catch (e) {
+            console.log("errorNoua::", e)
+        }
     }
 
 
@@ -64,7 +61,6 @@ export default class Admin extends React.Component {
         sessionStorage.clear('token');
         this.setState({
             loginStatus:false,
-            Token:""
         })
     }    
     
@@ -425,7 +421,7 @@ export default class Admin extends React.Component {
         const options = {
              headers : {
                 "Content-Type": "multipart/form-data",
-                "Token": this.state.Token,
+                "Token": sessionStorage.getItem("token"),
              }
                 };
             try {
@@ -439,7 +435,6 @@ export default class Admin extends React.Component {
                         lastInsertedData
                     ],
                 });
-                console.log("thisallData::", this.state);
                 this.resetInputs();
             } 
             catch (err) {console.log("error:sybmit:", err.response);
@@ -454,12 +449,12 @@ export default class Admin extends React.Component {
             textAlign: 'center',
         }
         let errorStyle = {
-            paddingTop:"250px",
-            width: '50%' ,
-            margin: 'auto',
-            fontSize:"25px",
+            textAlign:"center",
+            margin:"auto",
+            alignItems:"center",
+            width:"50%",
+            paddingTop: "60px",
             color:"red",
-            textAlign: 'center',
         }
         let logoutBtn = {
             margin:"auto",
@@ -472,6 +467,7 @@ export default class Admin extends React.Component {
             return ( 
                  loggedIn  ? 
                 <div> 
+                   {this.state.submitErr && (<h5 style = {errorStyle}>Something went wrong. Login and try again.</h5>)}
                     <div className="adminForm" style = {formStyle}>
                     <Helmet>
                         <title>South-Paragliding Admin</title>
@@ -522,7 +518,7 @@ export default class Admin extends React.Component {
                         {this.state.errors.length ? this.state.errors.map((errorObject, index) => {
                             return <span style = {errorStyle} key = {index}>{errorObject.error}<br /></span>
                         }) : null} <br />
-                        <ShowDataFromApi data = {this.state} />
+                        <ShowDataFromApi data = {this.state} token = {sessionStorage.getItem("token")} />
                     </div> 
                 </div> : <Redirect to={"/login"} /> 
             )
