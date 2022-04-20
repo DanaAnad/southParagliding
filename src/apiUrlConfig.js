@@ -4,4 +4,4 @@ const UrlApi = {
   login: "http://api.southparagliding.ro/login" 
 }
 
-export default UrlApi;
+export default UrlApi;  

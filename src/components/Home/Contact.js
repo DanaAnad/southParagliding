@@ -8,10 +8,8 @@ export default class Contact extends React.Component {
     componentDidMount() {
         const img= new Image();
         img.src = FollowUs;
-        console.log("Contact:IMG:",img);
     }
     render() {
-        console.log("propsContact::", this.props);
         return(
             <div className="contactComponent">
                 <Helmet>
@@ -32,7 +30,6 @@ export default class Contact extends React.Component {
                         <div key = "contactContainer" className="contactDetails">
                             {this.props.items.map((row, index, {length}) =>  {
                                 if(index +1 === length){
-                                    console.log("row::", row)
                                     return (
                                         <div className="" key = {index}>
                                             <div className="contactText" >

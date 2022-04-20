@@ -6,28 +6,14 @@ import {Helmet} from "react-helmet";
 
 export default class PhotoCarousel extends Component {
 
-
-  closeCustomModal = () => {
-    console.log("closingCustomModal")
-    this.setState({
-      customModal:{
-      show: false,
-      data:[]
-      }
-    });
-  };
-
   componentDidMount() { 
     this.props.items.forEach((item) => {
-      console.log("itemPhotoCarouselID::", item);
       const img = new Image();
       img.src = item.data.data.fileName;
-      console.log("image::", img); 
     });
   }
 
   render(){
-    console.log("allProps:Photo:", this.props);
     return(
       <div >
        <Helmet>
@@ -60,7 +46,6 @@ export default class PhotoCarousel extends Component {
           this.props.items.length > 1 ? 
         <Carousel interval={null} className="FotoCarousel">
           {this.props.items.reverse().map((item, index) => {
-            console.log("ITEMMMM::", item);
               return (
                 <Carousel.Item key={index}>
                   <div>

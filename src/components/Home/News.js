@@ -10,12 +10,10 @@ export default class NewsCarousel extends Component {
         this.props.items.forEach((item) => {
             const img = new Image();
             img.src = item.data.data.fileName;
-            console.log("image::", img); 
         });
     }
 
     render(){
-        console.log("thisItemss:news::", this.props.items)
         return (
                 <div className="News"> 
                  <Helmet>
@@ -37,12 +35,10 @@ export default class NewsCarousel extends Component {
                         />
                 </Helmet>
                     <div className="newsTitle">
-                    {console.log("propsss:news:", this.props)}
                         <span>{this.props.title}</span>
                     </div>
                     {this.props.items.length === 1 ? 
                     <Carousel controls={false} className="newsCarousel" interval={null}>
-                    {console.log("propsss::", this.props.items)}
                     {this.props.items.reverse().map((item, index) => {
                             return (
                                 <Carousel.Item className="newsItem" key={index}>
@@ -64,7 +60,6 @@ export default class NewsCarousel extends Component {
                     </Carousel> : 
                     this.props.items.length > 1 ? 
                     <Carousel className="newsCarousel" interval={null}>
-                    {console.log("propsss::", this.props.items)}
                     {this.props.items.reverse().map((item, index) => {
                             return (
                                 <Carousel.Item className="newsItem" key={index}>

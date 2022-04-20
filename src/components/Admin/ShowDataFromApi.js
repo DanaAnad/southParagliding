@@ -8,9 +8,9 @@ import UrlApi from "../../apiUrlConfig";
 export default class ShowDataFromApi extends React.Component {
 
     deleteDataById = async (id) => {
-        const token = this.props.token;
+        const token = sessionStorage.getItem("token");
         const dataId = { id };
-        const url = UrlApi.data+dataId.id;
+        const url = UrlApi.data+"/"+dataId.id;
         const options = {
             headers:{
                 "Token":token}
@@ -57,7 +57,6 @@ export default class ShowDataFromApi extends React.Component {
                                             </div>
                                             :  
                                             <div>
-                                            {console.log("rowDataAdminShowApiData::", rowData)}
                                             <li key ={index}>
                                                 <Accordion>
                                                     <Card>

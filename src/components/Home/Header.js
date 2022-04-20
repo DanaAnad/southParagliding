@@ -35,7 +35,7 @@ export default class Header extends React.Component {
             <div className="Header">
                 <div className="headerDesktop">
                     <div className="logoContainer">
-                        <img className="imgLogo" onLoad = {() => console.log("Dskimg is loaded")} src = {this.state.logo} alt = "logo"/>
+                        <img className="imgLogo" src = {this.state.logo} alt = "logo"/>
                     </div>
                     <div className="navigationBar">
                         <button className = "buton" value="news" onClick ={()=> {this.props.showContent('news')}}>
@@ -48,7 +48,7 @@ export default class Header extends React.Component {
                             VIDEO
                         </button>
                         <button className = "buton" value="locations" onClick={() => {this.props.showContent('locatiidezbor')}}>
-                            LOCURI DE ZBOR
+                            LOCATII DE ZBOR
                         </button>
                         <button className = "buton" value="rezervari" onClick={() => {this.props.showContent('rezervaricontact')}}>
                             REZERVARI
@@ -58,13 +58,13 @@ export default class Header extends React.Component {
 
                 <div className = "mobileHeader">
                     <div className="mobileLogoContainer" style={{display: this.state.menuOpen ? 'none' : 'flex' }}>
-                        <img className="imgMobileLogo" onLoad = {() => console.log("MobImg has been loaded")} src = {this.state.logo} alt = "logo"/>
+                        <img className="imgMobileLogo"  src = {this.state.logo} alt = "logo"/>
                     </div>
                     <Menu isOpen ={this.state.menuOpen}
                         onStateChange={(state) => this.handleChange(state)}
                         className="mobileMenu"> 
                     <div className="mobileMenuLogoContainer">
-                        <img className="imgMobileMenuLogo" src = {this.state.logo} onLoad = {() => console.log("MobMenuImg has been loaded")} alt = "logo"/>
+                        <img className="imgMobileMenuLogo" src = {this.state.logo} alt = "logo"/>
                     </div> 
                     <div className="mobileNavbar">
                         <button className = "buton"  value = "news" onClick={() => {this.props.showContent('news');this.closeMenu()}} >
@@ -77,7 +77,7 @@ export default class Header extends React.Component {
                             VIDEO
                         </button>
                         <button className = "buton" value="locations" onClick={() => {this.props.showContent('locatiidezbor');this.closeMenu()}} >
-                            LOCURI DE ZBOR
+                            LOCATII DE ZBOR
                         </button>
                         <button className = "buton" value="rezervari" onClick={() => {this.props.showContent('rezervaricontact');this.closeMenu()}} >
                             REZERVARI
@@ -85,10 +85,7 @@ export default class Header extends React.Component {
                     </div>
                     </Menu>
                 </div>
-
-            </div>
-            
+            </div> 
         )
-    }
-        
+    } 
 }

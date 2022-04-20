@@ -14,7 +14,7 @@ export default class Admin extends React.Component {
         super(props);
 
         this.state = {
-            loginStatus:false,
+            loginStatus:sessionStorage.getItem("token") ? true: false,
             allData:[],
             isButtonDisabled:true,
             showTitle:false,
@@ -32,11 +32,10 @@ export default class Admin extends React.Component {
             status:1,
             file: false,
             descriptionCaracterCount:0,
-
-        }   
+        }  
     }
 
-    UNSAFE_componentWillMount= () => {
+    checkUserLogin =()=>{
         try {
             if(!sessionStorage.getItem('token'))
             {<Redirect to={"/login"} />} else {
@@ -46,14 +45,12 @@ export default class Admin extends React.Component {
             }
         } 
         catch (e) {
-            console.log("errorNoua::", e)
+            throw new Error("Error when logging in. Please try again.")
         }
     }
 
-
     componentDidMount = async () =>  {
-      this.getAllData();
-      console.log("userStatusL::", this.state.loginStatus);   
+        this.getAllData();   
     }
 
     logOut = (e) => {
@@ -72,8 +69,6 @@ export default class Admin extends React.Component {
     }
 
     setFileUpload = (file) => {
-        console.log("file::", file);
-        console.log("fileType::", file.type);
         file ?
             this.setState({
                 file :file,
@@ -106,8 +101,6 @@ export default class Admin extends React.Component {
     }
 
     handleFormValidation = (eventName, eventValue) => {
-        console.log("eventName::", eventName);
-        console.log("eventValue::", eventValue);
         switch(eventName) {
             case("titlu") : {
                 eventValue.length !== 0 ? this.setState({isButtonDisabled:false}) :
@@ -182,7 +175,6 @@ export default class Admin extends React.Component {
             default: 
                 break;
         }
-        console.log("stateErrors::", this.state.errors);
         const errToDelete = this.state.errors.findIndex(err => err.field === eventName);
             this.state.errors.map(err => 
                 (err.field === eventName && eventValue.length !== 0) ? this.setState(state => {
@@ -426,9 +418,7 @@ export default class Admin extends React.Component {
                 };
             try {
                 const response = await axios.post(UrlApi.data, data, options);
-                console.log("response::", response);
                 response.status === 201 && (lastInsertedData.id = response.data.id);
-                console.log("lastInsertedData::", lastInsertedData);
                 this.setState({
                     allData:[
                         ...this.state.allData, 
@@ -437,8 +427,9 @@ export default class Admin extends React.Component {
                 });
                 this.resetInputs();
             } 
-            catch (err) {console.log("error:sybmit:", err.response);
-            this.setState({submitErr:true})
+            catch (err) {
+                this.setState({submitErr:true})
+                throw new Error("Unsuccessuful login. Try again please.")
             }; 
     };
 
@@ -462,7 +453,6 @@ export default class Admin extends React.Component {
             marginBottom:"15px",
             float:"right"
         }
-      
         const loggedIn = this.state.loginStatus;
             return ( 
                  loggedIn  ? 
@@ -520,7 +510,8 @@ export default class Admin extends React.Component {
                         }) : null} <br />
                         <ShowDataFromApi data = {this.state} token = {sessionStorage.getItem("token")} />
                     </div> 
-                </div> : <Redirect to={"/login"} /> 
+                </div> 
+                : <Redirect to={"/login"} /> 
             )
     }  
 }

@@ -12,7 +12,6 @@ import {Helmet} from "react-helmet";
 
 
 export default function App () {
-
     return (
       <div>
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>

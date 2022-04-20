@@ -13,8 +13,6 @@ export default class FileAttachment extends Component {
     }
     
     validateFile = (file) => { 
-            console.log("file:validation:", file);
-            console.log("fileType:validatioon:", file.type);
             try {
               if(!file) {
                     this.setState({
@@ -27,14 +25,13 @@ export default class FileAttachment extends Component {
                     })
                 }
             }
-            catch (err) {console.log("errCatch::", err)
+            catch (err) {
                 throw new Error("FileValidation not working...")
             };
     }
    
     getFiles = async (e,file) => {    
         file = e.target.files[0];
-        console.log("fileGetFiles::", file);
         if(file){
             try {
                 this.validateFile(file);
@@ -45,11 +42,8 @@ export default class FileAttachment extends Component {
                         }  
                         Compress(file, options)
                         .then(compressedBlob => {
-                                    console.log(compressedBlob)
                                     const convertedBlobFile = new File([compressedBlob], file.name, { type: file.type, lastModified: Date.now()})
-                                    console.log("convertedBlobFile::", convertedBlobFile);
                                     const myImg = URL.createObjectURL(compressedBlob);
-                                    console.log("myImg::", myImg);
                                     this.props.cbf(convertedBlobFile);
                                     this.setState({
                                         convertedFile: myImg,
@@ -62,7 +56,6 @@ export default class FileAttachment extends Component {
                         reader.readAsDataURL(file);
                         reader.onloadend =  () =>  {
                         let base64 = reader.result;
-                        console.log("base64:", base64);
                             this.props.cbf(file);
                             this.setState({
                                 convertedFile: base64,
@@ -84,15 +77,11 @@ export default class FileAttachment extends Component {
                     }
             }   
                 catch (err) {
-                    console.log("errorFile::",err);
                     throw (err);
                 } 
         }
-        // this.resetInput(); 
     }
     render() {
-        console.log("propss::", this.props);
-
         const fileStyle = {
             width: "100px",
             height:"100px",
@@ -104,7 +93,6 @@ export default class FileAttachment extends Component {
 
         return(
             <div>
-            {console.log("errors;;",this.props.data.errors)}
                 Tip de fisiere acceptate: "jpeg", "jpg", "png" sau "mp4". <br/><br/>
                 <input type="file" required accept="image/png, image/jpeg, video/mp4" ref = {this.imgRef} name="file" onChange = {this.getFiles} onSubmit={this.resetInput}/><br/>
                     

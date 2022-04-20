@@ -36,10 +36,6 @@ export default class Home extends React.Component {
         ],
         alldata : [],
         backgroundImg:false,
-        fullScreenPic :{
-          width:window.innerWidth, 
-          height:window.innerHeight
-        }
       };
       this.setContent = this.setContent.bind(this);
       this.closeModal = this.closeModal.bind(this);
@@ -63,22 +59,17 @@ export default class Home extends React.Component {
     })
   }
 
-
-
   componentDidMount= async () => {
     await this.getData();
     this.state.alldata.forEach((item) => {
-      console.log("itemPreloadImg::", item.data.fileName)
       if(item.data.fileName) {
         const img = new Image();
         img.src = item.data.fileName;
       }
     });
       let background = this.state.alldata.filter(item => item.type === "backgrounds")
-      console.log("BACKGROUND::", background);
         const img = new Image();
         img.src = background[background.length-1].data.fileName;
-        console.log("imgSRC::", img.src);
         this.setState({
           backgroundImg: img.src,
         });
@@ -153,7 +144,6 @@ export default class Home extends React.Component {
   getData = async () => {
     try {
     const {data} = await axios.get(UrlApi.data);
-    console.log("allData", data);
     let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
       this.setState({
         alldata: [ ...data ],
@@ -166,20 +156,16 @@ export default class Home extends React.Component {
     }
   }
 
-  toggleFullScreenPhoto = () => {
-    const FullScreenState = this.state.customModal.show;
+  closeCustomModal =() => {
     this.setState({
-      customModal : {
-        show:!FullScreenState
+      customModal:{
+        show: false,
+        data:[]
       }
     })
   }
 
   setContentForFullScreenCustomModal = (e) => {
-    // const fullScreenImg = {
-    //   height:this.state.fullScreenPic.height,
-    //   width:this.state.fullScreenPic.width
-    // } 
     const imgSource = [e.target.src];
     imgSource.map((src, index) =>{
       return (
@@ -187,7 +173,7 @@ export default class Home extends React.Component {
           customModal : {
             show: true, 
             data:[
-              <img src = {src} onClick={this.toggleFullScreenPhoto} onTouchEnd= {this.toggleFullScreenPhoto}
+              <img src = {src} onClick={this.toggleFullScreenPhoto} onTouchEnd = {this.toggleFullScreenPhoto}
                className = "fullScreenPic" alt = "fullScreen-foto" key={index}  />
             ]
           },
@@ -196,6 +182,7 @@ export default class Home extends React.Component {
     });
   }
 
+  
   
   render(e){
       const background = {
