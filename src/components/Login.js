@@ -51,11 +51,10 @@ const loginUser =  async () => {
             }
             catch (error) {
                 setError(error)
-                throw new Error("Error when logging in. please try again")
+                throw new Error("User is not logged in. Close this error and try again.")
             }
     }
  
-
    const handleSubmit = async (e) => {
        e.preventDefault();
        loginUser();
