@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteCond %{QUERY_STRING} ^$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ /index.php [L,NE]
+
+RewriteCond %{REQUEST_METHOD} OPTIONS 
+RewriteRule ^(.*)$ $1 [R=200,L]  
