@@ -1,14 +1,11 @@
 import React, {useState, useEffect} from "react";
-import { useHistory } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import UrlApi from "../apiUrlConfig.js";
 
 
-export default function Login () {
-
-    const history = useHistory();
+export default function Login ({setToken}) {
 
     const [email, setEmail]=useState("");
     const [password, setPassword] = useState("");
@@ -19,16 +16,11 @@ export default function Login () {
     const handleLoginButtonAvailability = () => {
         if((email.length && password.length) !== 0){
             setLoginButtonDisabled(false);
-        } else return (setLoginButtonDisabled(true));
-
+        } else 
+            return (setLoginButtonDisabled(true));
     }
     useEffect((e)=> {
-        try{
-        handleLoginButtonAvailability();
-        }
-        catch(e){
-            throw new Error("UseEffectc error")
-        }    
+        handleLoginButtonAvailability();   
     })
   
 const loginUser =  async () => {
@@ -45,13 +37,14 @@ const loginUser =  async () => {
                     data
                 })
                 if(response.status === 200){
-                    sessionStorage.setItem('token', response.data.token);
-                    history.push("/admin", {token:response.data.token})
+                    setToken(response.data.token);
                 }
             }
             catch (error) {
+                {
+                throw new Error("User is not logged in. Close this error and try again."),
                 setError(error)
-                throw new Error("User is not logged in. Close this error and try again.")
+                }
             }
     }
  
@@ -100,5 +93,6 @@ const loginUser =  async () => {
                 </div>
             </div>
         </div>
-    )
+    )  
 }
+

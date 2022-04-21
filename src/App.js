@@ -9,9 +9,11 @@ import Home from "./Pages/Home.js";
 import Admin from "./Pages/Admin.js";
 import Login from "./components/Login.js";
 import {Helmet} from "react-helmet";
+import useToken from "./components/Admin/useToken.js";
 
 
 export default function App () {
+  const {token, setToken} = useToken();
     return (
       <div>
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>
@@ -38,8 +40,10 @@ export default function App () {
             </ul>
           </nav>
           <Switch>
-            <Route path = "/login"  component={Login} />
-              <Route path="/admin" component={Admin} /> 
+            {token ?
+              <Route path ="/admin" render={(props) => (<Admin {...props} setToken={setToken}/>)}/> 
+            : 
+              <Route path="/admin" render={(props) => (<Login {...props} setToken={setToken}/>)}/>}
               <Route exact path="/" component={Home}/>
           </Switch>
         </div>

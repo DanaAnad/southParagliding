@@ -12,7 +12,7 @@ class Login {
         $this->encryption_iv = '1234567891011121';
         // Store the encryption key - CHANGE FOR PRODUCTION
         $this->encryption_key = "GeeksforGeeks";
-        $this->sessionTime = 60; //minutes - CHANGE FOR PRODUCTION IF NEEDED
+        $this->sessionTime = 1; //minutes - CHANGE FOR PRODUCTION IF NEEDED
     }
 
     public function processRequest() {

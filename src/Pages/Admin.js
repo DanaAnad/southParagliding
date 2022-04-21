@@ -4,7 +4,6 @@ import FileAttachment from "../components/Admin/FileAttachment.js";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import { Redirect } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 import UrlApi from "../apiUrlConfig";
 
@@ -14,7 +13,6 @@ export default class Admin extends React.Component {
         super(props);
 
         this.state = {
-            loginStatus:sessionStorage.getItem("token") ? true: false,
             allData:[],
             isButtonDisabled:true,
             showTitle:false,
@@ -35,38 +33,22 @@ export default class Admin extends React.Component {
         }  
     }
 
-    checkUserLogin =()=>{
-        try {
-            if(!sessionStorage.getItem('token'))
-            {<Redirect to={"/login"} />} else {
-                this.setState({
-                        loginStatus:true, 
-                    }) 
-            }
-        } 
-        catch (e) {
-            throw new Error("Error when logging in. Please try again.")
-        }
-    }
-
     componentDidMount = async () =>  {
         this.getAllData();   
     }
 
     logOut = (e) => {
         e.preventDefault();
-        sessionStorage.clear('token');
-        this.setState({
-            loginStatus:false,
-        })
+        sessionStorage.getItem('token');
+        const clearToken = sessionStorage.clear('token');
+        this.props.setToken(clearToken);
     }    
     
     getAllData = async () => {
         const {data} = await axios.get(UrlApi.data);
         this.setState({allData:data,
         })
-
-    }
+    };
 
     setFileUpload = (file) => {
         file ?
@@ -81,8 +63,7 @@ export default class Admin extends React.Component {
                     }
                 ], isButtonDisabled:true
             })
-        
-    }
+    };
 
     handleChange = (e) => {
         const value = e.target.value;
@@ -90,15 +71,15 @@ export default class Admin extends React.Component {
                 [e.target.name]: value
             });
             this.handleSubmitButton(e);
-    } 
+    }; 
 
     resetInputs = () => {
         this.setState({titlu: "", description: "", status:0, email: "", phone: "", file:false});
-    }
+    };
 
     setCaracterCount = (e) => {
         this.setState({descriptionCaracterCount:e.target.value.length})
-    }
+    };
 
     handleFormValidation = (eventName, eventValue) => {
         switch(eventName) {
@@ -182,7 +163,7 @@ export default class Admin extends React.Component {
                     return { errors : this.state.errors}
                 }) : this.state.errors
             )
-    }
+    };
 
 
    handleSubmitButton = (e) =>{
@@ -247,7 +228,7 @@ export default class Admin extends React.Component {
                 break;
         }
         this.handleFormValidation(e.target.name, e.target.value);
-    }
+    };
    
 
     setContent = (e) => {
@@ -286,7 +267,7 @@ export default class Admin extends React.Component {
                 type= "";
                 break;
         }
-    }
+    };
 
     onSubmit = async (e) => {
         e.preventDefault(); 
@@ -429,7 +410,7 @@ export default class Admin extends React.Component {
             } 
             catch (err) {
                 this.setState({submitErr:true})
-                throw new Error("Unsuccessuful login. Try again please.")
+                throw new Error("Something is not right... Try again please.")
             }; 
     };
 
@@ -453,9 +434,7 @@ export default class Admin extends React.Component {
             marginBottom:"15px",
             float:"right"
         }
-        const loggedIn = this.state.loginStatus;
             return ( 
-                 loggedIn  ? 
                 <div> 
                    {this.state.submitErr && (<h5 style = {errorStyle}>Something went wrong. Login and try again.</h5>)}
                     <div className="adminForm" style = {formStyle}>
@@ -511,9 +490,6 @@ export default class Admin extends React.Component {
                         <ShowDataFromApi data = {this.state} token = {sessionStorage.getItem("token")} />
                     </div> 
                 </div> 
-                : <Redirect to={"/login"} /> 
             )
     }  
-}
-
-
+};

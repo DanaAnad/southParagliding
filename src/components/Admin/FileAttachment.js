@@ -8,7 +8,7 @@ export default class FileAttachment extends Component {
         this.state={
             convertedFile:"",
             inputFile:""
-        }
+        };
         this.getFiles = this.getFiles.bind(this);
     }
     
@@ -28,7 +28,7 @@ export default class FileAttachment extends Component {
             catch (err) {
                 throw new Error("FileValidation not working...")
             };
-    }
+    };
    
     getFiles = async (e,file) => {    
         file = e.target.files[0];
@@ -79,8 +79,8 @@ export default class FileAttachment extends Component {
                 catch (err) {
                     throw (err);
                 } 
-        }
-    }
+        };
+    };
     render() {
         const fileStyle = {
             width: "100px",
@@ -89,7 +89,7 @@ export default class FileAttachment extends Component {
             objectFit:"cover",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-        }
+        };
 
         return(
             <div>
@@ -105,6 +105,6 @@ export default class FileAttachment extends Component {
                             <source src={this.state.convertedFile} /> 
                         </video> : null }
             </div>
-        )
-    }
+        );
+    };
 }

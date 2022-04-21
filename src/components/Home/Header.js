@@ -11,7 +11,7 @@ export default class Header extends React.Component {
             menuOpen: false,
             logo:"false",
         }
-    }
+    };
 
     componentDidMount() {
         const img = new Image();
@@ -19,16 +19,17 @@ export default class Header extends React.Component {
         this.setState({
             logo:img.src
         });
-    }
+    };
     
     handleChange=(state) => {
         this.setState({
             menuOpen:state.isOpen
         })
-    }
+    };
+
     closeMenu=()=> {
         this.setState({menuOpen: false})
-    }
+    };
 
     render(){    
         return(
@@ -87,5 +88,5 @@ export default class Header extends React.Component {
                 </div>
             </div> 
         )
-    } 
-}
+    } ;
+};

@@ -50,6 +50,7 @@ export default class Home extends React.Component {
       }
     });
   };
+
   closeCustomModal =() => {
     this.setState({
       customModal:{
@@ -57,7 +58,7 @@ export default class Home extends React.Component {
         data:[]
       }
     })
-  }
+  };
 
   componentDidMount= async () => {
     await this.getData();
@@ -78,7 +79,7 @@ export default class Home extends React.Component {
 
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>;
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
-}
+  };
  
   setContentByType = (type) =>  {
     let items = this.state.alldata.filter(row => row.type === type);
@@ -102,7 +103,7 @@ export default class Home extends React.Component {
       default: 
         break;
     }
-  }
+  };
 
   setContent = (type) => {
     let data = false;
@@ -138,8 +139,7 @@ export default class Home extends React.Component {
         }
       })
     } 
-  }
-
+  };
   
   getData = async () => {
     try {
@@ -154,16 +154,7 @@ export default class Home extends React.Component {
     catch (e) {
       throw new Error(e.message);
     }
-  }
-
-  closeCustomModal =() => {
-    this.setState({
-      customModal:{
-        show: false,
-        data:[]
-      }
-    })
-  }
+  };
 
   setContentForFullScreenCustomModal = (e) => {
     const imgSource = [e.target.src];
@@ -180,10 +171,8 @@ export default class Home extends React.Component {
         })
       )
     });
-  }
+  };
 
-  
-  
   render(e){
       const background = {
         backgroundImage:`url(${this.state.backgroundImg})`

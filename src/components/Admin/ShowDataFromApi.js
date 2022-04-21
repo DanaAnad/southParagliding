@@ -19,9 +19,9 @@ export default class ShowDataFromApi extends React.Component {
         const index = this.props.data.allData.findIndex(x => x.id === dataId.id);
         resp.status === 200 && this.setState( () => {
             this.props.data.allData.splice(index, 1);
-                return {allData: this.props.data.allData}
+                return {allData: this.props.data.allData};
         });
-    }
+    };
 
     render() {
         const reversedAllData = this.props.data.allData.slice().reverse();
@@ -96,5 +96,5 @@ export default class ShowDataFromApi extends React.Component {
                     </div>
             </div>
         )
-    }
-} 
+    };
+}; 

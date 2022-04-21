@@ -4,7 +4,6 @@ import "../../carousel.css";
 import Card from 'react-bootstrap/Card';
 import {Helmet} from "react-helmet";
 
-
 export default class LocationsCarousel extends Component {
 
   componentDidMount() {
@@ -13,7 +12,6 @@ export default class LocationsCarousel extends Component {
       img.src = item.data.data.fileName;
     });
   }
-
 
   render(){
     return(

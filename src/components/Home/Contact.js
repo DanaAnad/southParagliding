@@ -8,7 +8,7 @@ export default class Contact extends React.Component {
     componentDidMount() {
         const img= new Image();
         img.src = FollowUs;
-    }
+    };
     render() {
         return(
             <div className="contactComponent">
@@ -50,7 +50,7 @@ export default class Contact extends React.Component {
                         </div>
                 </div>
         )
-    }
-}
+    };
+};
 
  
