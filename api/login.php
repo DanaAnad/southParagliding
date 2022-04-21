@@ -92,9 +92,6 @@ class Login {
                 'id' => $result['id']
             ));
             $response = $this->OKResponse('token',$encripted);
-
-
-            
         }
         return $response;
       } catch (\PDOException $e) {

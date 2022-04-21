@@ -4,20 +4,16 @@ import "../../carousel.css";
 import Card from 'react-bootstrap/Card';
 import {Helmet} from "react-helmet";
 
-
 export default class LocationsCarousel extends Component {
 
   componentDidMount() {
     this.props.items.forEach((item) => {
       const img = new Image();
       img.src = item.data.data.fileName;
-      console.log("image::", img); 
     });
   }
 
-
   render(){
-    console.log("propsLocations::", this.props);
     return(
       <div className="Locations">
         <Helmet>

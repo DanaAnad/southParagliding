@@ -8,49 +8,34 @@ import UrlApi from "../../apiUrlConfig";
 export default class ShowDataFromApi extends React.Component {
 
     deleteDataById = async (id) => {
-        const token = this.props.data.loginToken;
-        console.log("tokenShowDataApi::", token);
+        const token = sessionStorage.getItem("token");
         const dataId = { id };
-        console.log("dataId::", dataId.id);
-        const url = "http://ms.homens.tricu.ro/data/"+dataId.id;
-        console.log("urlApiDeleteAdmin::", url);
+        const url = UrlApi.data+"/"+dataId.id;
         const options = {
             headers:{
                 "Token":token}
         };
         const resp = await axios.delete(url, options);
-        console.log("response::", resp);
         const index = this.props.data.allData.findIndex(x => x.id === dataId.id);
-        console.log("indexxx::", index); 
         resp.status === 200 && this.setState( () => {
             this.props.data.allData.splice(index, 1);
-                return {allData: this.props.data.allData}
+                return {allData: this.props.data.allData};
         });
-    }
+    };
 
     render() {
-        console.log("propsShowDataApi::", this.props.data.loginToken);
         const reversedAllData = this.props.data.allData.slice().reverse();
         
-        let errorStyle = {
-            paddingTop:"250px",
-            width: '50%' ,
-            margin: 'auto',
-            fontSize:"25px",
-            color:"red",
-            textAlign: 'center',
-        }
-
         return(
             <div className="showDataContainer">
-                {!this.props.data.loginToken ?  <p style = {errorStyle}>Something went wrong.<br/>Please login or try again.</p> : 
                     <div>
                         {this.props.data.allData.length ? 
                             reversedAllData.map((rowData, index) => {
                                 if(rowData.type === this.props.data.type) {
                                     return (
                                         <ul key = {index}>
-                                            {rowData.type === "video" ?  
+                                            {rowData.type === "video" ? 
+                                            <div> 
                                             <li key ={index}>
                                                 <Accordion>
                                                     <Card>
@@ -69,7 +54,9 @@ export default class ShowDataFromApi extends React.Component {
                                                     </Card>
                                                 </Accordion>
                                             </li> 
+                                            </div>
                                             :  
+                                            <div>
                                             <li key ={index}>
                                                 <Accordion>
                                                     <Card>
@@ -90,6 +77,7 @@ export default class ShowDataFromApi extends React.Component {
                                                     </Card>
                                                 </Accordion>
                                             </li> 
+                                            </div>
                                             }
                                         </ul>
                                     ) 
@@ -106,8 +94,7 @@ export default class ShowDataFromApi extends React.Component {
                                 </span>
                         }
                     </div>
-                }
             </div>
         )
-    }
-} 
+    };
+}; 

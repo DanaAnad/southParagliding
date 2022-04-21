@@ -36,10 +36,6 @@ export default class Home extends React.Component {
         ],
         alldata : [],
         backgroundImg:false,
-        fullScreenPic :{
-          width:window.innerWidth, 
-          height:window.innerHeight
-        }
       };
       this.setContent = this.setContent.bind(this);
       this.closeModal = this.closeModal.bind(this);
@@ -54,6 +50,7 @@ export default class Home extends React.Component {
       }
     });
   };
+
   closeCustomModal =() => {
     this.setState({
       customModal:{
@@ -61,24 +58,19 @@ export default class Home extends React.Component {
         data:[]
       }
     })
-  }
-
-
+  };
 
   componentDidMount= async () => {
     await this.getData();
     this.state.alldata.forEach((item) => {
-      // console.log("itemPreloadImg::", item)
       if(item.data.fileName) {
         const img = new Image();
         img.src = item.data.fileName;
       }
     });
       let background = this.state.alldata.filter(item => item.type === "backgrounds")
-      console.log("BACKGROUND::", background);
         const img = new Image();
         img.src = background[background.length-1].data.fileName;
-        console.log("imgSRC::", img.src);
         this.setState({
           backgroundImg: img.src,
         });
@@ -87,14 +79,11 @@ export default class Home extends React.Component {
 
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>;
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
-}
+  };
  
   setContentByType = (type) =>  {
     let items = this.state.alldata.filter(row => row.type === type);
-    console.log("itemsTypeHomeIDCheck::", items);
     const itemsData =  items.map(row => {return{data:row}});
-    console.log("itemsDataRow:::", itemsData);
-
     switch(type) {
       case 'news' : {
         return  <NewsCarousel title = {this.state.newsTitle} items = {itemsData} />
@@ -114,7 +103,7 @@ export default class Home extends React.Component {
       default: 
         break;
     }
-  }
+  };
 
   setContent = (type) => {
     let data = false;
@@ -150,62 +139,41 @@ export default class Home extends React.Component {
         }
       })
     } 
-  }
-
+  };
   
   getData = async () => {
     try {
-    const {data} = await axios.get("http://ms.homens.tricu.ro/data");
-    console.log("allData", data);
+    const {data} = await axios.get(UrlApi.data);
     let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
       this.setState({
         alldata: [ ...data ],
         newsTitle: titluStiri[titluStiri.length-1].data.titluStiri,
         isLoading: false
       });
-      console.log("thisStateAllData:getDataHome:", this.state.alldata);
     }
     catch (e) {
       throw new Error(e.message);
     }
-  }
-
-  toggleFullScreenPhoto = () => {
-    const FullScreenState = this.state.customModal.show;
-    console.log("fullScreenPhoto::", FullScreenState);
-    this.setState({
-      customModal : {
-        show:!FullScreenState
-      }
-    })
-  }
+  };
 
   setContentForFullScreenCustomModal = (e) => {
-    const fullScreenImg = {
-      height:this.state.fullScreenPic.height,
-      width:this.state.fullScreenPic.width
-    } 
-    console.log("styleFullScreenObj::", fullScreenImg);
     const imgSource = [e.target.src];
-    console.log("imgSources::",imgSource);
     imgSource.map((src, index) =>{
       return (
         this.setState({
           customModal : {
             show: true, 
             data:[
-              <img src = {src} onClick={this.toggleFullScreenPhoto} onTouchEnd= {this.toggleFullScreenPhoto}
+              <img src = {src} onClick={this.toggleFullScreenPhoto} onTouchEnd = {this.toggleFullScreenPhoto}
                className = "fullScreenPic" alt = "fullScreen-foto" key={index}  />
             ]
           },
         })
       )
     });
-  }
+  };
 
-  
   render(e){
-      console.log("alldata::", this.state.alldata);
       const background = {
         backgroundImage:`url(${this.state.backgroundImg})`
       }

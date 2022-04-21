@@ -1,54 +1,57 @@
-import React, {useState} from "react";
-import { useHistory } from "react-router-dom";
+import React, {useState, useEffect} from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import UrlApi from "../apiUrlConfig.js";
 
 
-export default function Login () {
-
-    const history = useHistory();
+export default function Login ({setToken}) {
 
     const [email, setEmail]=useState("");
     const [password, setPassword] = useState("");
-    const [token, setToken] = useState("");
-    const [error, setError] = useState(false);
+    const [error, setError] = useState("");
+    const [loginButtonDisabled, setLoginButtonDisabled] = useState(true);
 
 
+    const handleLoginButtonAvailability = () => {
+        if((email.length && password.length) !== 0){
+            setLoginButtonDisabled(false);
+        } else 
+            return (setLoginButtonDisabled(true));
+    }
+    useEffect((e)=> {
+        handleLoginButtonAvailability();   
+    })
+  
 const loginUser =  async () => {
     let data;
-        const apiUrl = "http://ms.homens.tricu.ro/login";
         const headers = {
             "Content-Type": "application/json"
-        };
+        };        
         data = JSON.stringify({"u":email, "p":password});
-        console.log("stringgg::", data)
-        try{
-            const response = await axios({
-                method:"POST",
-                url:apiUrl,
-                headers:headers,
-                data
-            })
-            console.log("response::", response.data.token);
-            if(response.status === 200){
-                setToken(response.data.token)
-                console.log("tokenLogin::", token);
-                history.push('/admin', {token:response.data.token});
+            try{
+                const response = await axios({
+                    method:"POST",
+                    url:UrlApi.login,
+                    headers:headers,
+                    data
+                })
+                if(response.status === 200){
+                    setToken(response.data.token);
+                }
             }
-        }
-        catch (error) {
-            console.log("errorPostLogin::", error);
-            setError(true);
-
-        }
+            catch (error) {
+                {
+                throw new Error("User is not logged in. Close this error and try again."),
+                setError(error)
+                }
+            }
     }
  
-
    const handleSubmit = async (e) => {
        e.preventDefault();
        loginUser();
-   }
+       }
 
     let errorStyle = {
             textAlign:"center",
@@ -72,24 +75,24 @@ const loginUser =  async () => {
             margin: 'auto',
             textAlign: 'center',
     }
-
     return (
-    <div>
-        {error && (<h5 style = {errorStyle}>Log in failed. Check you credentials.</h5>)} 
         <div>
-           <h3 style = {h3Style}>Login</h3> 
-            <div className="loginForm" style = {formStyle}>
-                <Form onSubmit = {handleSubmit}>
-                    <Form.Group>
-                    <Form.Control type="email" name="email" placeholder="Enter email" onChange={(e)=> setEmail(e.target.value)}></Form.Control>
-                    <br />
-                    <Form.Control type="password" name="password" placeholder=" Password" onChange={(e)=> setPassword(e.target.value)}></Form.Control>
-                    </Form.Group>
-                    <br/><br />
-                    <Button type="submit">Log in</Button>
-                </Form>
+            {error && (<h5 style = {errorStyle}>Log in failed. Check you credentials.</h5>)} 
+            <div>
+            <h3 style = {h3Style}>Login</h3> 
+                <div className="loginForm" style = {formStyle}>
+                    <Form onSubmit = {handleSubmit}>
+                        <Form.Group>
+                        <Form.Control type="email" name="email" placeholder="Enter email" onChange={(e)=> setEmail(e.target.value)}></Form.Control>
+                        <br />
+                        <Form.Control type="password" name="password" placeholder=" Password" onChange={(e)=> setPassword(e.target.value)}></Form.Control>
+                        </Form.Group>
+                        <br/><br />
+                        <Button type="submit" disabled = {loginButtonDisabled}>Log in</Button>
+                    </Form>
+                </div>
             </div>
         </div>
-    </div>
-    )
+    )  
 }
+
