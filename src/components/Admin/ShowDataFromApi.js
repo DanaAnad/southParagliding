@@ -15,16 +15,24 @@ export default class ShowDataFromApi extends React.Component {
             headers:{
                 "Token":token}
         };
-        const resp = await axios.delete(url, options);
-        const index = this.props.data.allData.findIndex(x => x.id === dataId.id);
-        resp.status === 200 && this.setState( () => {
-            this.props.data.allData.splice(index, 1);
-                return {allData: this.props.data.allData};
-        });
+        try{
+            const resp = await axios.delete(url, options);
+            const index = this.props.data.allData.findIndex(x => x.id === dataId.id);
+            resp.status === 200 && this.setState( () => {
+                this.props.data.allData.splice(index, 1);
+                    return {allData: this.props.data.allData};
+            });
+        }
+        catch(e){
+            throw new Error(e);
+        }
     };
 
     render() {
+        console.log("show`dataFRomApiCO.URLDATA::", UrlApi.data);
+        console.log("showdataApi:props:", this.props);
         const reversedAllData = this.props.data.allData.slice().reverse();
+        console.log("reversedAlldataPropsDelete::", reversedAllData);
         
         return(
             <div className="showDataContainer">
