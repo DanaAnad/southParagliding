@@ -1,42 +1,46 @@
 <?php
-
+// echo $_SERVER['REQUEST_METHOD'];
 require "./database.php";
 require "./datas.php";
 require "./login.php";
 
-
-header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Origin");
+header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: OPTIONS,GET,POST,PUT,DELETE");
 header("Access-Control-Max-Age: 3600");
-header('Access-Control-Allow-Headers: Authorization, Access-Control-Allow-Headers, Content-Type, Accept, X-Request-With');
+header('Access-Control-Allow-Headers: Authorization, Access-Control-Allow-Headers, Content-Type, Accept, X-Request-With, token, Token');
 header('Accept: */*');
-
 
 if (!function_exists('getallheaders')) 
 { 
     function getallheaders() 
     { 
-           $headers = []; 
-       foreach ($_SERVER as $name => $value) 
-       { 
-           if (substr($name, 0, 5) == 'HTTP_') 
-           { 
-               $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value; 
-           } 
-       } 
-       return $headers; 
+          $headers = []; 
+      foreach ($_SERVER as $name => $value) 
+      { 
+          if (substr($name, 0, 5) == 'HTTP_') 
+          { 
+              $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value; 
+          } 
+      } 
+      return $headers; 
     } 
+    // print_r($headers);
 } 
 
+
 $parsedUrl =  $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/';
+// print_r($parsedUrl);
+
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
 $uri = explode( '/', $uri );
-// print_r($uri);
+// print_r($uri[1]);
 
-if ($uri[1] !== 'data' && $uri[1] !== 'datas' && $uri[1] !== 'login') {
+
+$requestMethod = $_SERVER["REQUEST_METHOD"];
+
+if ($uri[1] !== 'data' && $uri[1] !== 'datas' && $uri[1] !== 'login' && $requestMethod !== 'OPTIONS') {
   header("HTTP/1.1 404 Not Found");
   exit();      
 }
@@ -53,34 +57,42 @@ if ($uri[1] == 'data' and isset($uri[2])) {
     $dataId = (int) $uri[2];
 }
 
-$requestMethod = $_SERVER["REQUEST_METHOD"];
 $dbConnection = (new Database())->connect();
 
 if ($requestMethod == 'POST' && $uri[1] == 'login') {
   $controller = new Login($dbConnection);
 }
-else if ($requestMethod !== 'GET' && $uri[1] !== 'login') {
+else if ($requestMethod !== 'GET' && $requestMethod !== 'OPTIONS' && $uri[1] !== 'login') {
   $headers = getallheaders();
   $loginController = new Login($dbConnection);
 
-  if (!$headers['Token']) {
-    $response = $loginController->unauthorizedRequestResponse("Unauthorized");
+  if ( !isset($headers['Token']) && !isset($headers['token']) ) {
+    print_r( isset($headers['token']) );
+    $response = $loginController->unauthorizedRequestResponse("Unauthorized-No Token");
     $loginController->setResponse($response);
     exit();      
   } 
-
-  $creds = $loginController->decrypt($headers['Token']);
+  $foundToken = '';
+  if ( isset($headers['Token']) ) {
+      $foundToken = $headers['Token'];
+  }
+  
+  if ( isset($headers['token']) ) {
+      $foundToken = $headers['token'];
+  }  
+  
+  $creds = $loginController->decrypt($foundToken);
   $creds = json_decode($creds, true);
   if (!isset($creds['email']) || !isset($creds['password'])) {
-    $response = $loginController->unauthorizedRequestResponse("Unauthorized");
+    $response = $loginController->unauthorizedRequestResponse("Unauthorized-Invalid Token");
     $loginController->setResponse($response);
     exit();
   }
 
-  $wasSessionExtended = $loginController->extendSession($creds['email'], $creds['password'], $headers['Token']);
+  $wasSessionExtended = $loginController->extendSession($creds['email'], $creds['password'], $foundToken);
 
   if (!$wasSessionExtended) {
-    $response = $loginController->unauthorizedRequestResponse("Unauthorized");
+    $response = $loginController->unauthorizedRequestResponse("Unauthorized-Token not extended");
     $loginController->setResponse($response);
     exit();
   }
