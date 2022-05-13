@@ -67,7 +67,7 @@ else if ($requestMethod !== 'GET' && $requestMethod !== 'OPTIONS' && $uri[1] !==
   $loginController = new Login($dbConnection);
 
   if ( !isset($headers['Token']) && !isset($headers['token']) ) {
-    print_r( isset($headers['token']) );
+//     print_r( isset($headers['token']) );
     $response = $loginController->unauthorizedRequestResponse("Unauthorized-No Token");
     $loginController->setResponse($response);
     exit();      
