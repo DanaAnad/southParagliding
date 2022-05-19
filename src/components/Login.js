@@ -88,7 +88,7 @@ const loginUser =  async () => {
                         <Form.Control type="password" name="password" placeholder=" Password" onChange={(e)=> setPassword(e.target.value)}></Form.Control>
                         </Form.Group>
                         <br/><br />
-                        <Button type="submit" disabled = {loginButtonDisabled}>Log in</Button>
+                        <Button type="submit" disabled = {loginButtonDisabled}>Login</Button>
                     </Form>
                 </div>
             </div>

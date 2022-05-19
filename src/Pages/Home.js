@@ -9,7 +9,7 @@ import PhotoCarousel from "../components/Home/PhotoCarousel.js";
 import VideoCarousel from "../components/Home/VideoCarousel";
 import LocationsCarousel from "../components/Home/LocationsCarousel.js";
 import MyCustomModal from "../components/Home/MyCustomModal";
-import '../SP.css';
+import '../CSS_files/SP.css';
 import FbLogo from '../assets/SocialMedia/FbLogo.png';
 import axios from 'axios';
 import Loader from "react-loader-spinner";
@@ -168,7 +168,7 @@ export default class Home extends React.Component {
             show: true, 
             data:[
               <img src = {src} onClick={this.toggleFullScreenPhoto} onTouchEnd = {this.toggleFullScreenPhoto}
-               className = "fullScreenPic" alt = "fullScreen-foto" key={index}  />
+               className = "fullScreenPic"  alt = "fullScreen-foto" key={index}  />
             ]
           },
         })

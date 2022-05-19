@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card'
-import "../../carousel.css";
+import "../../CSS_files/carousel.css";
 import {Helmet} from "react-helmet";
 
 export default class VideoCarousel extends Component {

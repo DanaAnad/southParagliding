@@ -1,6 +1,6 @@
 
 const UrlApi = {
-  data : "http://api.southparagliding.ro/data",
+  data : "https://api.southparagliding.ro/data",
   login: "https://api.southparagliding.ro/login" 
 }
 

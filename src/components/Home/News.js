@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Carousel from 'react-bootstrap/Carousel';
-import "../../NewsCarousel.css";
+import "../../CSS_files/NewsCarousel.css";
 import Card from 'react-bootstrap/Card';
 import {Helmet} from "react-helmet";
 

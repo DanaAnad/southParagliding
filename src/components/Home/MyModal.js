@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Modal from 'react-bootstrap/Modal'
-import "../../modal.css";
+import "../../CSS_files/modal.css";
 
 export default class MyModal extends Component {
   

@@ -1,0 +1,148 @@
+@media screen and (min-width:1400px) {
+    .customModal {
+        position: absolute;
+        display:flex;
+        height:100%;
+        z-index:1061;
+        background:transparent;
+        overflow: auto;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .customModalCloseIcon {
+        position: absolute;
+        color:rgb(240, 35, 35);
+        margin-left: 96%;
+        font-size:60px;
+        cursor:pointer;
+    }
+    .customModalData  {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        margin: 0;
+        align-self: center;
+    }
+    .customModalData img {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        overflow: hidden;
+        align-self: center;
+        border:1px solid white;
+        border-radius:3px;
+        cursor:pointer;
+    }
+}
+@media screen and (min-width: 900px) and (max-width: 1399px )  {
+    .customModal {
+        position: absolute;
+        display:flex;
+        width:100%;
+        height:100%;
+        z-index:1061;
+        background:transparent;
+        overflow: auto;
+    }
+    .customModalCloseIcon {
+        position: absolute;
+        color:rgb(240, 35, 35);
+        margin-left: 96%;
+        font-size:50px;
+        cursor:pointer;
+    }
+    .customModalData {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .customModalData img {
+        width: 100vw;
+        height: 100vh;
+        object-fit:cover;
+        border:1px solid white;
+        border-radius:3px;
+        cursor:pointer;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 900px ) {
+    .customModal {
+        position: absolute;
+        display:flex;
+        width:100%;
+        z-index:1061;
+        background:transparent;
+        overflow:auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .customModalCloseIcon {
+        position: absolute;
+        color:rgb(240, 35, 35);
+        margin-left: 93%;
+        font-size:50px;
+        cursor:pointer;
+    }
+    .customModalData  {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        overflow: auto;
+        
+    }
+    .customModalData img {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        overflow: auto;
+        align-self: center;
+        border: 1px solid white;
+        border-radius: 3px;
+        cursor:pointer;
+
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .customModal {
+        position: absolute;
+        display:flex;
+        width:100%;
+        height:100%;
+        z-index:1061;
+        background:transparent;
+    }
+
+    .customModalCloseIcon {
+        position: absolute;
+        color:rgb(240, 35, 35);
+        margin-left: 90%;
+        font-size:50px;
+        cursor:pointer;
+    }
+    .customModalData  {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .customModalData img {
+        object-fit: cover;
+        width: 100vw;
+        height: 100vh;
+        border:1px solid white;
+        border-radius:3px;
+        cursor:pointer;
+    }
+}

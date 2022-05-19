@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Carousel from 'react-bootstrap/Carousel';
-import "../../carousel.css";
+import "../../CSS_files/carousel.css";
 import Card from 'react-bootstrap/Card';
 import {Helmet} from "react-helmet";
 
@@ -17,18 +17,18 @@ export default class LocationsCarousel extends Component {
     return(
       <div className="Locations">
         <Helmet>
-        <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1"/>
-          <title>Locatii de zbor - SouthParagliding </title>
-          <meta name="description" content="Locatii de zbor cu echipa de la South Paragliding Craiova" />
-             {this.props.items.map((item, index) => 
-             <meta key={index} name="title" content={item.data.data.titlu} />
-            )} 
-            {this.props.items.map((item, index) => 
-              <meta key={index} name = "image" content={item.data.data.fileName} /> 
-            )} 
-          <meta name="keywords"
-            content="parapanta, locatii de zbor, parapantism, Craiova, Romania, south paragliding, paragliding, zbor cu parapanta, parasutism"
+          <meta charSet="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Locatii de zbor - SouthParagliding </title>
+            <meta name="description" content="Locatii de zbor cu echipa de la South Paragliding Craiova" />
+              {this.props.items.map((item, index) => 
+              <meta key={index} name="title" content={item.data.data.titlu} />
+              )} 
+              {this.props.items.map((item, index) => 
+                <meta key={index} name = "image" content={item.data.data.fileName} /> 
+              )} 
+            <meta name="keywords"
+              content="parapanta, locatii de zbor, parapantism, Craiova, Romania, south paragliding, paragliding, zbor cu parapanta, parasutism"
             />
         </Helmet>
       {this.props.items.length === 1 ? 

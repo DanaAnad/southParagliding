@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from "../../assets/Logo/LOGO@2x.png";
 import { slide as Menu } from 'react-burger-menu';
-import "../../Header.css";
-import "../../burgerMenu.css"; 
+import "../../CSS_files/Header.css";
+import "../../CSS_files/burgerMenu.css"; 
 
 export default class Header extends React.Component { 
     constructor(props) {
