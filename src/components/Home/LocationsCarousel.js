@@ -68,7 +68,7 @@ export default class LocationsCarousel extends Component {
       <Card
           bg={"#fff"}
           text={ 'dark'}
-          className="mb-2 bodyCard"
+          className="bodyCard"
       >
           <Card.Body>
           <Card.Text>

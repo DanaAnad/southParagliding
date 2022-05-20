@@ -1,7 +1,7 @@
 # PROJECT TITLE
 SouthParagliding
 
-#   ABOUT THE PROJECT
+# ABOUT THE PROJECT
 This is a presentation app build in React that show the activity of a paragliding team. 
 
 # DEMO LINK
@@ -20,7 +20,7 @@ https://southparagliding.ro/admin
 - run npm run build to put into production the app
 - copy the contents of build folder on your hosting server in public_html     folder
 
-# TAVKE OF CONTENTS
+# TABLE OF CONTENTS
 - News
 - Foto 
 - Video
