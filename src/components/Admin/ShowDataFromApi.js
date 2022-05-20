@@ -29,11 +29,7 @@ export default class ShowDataFromApi extends React.Component {
     };
 
     render() {
-        console.log("show`dataFRomApiCO.URLDATA::", UrlApi.data);
-        console.log("showdataApi:props:", this.props);
         const reversedAllData = this.props.data.allData.slice().reverse();
-        console.log("reversedAlldataPropsDelete::", reversedAllData);
-        
         return(
             <div className="showDataContainer">
                     <div>

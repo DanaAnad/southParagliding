@@ -61,7 +61,6 @@ export default class Home extends React.Component {
   };
 
   componentDidMount= async () => {
-    console.log("apiUrl::", UrlApi.data);
     await this.getData();
     this.state.alldata.forEach((item) => {
       if(item.data.fileName) {
@@ -145,14 +144,12 @@ export default class Home extends React.Component {
   getData = async () => {
     try {
       const {data} = await axios.get(UrlApi.data);
-      // console.log("dataGetData::", data);
       let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
         this.setState({
           alldata: [ ...data ],
           newsTitle: titluStiri[titluStiri.length-1].data.titluStiri,
           isLoading: false
         });
-        console.log("dataGetData::", data);
     }
     catch (e) {
       throw new Error("Error when fetching data from the server.");

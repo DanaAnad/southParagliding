@@ -14,7 +14,6 @@ export default class PhotoCarousel extends Component {
   }
 
   render(){
-    console.log("fotoCarouselPrsps::", this.props);
     return(
       <div >
        <Helmet>

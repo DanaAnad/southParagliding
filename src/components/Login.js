@@ -41,10 +41,8 @@ const loginUser =  async () => {
                 }
             }
             catch (error) {
-                // { 
                     setError(error);
                     throw new Error("Unsuccessful login. Please try again.")
-                // }
             }
     }
  

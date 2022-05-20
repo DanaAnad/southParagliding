@@ -272,7 +272,6 @@ export default class Admin extends React.Component {
     onSubmit = async (e) => {
         e.preventDefault(); 
         const token = sessionStorage.getItem("token");
-        console.log("tokenAdminSubmitdata::", token);
         let data = [];
         let lastInsertedData = {};
         const formData = new FormData();
@@ -393,8 +392,6 @@ export default class Admin extends React.Component {
                 data = {};
                 break;
         };
-        // const token = sessionStorage.getItem("token");
-        console.log("adminTokensSesions:!!!!!!!:", token);
         const options = {
           headers : {
                 "Content-Type": "multipart/form-data",
@@ -402,7 +399,6 @@ export default class Admin extends React.Component {
              }
                 };
             try {
-                // console.log("adminTokensSesions:!tryCatch!!!!!!:", token);
                 const response = await axios.post(UrlApi.data, data, options);
                 response.status === 201 && (lastInsertedData.id = response.data.id);
                 this.setState({
@@ -420,7 +416,6 @@ export default class Admin extends React.Component {
     };
 
     render () {      
-        console.log("adminProps::", this.props);
         let formStyle = {
             width: '50%' ,
             margin: 'auto',
