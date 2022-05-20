@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../Contact.css";
+import "../../CSS_files/Contact.css";
 import contactLogo from "../../assets/icons/contactIcon.png";
 import  FollowUs from "../../assets/SocialMedia/FollowUs.png";
 import {Helmet} from "react-helmet";

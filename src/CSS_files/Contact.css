@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+
+@media screen and (min-width:1400px) {
+    .contactComponent {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 350px;
+        height: 350px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        font-family: Montserrat;  
+    }
+    .contactIconContainer {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .contactDetails {
+        text-align: center;
+        align-content: center;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+    .contactIcon{
+        align-items: center;
+        justify-content: center;
+        width:60px;
+        height:60px;
+    }
+    .contact{
+        text-align: center;
+    }
+
+    .contact span {
+        font-family: Montserrat;
+    }
+    .socialMediaContact {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        width: 7em;
+        height: 1.5em;
+        margin:auto;
+    }
+    .socialMediaContact img {
+        width: 7em;
+        height: 2.5em;
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 480px)  {
+    .contactComponent {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 350px;
+        height: 350px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2em;
+        font-family: Montserrat;  
+    }
+
+    .contactIconContainer {
+        align-items: center;
+        width:80px;
+        height:80px;
+        padding-top:20px;
+    }
+    .contactIcon{
+        width:55px;
+        height:55px;
+        margin-top:10px;
+        align-items: center;
+        justify-content: center;
+    }
+    .contactDetails {
+        display: flex;
+        flex-direction:column;
+        margin-top:20px;
+        margin-bottom:10px;
+        text-align: center;
+        align-content: center;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .contact {
+        margin-bottom:15px;
+    }
+    .contactText .contactDescription {
+        display: inline-block;
+        width: 300px;
+        font-family: Montserrat;
+        font-size: 15px;
+    }
+
+
+    .socialMediaContact {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        width: 7em;
+        height: 2px;
+        margin:auto;
+    }
+    .socialMediaContact img {
+        width: 7em;
+        height: 2.5em;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 900px ) {
+    
+    .contactComponent {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 400px;
+        height: 320px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 13px;
+        font-family: Montserrat;  
+    }
+
+    .contactIconContainer {
+        align-items: center;
+        width:70px;
+        height:70px;
+    }
+
+    .contactIcon{
+        width:60px;
+        height:60px;
+        align-items: center;
+        justify-content: center;
+        margin-top:10px;
+    }
+
+    .contactDetails {
+        display: flex;
+        flex-direction:column;
+        margin-top:10px;
+        margin-bottom:10px;
+        text-align: center;
+        align-content: center;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contact span {
+        font-family: Montserrat; 
+        font-size: 16px;       
+    }
+
+    .socialMediaContact {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        width: 7em;
+        height: 1px;
+        margin:auto;
+    }
+    .socialMediaContact img {
+        width: 7em;
+        height: 2.5em;
+        margin-top: 12px;
+        margin-bottom: 13px;
+    }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1399px )  {
+    .contactComponent {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 350px;
+        height: 350px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        font-family: Montserrat;
+        padding-bottom: 20px;
+    }
+    .contactIconContainer {
+        align-items: center;
+        width:70px;
+        height:70px;
+    }
+
+    .contactIcon{
+        width:60px;
+        height:60px;
+        align-items: center;
+        justify-content: center;
+        margin-top:10px;
+    }
+
+    .contactDetails {
+        display: flex;
+        flex-direction:column;
+        margin-top:10px;
+        margin-bottom:10px;
+        text-align: center;
+        align-content: center;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contact span {
+        font-family: Montserrat; 
+        font-size: 16px;       
+    }
+
+    .socialMediaContact {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        width: 7em;
+        height: 1px;
+        margin:auto;
+    }
+    .socialMediaContact img {
+        width: 7em;
+        height: 2.5em;
+        margin-top: 28px;
+        margin-bottom: 13px;
+    }
+}

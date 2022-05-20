@@ -1,5 +1,5 @@
 import React from "react";
-import "../../MyCustomModal.css";
+import "../../CSS_files/MyCustomModal.css";
 
 export default class MyCustomModal extends React.Component {
   render() {

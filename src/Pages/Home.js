@@ -9,7 +9,7 @@ import PhotoCarousel from "../components/Home/PhotoCarousel.js";
 import VideoCarousel from "../components/Home/VideoCarousel";
 import LocationsCarousel from "../components/Home/LocationsCarousel.js";
 import MyCustomModal from "../components/Home/MyCustomModal";
-import '../SP.css';
+import '../CSS_files/SP.css';
 import FbLogo from '../assets/SocialMedia/FbLogo.png';
 import axios from 'axios';
 import Loader from "react-loader-spinner";
@@ -61,6 +61,7 @@ export default class Home extends React.Component {
   };
 
   componentDidMount= async () => {
+    console.log("apiUrl::", UrlApi.data);
     await this.getData();
     this.state.alldata.forEach((item) => {
       if(item.data.fileName) {
@@ -143,16 +144,18 @@ export default class Home extends React.Component {
   
   getData = async () => {
     try {
-    const {data} = await axios.get(UrlApi.data);
-    let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
-      this.setState({
-        alldata: [ ...data ],
-        newsTitle: titluStiri[titluStiri.length-1].data.titluStiri,
-        isLoading: false
-      });
+      const {data} = await axios.get(UrlApi.data);
+      // console.log("dataGetData::", data);
+      let titluStiri = data && data.length ? data.filter(row => row.type === "newsTitle") : null;
+        this.setState({
+          alldata: [ ...data ],
+          newsTitle: titluStiri[titluStiri.length-1].data.titluStiri,
+          isLoading: false
+        });
+        console.log("dataGetData::", data);
     }
     catch (e) {
-      throw new Error(e.message);
+      throw new Error("Error when fetching data from the server.");
     }
   };
 
@@ -165,7 +168,7 @@ export default class Home extends React.Component {
             show: true, 
             data:[
               <img src = {src} onClick={this.toggleFullScreenPhoto} onTouchEnd = {this.toggleFullScreenPhoto}
-               className = "fullScreenPic" alt = "fullScreen-foto" key={index}  />
+               className = "fullScreenPic"  alt = "fullScreen-foto" key={index}  />
             ]
           },
         })

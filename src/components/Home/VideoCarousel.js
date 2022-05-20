@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card'
-import "../../carousel.css";
+import "../../CSS_files/carousel.css";
 import {Helmet} from "react-helmet";
 
 export default class VideoCarousel extends Component {
@@ -59,8 +59,8 @@ export default class VideoCarousel extends Component {
         >
             <Card.Body>
             <Card.Text>
-              <span> Nothing here. <br /> 
-              Out team will soon upload some data for the users.</span>
+            <span> For the moment there is nothing here. <br />
+              Our team will be soon uploading some data.</span>
             </Card.Text>
             </Card.Body>
         </Card> 

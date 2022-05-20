@@ -41,10 +41,10 @@ const loginUser =  async () => {
                 }
             }
             catch (error) {
-                {
-                throw new Error("User is not logged in. Close this error and try again."),
-                setError(error)
-                }
+                // { 
+                    setError(error);
+                    throw new Error("Unsuccessful login. Please try again.")
+                // }
             }
     }
  
@@ -88,7 +88,7 @@ const loginUser =  async () => {
                         <Form.Control type="password" name="password" placeholder=" Password" onChange={(e)=> setPassword(e.target.value)}></Form.Control>
                         </Form.Group>
                         <br/><br />
-                        <Button type="submit" disabled = {loginButtonDisabled}>Log in</Button>
+                        <Button type="submit" disabled = {loginButtonDisabled}>Login</Button>
                     </Form>
                 </div>
             </div>
