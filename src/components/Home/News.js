@@ -42,13 +42,12 @@ export default class NewsCarousel extends Component {
                     {this.props.items.reverse().map((item, index) => {
                             return (
                                 <Carousel.Item className="newsItem" key={index}>
-                                {item.data.data.fileName ? <a href ="https://www.facebook.com/zborcuparapantaranca">
-                                    <img 
+                                {item.data.data.fileName ? <img 
                                     className="pozaModalNews"
                                     src={item.data.data.fileName}
                                     alt="slide"
                                     /> 
-                                </a>  : null}
+                                  : null}
                                     <Carousel.Caption className="newsText">
                                     <span>{item.data.data.titlu}</span>
                                     <p>{item.data.data.description}</p>

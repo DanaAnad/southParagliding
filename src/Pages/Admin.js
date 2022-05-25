@@ -271,7 +271,6 @@ export default class Admin extends React.Component {
 
     onSubmit = async (e) => {
         e.preventDefault(); 
-        const token = sessionStorage.getItem("token");
         let data = [];
         let lastInsertedData = {};
         const formData = new FormData();
@@ -457,15 +456,15 @@ export default class Admin extends React.Component {
                                     <option value="rezervaricontact">Rezervari/Contact</option>
                                 </Form.Control>
                                 <br /><br />
-                                {this.state.showTitle && <Form.Control required minLength={5} 
+                                {this.state.showTitle && <Form.Control required minLength={4} 
                                     pattern="[a-zA-Z0-9\s.!]+" type="text" value={this.state.titlu} name="titlu" 
                                     placeholder="Titlu..."  onChange={this.handleChange} title={"whaterever"}/>
                                 }
                                 <br />
-                                {this.state.showDescription && <Form.Control required minLength={25} maxLength={90} type="textarea" 
+                                {this.state.showDescription && <Form.Control required minLength={25} maxLength={275}type="textarea" 
                                     value={this.state.description} name="description" pattern="[!-~\s]+"
                                     placeholder="Informatii..." onChange={e => { this.handleChange(e); this.setCaracterCount(e)}}/>}
-                                    {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/90 caractere folosite.</p> : null}
+                                    {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/275 caractere folosite.<br /> <b>Pt Locatii de zbor nr max de caractere este 400.</b></p> : null}
                                 <br />
                                 {this.state.showFotos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
                                 <br />

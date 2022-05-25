@@ -17,9 +17,9 @@ export default function App () {
     return (
       <div>
          <Helmet>
-            <title>South-Paragliding</title>
-            <meta name="description" content="South Paragling - cea mai buna echipa de zburatori din sudul Romaniei."/>
-            <meta name="keywords" content="parapanta, parapantism, Craiova, Romania, south paragliding, paragliding, zbor cu parapanta"/>
+            <title>South Paragliding</title>
+            <meta name="description" content="South Paragling - distractie, adrenalina, bucurie."/>
+            <meta name="keywords" content="paragliding, south paragliding, parapanta, parapantism, Craiova, Parang, Romania, zbor cu parapanta, parapantism Craiova"/>
         </Helmet>
             <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
