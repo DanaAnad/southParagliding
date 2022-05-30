@@ -2,7 +2,7 @@
 South Paragliding
 
 # ABOUT THE PROJECT
-This is a presentation app build in React that shows the activity of a paragliding team. 
+This is a presentation app built in React that shows the activity of a paragliding team. 
 
 # DEMO LINK
 https://southparagliding.ro 
@@ -16,7 +16,7 @@ https://southparagliding.ro/admin
 - PHP
 
 # SETUP / INSTALLATION
-- install Node JS and NPM on your computer. 
+- install Node JS, NPM and React on your computer. 
 - download or clone the repository.
 - run npm start to start the app in the browser.
 - run npm run build to run the app in production mode.

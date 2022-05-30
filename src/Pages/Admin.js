@@ -4,7 +4,6 @@ import FileAttachment from "../components/Admin/FileAttachment.js";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import { Helmet } from 'react-helmet';
 import UrlApi from "../apiUrlConfig";
 
 
@@ -438,9 +437,6 @@ export default class Admin extends React.Component {
                 <div> 
                    {this.state.submitErr && (<h5 style = {errorStyle}>Something went wrong. Login and try again.</h5>)}
                     <div className="adminForm" style = {formStyle}>
-                    <Helmet>
-                        <title>South-Paragliding Admin</title>
-                    </Helmet>
                         <Form onSubmit={this.onSubmit}>
                         <Button type="reset" style = {logoutBtn} onClick={this.logOut}>Log Out</Button>
                             <Form.Group controlId="Admin Form" >
@@ -458,11 +454,11 @@ export default class Admin extends React.Component {
                                 <br /><br />
                                 {this.state.showTitle && <Form.Control required minLength={4} 
                                     pattern="[a-zA-Z0-9\s.!]+" type="text" value={this.state.titlu} name="titlu" 
-                                    placeholder="Titlu..."  onChange={this.handleChange} title={"whaterever"}/>
+                                    placeholder="Titlu..." title="No special characters." onChange={this.handleChange} />
                                 }
                                 <br />
-                                {this.state.showDescription && <Form.Control required minLength={25} maxLength={275}type="textarea" 
-                                    value={this.state.description} name="description" pattern="[!-~\s]+"
+                                {this.state.showDescription && <Form.Control required minLength={25} maxLength={400} type="textarea" 
+                                    value={this.state.description} name="description" pattern="[!-~\s]+" title="No special characters."
                                     placeholder="Informatii..." onChange={e => { this.handleChange(e); this.setCaracterCount(e)}}/>}
                                     {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/275 caractere folosite.<br /> <b>Pt Locatii de zbor nr max de caractere este 400.</b></p> : null}
                                 <br />
