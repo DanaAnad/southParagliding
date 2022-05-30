@@ -17,9 +17,9 @@ export default function App () {
     return (
       <div>
          <Helmet>
-            <title>South Paragliding</title>
-            <meta name="description" content="South Paragling - adrenalina, distractie si voie buna."/>
-            <meta name="keywords" content="tandem, zbor cu parapanta in tandem, tandem paragliding, south paragliding, parapanta, parapantism Craiova,zbor cu parapanta Parang, zbor cu parapanta Romania, paragliding in Romania"/>
+            <title>South Paragliding | Parapanta Rânca</title>
+            <meta name="description" content="Zboruri de agrement cu parapanta in tandem."/>
+            <meta name="keywords" content="parapanta, ranca, craiova, salt, tandem, oltenia, novaci, dolj, paragliding, instructor, scoala, severin, crovna, sud, mosor, remorcaj, olt, mehedinti"/>
         </Helmet>
             <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
