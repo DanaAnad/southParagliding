@@ -453,11 +453,11 @@ export default class Admin extends React.Component {
                                 </Form.Control>
                                 <br /><br />
                                 {this.state.showTitle && <Form.Control required minLength={4} 
-                                    pattern="[a-zA-Z0-9\s.!]+" type="text" value={this.state.titlu} name="titlu" 
+                                    pattern="^[A-Za-z -]+$" type="text" value={this.state.titlu} name="titlu" 
                                     placeholder="Titlu..." title="No special characters." onChange={this.handleChange} />
                                 }
                                 <br />
-                                {this.state.showDescription && <Form.Control required minLength={25} maxLength={400} type="textarea" 
+                                {this.state.showDescription && <Form.Control required minLength={25} maxLength={415} type="textarea" 
                                     value={this.state.description} name="description" pattern="[!-~\s]+" title="No special characters."
                                     placeholder="Informatii..." onChange={e => { this.handleChange(e); this.setCaracterCount(e)}}/>}
                                     {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/275 caractere folosite.<br /> <b>Pt Locatii de zbor nr max de caractere este 400.</b></p> : null}
