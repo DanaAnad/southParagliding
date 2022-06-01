@@ -19,7 +19,7 @@ export default class NewsCarousel extends Component {
                  <Helmet>
                     <meta charSet="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                    <title>News - SouthParagliding</title>
+                    <title>News - SouthParagliding | Parapanta Rânca</title>
                     {this.props.items.map((item, index)=> <meta key= {index} name="title" 
                         content={item.data.data.titlu}
                     /> 

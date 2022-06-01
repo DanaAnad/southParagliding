@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import UrlApi from "../apiUrlConfig";
+import {Helmet} from "react-helmet";
 
 
 export default class Admin extends React.Component {
@@ -435,6 +436,9 @@ export default class Admin extends React.Component {
         }
             return ( 
                 <div> 
+                    <Helmet>
+                        <meta name="robots" content="noindex"/>
+                    </Helmet>
                    {this.state.submitErr && (<h5 style = {errorStyle}>Something went wrong. Login and try again.</h5>)}
                     <div className="adminForm" style = {formStyle}>
                         <Form onSubmit={this.onSubmit}>

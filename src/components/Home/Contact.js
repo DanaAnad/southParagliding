@@ -15,10 +15,10 @@ export default class Contact extends React.Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                    <title>Contact - SouthParagliding</title>
+                    <title>Contact - SouthParagliding | Parapanta Rânca</title>
                     <meta name="description" content="Contact si rezervari @ South Paragliding " />
                     <link rel="stylesheet" href="Contact.css" />
-                    <link rel="icon" href = {contactLogo} />
+                    {/* <link rel="icon" href = {contactLogo} /> */}
                     <link rel="external" href ="https://www.facebook.com/zborcuparapantaranca" />
                     <meta name="title" content = {this.props.items[this.props.items.length-1].titlu}/>
                     <link rel="author" href = {this.props.items[this.props.items.length-1].email}/>

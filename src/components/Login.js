@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import UrlApi from "../apiUrlConfig.js";
+import {Helmet} from "react-helmet";
 
 
 export default function Login ({setToken}) {
@@ -75,6 +76,9 @@ const loginUser =  async () => {
     }
     return (
         <div>
+            <Helmet>
+                <meta name="robots" content="noindex"/>
+            </Helmet>
             {error && (<h5 style = {errorStyle}>Log in failed. Check you credentials.</h5>)} 
             <div>
             <h3 style = {h3Style}>Login</h3> 
