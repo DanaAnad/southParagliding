@@ -19,7 +19,7 @@ export default class PhotoCarousel extends Component {
        <Helmet>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
-          <title>Foto - SouthParagliding</title>
+          <title>Foto - SouthParagliding | Parapanta Rânca</title>
           <meta name="description" content="Poze si filme de la zbor cu echipa South Paraglidig Craiova" />
              {this.props.items.map((item, index) =>
           <meta key ={index} name = "image" content={item.data.data.fileName}/>

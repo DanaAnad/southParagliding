@@ -17,9 +17,9 @@ export default function App () {
     return (
       <div>
          <Helmet>
-            <title>South-Paragliding</title>
-            <meta name="description" content="South Paragling - cea mai buna echipa de zburatori din sudul Romaniei."/>
-            <meta name="keywords" content="parapanta, parapantism, Craiova, Romania, south paragliding, paragliding, zbor cu parapanta"/>
+            <title>South Paragliding | Parapanta Rânca</title>
+            <meta name="description" content="Zboruri de agrement cu parapanta in tandem."/>
+            <meta name="keywords" content="parapanta, ranca, craiova, salt, tandem, oltenia, novaci, dolj, paragliding, instructor, scoala, severin, crovna, sud, mosor, remorcaj, olt, mehedinti"/>
         </Helmet>
             <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" as="style"/>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"/>
@@ -31,15 +31,15 @@ export default function App () {
                     <Link to='/'>South-Paragliding</Link>
                   </li>
                   <li key = 'admin' >
-                    <Link to='/admin'>South-Para-Admin</Link>
+                    <Link to='/sp'>South-Para-Admin</Link>
                   </li>
               </ul>
             </nav>
             <Switch>
               {token ?
-                <Route path ="/admin" render={(props) => (<Admin {...props} setToken={setToken}/>)}/> 
+                <Route path ="/sp" render={(props) => (<Admin {...props} setToken={setToken}/>)}/> 
               : 
-                <Route path="/admin" render={(props) => (<Login {...props} setToken={setToken}/>)}/>}
+                <Route path="/sp" render={(props) => (<Login {...props} setToken={setToken}/>)}/>}
                 <Route exact path="/" component={Home}/>
             </Switch>
           </div>

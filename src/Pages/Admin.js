@@ -4,7 +4,6 @@ import FileAttachment from "../components/Admin/FileAttachment.js";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import { Helmet } from 'react-helmet';
 import UrlApi from "../apiUrlConfig";
 
 
@@ -271,7 +270,6 @@ export default class Admin extends React.Component {
 
     onSubmit = async (e) => {
         e.preventDefault(); 
-        const token = sessionStorage.getItem("token");
         let data = [];
         let lastInsertedData = {};
         const formData = new FormData();
@@ -439,9 +437,6 @@ export default class Admin extends React.Component {
                 <div> 
                    {this.state.submitErr && (<h5 style = {errorStyle}>Something went wrong. Login and try again.</h5>)}
                     <div className="adminForm" style = {formStyle}>
-                    <Helmet>
-                        <title>South-Paragliding Admin</title>
-                    </Helmet>
                         <Form onSubmit={this.onSubmit}>
                         <Button type="reset" style = {logoutBtn} onClick={this.logOut}>Log Out</Button>
                             <Form.Group controlId="Admin Form" >
@@ -457,15 +452,15 @@ export default class Admin extends React.Component {
                                     <option value="rezervaricontact">Rezervari/Contact</option>
                                 </Form.Control>
                                 <br /><br />
-                                {this.state.showTitle && <Form.Control required minLength={5} 
-                                    pattern="[a-zA-Z0-9\s.!]+" type="text" value={this.state.titlu} name="titlu" 
-                                    placeholder="Titlu..."  onChange={this.handleChange} title={"whaterever"}/>
+                                {this.state.showTitle && <Form.Control required minLength={4} 
+                                    pattern="^[A-Za-z -]+$" type="text" value={this.state.titlu} name="titlu" 
+                                    placeholder="Titlu..." title="No special characters." onChange={this.handleChange} />
                                 }
                                 <br />
-                                {this.state.showDescription && <Form.Control required minLength={25} maxLength={90} type="textarea" 
-                                    value={this.state.description} name="description" pattern="[!-~\s]+"
+                                {this.state.showDescription && <Form.Control required minLength={25} maxLength={415} type="textarea" 
+                                    value={this.state.description} name="description" pattern="[!-~\s]+" title="No special characters."
                                     placeholder="Informatii..." onChange={e => { this.handleChange(e); this.setCaracterCount(e)}}/>}
-                                    {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/90 caractere folosite.</p> : null}
+                                    {this.state.showDescription ? <p>{this.state.descriptionCaracterCount}/275 caractere folosite.<br /> <b>Pt Locatii de zbor nr max de caractere este 410.</b></p> : null}
                                 <br />
                                 {this.state.showFotos && <FileAttachment data = {this.state} name = "file" value = {this.state.file} cbf = {this.setFileUpload} />}
                                 <br />

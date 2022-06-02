@@ -1,7 +1,6 @@
 .card-img, .card-img-bottom {
     border-radius: calc(.25rem - 1px);
     margin-top:-16px;
-    /* aspect-ratio: 16/9; */
 }
 .btn-danger {
     color: #fff;
