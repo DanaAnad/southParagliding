@@ -7,7 +7,7 @@ This is a presentation app built in React that shows the activity of a paraglidi
 # DEMO LINK
 Homepage: https://southparagliding.ro 
  ||
-Admin Page: https://southparagliding.ro/sp
+Admin Page: https://southparagliding.ro/intandem
 
 # TECHNOLOGIES USED
 - React JS

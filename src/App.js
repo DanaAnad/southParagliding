@@ -31,15 +31,15 @@ export default function App () {
                     <Link to='/'>South-Paragliding</Link>
                   </li>
                   <li key = 'admin' >
-                    <Link to='/sp'>South-Para-Admin</Link>
+                    <Link to='/intandem'>Admin-Southparagliding</Link>
                   </li>
               </ul>
             </nav>
             <Switch>
               {token ?
-                <Route path ="/sp" render={(props) => (<Admin {...props} setToken={setToken}/>)}/> 
+                <Route path ="/intandem" render={(props) => (<Admin {...props} setToken={setToken}/>)}/> 
               : 
-                <Route path="/sp" render={(props) => (<Login {...props} setToken={setToken}/>)}/>}
+                <Route path="/intandem" render={(props) => (<Login {...props} setToken={setToken}/>)}/>}
                 <Route exact path="/" component={Home}/>
             </Switch>
           </div>
